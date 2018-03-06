@@ -6,13 +6,13 @@ const fs = require('fs');
 const Web3 = require('web3');
 const shell = require('shelljs');
 const path = require('path');
-const gethPrivate = require('geth-private');
+const aquachainPrivate = require('aquachain-private');
 const Application = require('spectron').Application;
 const chai = require('chai');
 const http = require('http');
 const ecstatic = require('ecstatic');
 const express = require('express');
-const ClientBinaryManager = require('ethereum-client-binaries').Manager;
+const ClientBinaryManager = require('aquachain-client-binaries').Manager;
 const logger = require('../modules/utils/logger');
 
 chai.should();
@@ -21,8 +21,8 @@ process.env.TEST_MODE = 'true';
 
 const log = logger.create('base');
 
-const startGeth = function* () {
-    let gethPath;
+const startGaqua = function* () {
+    let aquachainPath;
 
     const config = JSON.parse(
         fs.readFileSync(path.join('clientBinaries.json')).toString()
@@ -30,16 +30,16 @@ const startGeth = function* () {
     const manager = new ClientBinaryManager(config);
     yield manager.init();
 
-    if (!manager.clients.Geth.state.available) {
-        gethPath = manager.clients.Geth.activeCli.fullPath;
-        console.info('Downloading geth...');
-        const downloadedGeth = yield manager.download('Geth');
-        gethPath = downloadedGeth.client.activeCli.fullPath;
-        console.info('Geth downloaded at:', gethPath);
+    if (!manager.clients.Gaqua.state.available) {
+        aquachainPath = manager.clients.Gaqua.activeCli.fullPath;
+        console.info('Downloading aquachain...');
+        const downloadedGaqua = yield manager.download('Gaqua');
+        aquachainPath = downloadedGaqua.client.activeCli.fullPath;
+        console.info('Gaqua downloaded at:', aquachainPath);
     }
 
-    const geth = gethPrivate({
-        gethPath,
+    const aquachain = aquachainPrivate({
+        aquachainPath,
         balance: 5,
         genesisBlock: {
             config: {
@@ -48,17 +48,17 @@ const startGeth = function* () {
             difficulty: '0x01',
             extraData: '0x01',
         },
-        gethOptions: {
+        aquachainOptions: {
             port: 58546,
             rpcport: 58545,
         },
     });
 
-    console.info('Geth starting...');
-    yield geth.start();
-    console.info('Geth started');
+    console.info('Gaqua starting...');
+    yield aquachain.start();
+    console.info('Gaqua started');
 
-    return geth;
+    return aquachain;
 };
 
 const startFixtureServer = function (serverPort) {
@@ -98,14 +98,14 @@ exports.mocha = (_module, options) => {
                 shell.rm('-rf', e);
             });
 
-            this.geth = yield startGeth();
+            this.aquachain = yield startGaqua();
 
-            const appFileName = (options.app === 'wallet') ? 'Ethereum Wallet' : 'Mist';
+            const appFileName = (options.app === 'wallet') ? 'Aquachain Wallet' : 'Mist';
             const platformArch = `${process.platform}-${process.arch}`;
             console.info(`${appFileName} :: ${platformArch}`);
 
             let appPath;
-            const ipcProviderPath = path.join(this.geth.dataDir, 'geth.ipc');
+            const ipcProviderPath = path.join(this.aquachain.dataDir, 'aquachain.ipc');
 
             switch (platformArch) {
             case 'darwin-x64':
@@ -136,7 +136,7 @@ exports.mocha = (_module, options) => {
                 args: [
                     '--loglevel', 'debug',
                     '--logfile', mistLogFile,
-                    '--node-datadir', this.geth.dataDir,
+                    '--node-datadir', this.aquachain.dataDir,
                     '--rpc', ipcProviderPath,
                 ],
                 webdriverLogPath: webdriverLogDir,
@@ -157,7 +157,7 @@ exports.mocha = (_module, options) => {
             this.fixtureBaseUrl = `http://localhost:${serverPort}/`;
 
             /*
-                Utility methods
+                Utility maquaods
             */
             for (const key in Utils) {
                 this[key] = genomatic.bind(Utils[key], this);
@@ -205,8 +205,8 @@ exports.mocha = (_module, options) => {
                     position: 0
                 });
                 Tabs.upsert({_id: 'wallet'}, {$set: {
-                    url: 'https://wallet.ethereum.org',
-                    redirect: 'https://wallet.ethereum.org',
+                    url: 'https://wallet.aquachain.org',
+                    redirect: 'https://wallet.aquachain.org',
                     position: 1,
                     permissions: { admin: true }
                 }});
@@ -224,9 +224,9 @@ exports.mocha = (_module, options) => {
                 yield this.app.stop();
             }
 
-            if (this.geth && this.geth.isRunning) {
-                console.log('Stopping geth...');
-                yield this.geth.stop();
+            if (this.aquachain && this.aquachain.isRunning) {
+                console.log('Stopping aquachain...');
+                yield this.aquachain.stop();
             }
 
             if (this.httpServer && this.httpServer.isListening) {
@@ -281,21 +281,21 @@ const Utils = {
             }
         }
     },
-    * execElemsMethod(clientElementIdMethod, selector) {
+    * execElemsMaquaod(clientElementIdMaquaod, selector) {
         const elems = yield this.client.elements(selector);
 
         const values = yield elems.value.map(
-      e => this.client[clientElementIdMethod](e.ELEMENT)
+      e => this.client[clientElementIdMaquaod](e.ELEMENT)
     );
 
         return values.map(r => r.value);
     },
-    * execElemMethod(clientElementIdMethod, selector) {
+    * execElemMaquaod(clientElementIdMaquaod, selector) {
         const e = yield this.client.element(selector);
 
         console.log(e);
 
-        const value = yield this.client[clientElementIdMethod](e.ELEMENT);
+        const value = yield this.client[clientElementIdMaquaod](e.ELEMENT);
 
         return value.value;
     },
@@ -309,10 +309,10 @@ const Utils = {
         fs.writeFileSync(path.join(__dirname, 'mist.png'), pageImage);
     },
     * getRealAccountBalances() {
-        let accounts = this.web3.eth.accounts;
+        let accounts = this.web3.aqua.accounts;
 
         let balances = accounts.map(acc =>
-      `${this.web3.fromWei(this.web3.eth.getBalance(acc), 'ether')}`
+      `${this.web3.fromWei(this.web3.aqua.getBalance(acc), 'aquaer')}`
     );
 
         accounts = accounts.map(a => a.toLowerCase());
@@ -322,8 +322,8 @@ const Utils = {
     },
     * getUiAccountBalances() {
         // check balances on the pgetUiAccountsBalancesage
-        let _accounts = yield this.execElemsMethod('elementIdText', '.wallet-box .account-id');
-        let _balances = yield this.execElemsMethod('elementIdText', '.wallet-box .account-balance');
+        let _accounts = yield this.execElemsMaquaod('elementIdText', '.wallet-box .account-id');
+        let _balances = yield this.execElemsMaquaod('elementIdText', '.wallet-box .account-balance');
 
         _accounts = _accounts.map(a => a.toLowerCase());
         _balances = _balances.map(b => parseInt(b, 10));
@@ -331,7 +331,7 @@ const Utils = {
         return _.object(_accounts, _balances);
     },
     * openAccountInUi(accId) {
-        const _accounts = yield this.execElemsMethod('elementIdText', '.wallet-box .account-id');
+        const _accounts = yield this.execElemsMaquaod('elementIdText', '.wallet-box .account-id');
 
         let idx = -1;
 
@@ -354,10 +354,10 @@ const Utils = {
         yield Q.delay(1000);
     },
     * startMining() {
-        yield this.geth.consoleExec('miner.start();');
+        yield this.aquachain.consoleExec('miner.start();');
     },
     * stopMining() {
-        yield this.geth.consoleExec('miner.stop();');
+        yield this.aquachain.consoleExec('miner.stop();');
     },
 
     * selectTab(tabId) {
@@ -414,7 +414,7 @@ const Utils = {
     },
 
     /*
-    @method getWindowByUrl
+    @maquaod getWindowByUrl
 
     @param search: function that tells how to search by window
     @param tries: amount of tries left until give up searching for

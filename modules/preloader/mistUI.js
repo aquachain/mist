@@ -80,7 +80,7 @@ ipcRenderer.on('uiAction_toggleWebviewDevTool', (e, id) => {
 
 
 // randomize accounts and drop half
-// also certainly remove the web3.ethbase one
+// also certainly remove the web3.aquabase one
 const randomizeAccounts = (acc, coinbase) => {
     let accounts = _.shuffle(acc);
     accounts = _.rest(accounts, (accounts.length / 2).toFixed(0));
@@ -91,10 +91,10 @@ const randomizeAccounts = (acc, coinbase) => {
 // Run tests
 ipcRenderer.on('uiAction_runTests', (e, type) => {
     if (type === 'webview') {
-        web3.eth.getAccounts((error, accounts) => {
+        web3.aqua.getAccounts((error, accounts) => {
             if (error) return;
 
-            web3.eth.getCoinbase((coinbaseError, coinbase) => {
+            web3.aqua.getCoinbase((coinbaseError, coinbase) => {
                 if (coinbaseError) return;
 
 

@@ -79,7 +79,7 @@ module.exports = () => {
 
                 mist.menu.setBadge('Some Text')
 
-            @method setBadge
+            @maquaod setBadge
             @param {String} text
             */
             setBadge(text) {
@@ -99,7 +99,7 @@ module.exports = () => {
                     // Router.go('/chat/1245');
                 })
 
-            @method add
+            @maquaod add
             @param {String} id          The id of the menu, has to be the same accross page reloads.
             @param {Object} options     The menu options like {badge: 23, name: 'My Entry'}
             @param {Function} callback  Change the callback to be called when the menu is pressed.
@@ -143,7 +143,7 @@ module.exports = () => {
             /**
             Updates a menu entry from the mist sidebar.
 
-            @method update
+            @maquaod update
             @param {String} id          The id of the menu, has to be the same accross page reloads.
             @param {Object} options     The menu options like {badge: 23, name: 'My Entry'}
             @param {Function} callback  Change the callback to be called when the menu is pressed.
@@ -154,7 +154,7 @@ module.exports = () => {
             /**
             Removes a menu entry from the mist sidebar.
 
-            @method remove
+            @maquaod remove
             @param {String} id
             @param {String} id          The id of the menu, has to be the same accross page reloads.
             @param {Object} options     The menu options like {badge: 23, name: 'My Entry'}
@@ -173,7 +173,7 @@ module.exports = () => {
             /**
             Marks a menu entry as selected
 
-            @method select
+            @maquaod select
             @param {String} id
             */
             select(id) {
@@ -189,7 +189,7 @@ module.exports = () => {
             /**
             Removes all menu entries.
 
-            @method clear
+            @maquaod clear
             */
             clear() {
                 this.entries = {};

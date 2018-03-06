@@ -88,7 +88,7 @@ class Settings {
     }
 
     get appName() {
-        return this.uiMode === 'mist' ? 'Mist' : 'Ethereum Wallet';
+        return this.uiMode === 'mist' ? 'Mist' : 'Aquachain Wallet';
     }
 
     get appLicense() {
@@ -111,12 +111,12 @@ class Settings {
         return argv.swarmurl;
     }
 
-    get gethPath() {
-        return argv.gethpath;
+    get aquachainPath() {
+        return argv.aquachainpath;
     }
 
-    get ethPath() {
-        return argv.ethpath;
+    get aquaPath() {
+        return argv.aquapath;
     }
 
     get rpcMode() {
@@ -156,13 +156,13 @@ class Settings {
         ipcPath = this.userHomePath;
 
         if (process.platform === 'darwin') {
-            ipcPath += '/Library/Ethereum/geth.ipc';
+            ipcPath += '/Library/Aquachain/aquachain.ipc';
         } else if (process.platform === 'freebsd' ||
             process.platform === 'linux' ||
             process.platform === 'sunos') {
-            ipcPath += '/.ethereum/geth.ipc';
+            ipcPath += '/.aquachain/aquachain.ipc';
         } else if (process.platform === 'win32') {
-            ipcPath = '\\\\.\\pipe\\geth.ipc';
+            ipcPath = '\\\\.\\pipe\\aquachain.ipc';
         }
 
         settingsLog.debug(`IPC path: ${ipcPath}`);
@@ -340,7 +340,7 @@ const argv = require('yargs')
         node: {
             demand: false,
             default: null,
-            describe: 'Node to use: geth, eth',
+            describe: 'Node to use: aquachain, aqua',
             requiresArg: true,
             nargs: 1,
             type: 'string',
@@ -379,15 +379,15 @@ const argv = require('yargs')
             type: 'string',
             group: 'Mist options:',
         },
-        gethpath: {
+        aquachainpath: {
             demand: false,
-            describe: 'Path to Geth executable to use instead of default.',
+            describe: 'Path to Gaqua executable to use instead of default.',
             requiresArg: true,
             nargs: 1,
             type: 'string',
             group: 'Mist options:',
         },
-        ethpath: {
+        aquapath: {
             demand: false,
             describe: 'Path to Eth executable to use instead of default.',
             requiresArg: true,
@@ -423,7 +423,7 @@ const argv = require('yargs')
         syncmode: {
             demand: false,
             requiresArg: true,
-            describe: 'Geth synchronization mode: [fast|light|full]',
+            describe: 'Gaqua synchronization mode: [fast|light|full]',
             nargs: 1,
             type: 'string',
             group: 'Mist options:',
@@ -446,7 +446,7 @@ const argv = require('yargs')
             type: 'boolean',
         },
         '': {
-            describe: 'To pass options to the underlying node (e.g. Geth) use the --node- prefix, e.g. --node-datadir',
+            describe: 'To pass options to the underlying node (e.g. Gaqua) use the --node- prefix, e.g. --node-datadir',
             group: 'Node options:',
         },
     })

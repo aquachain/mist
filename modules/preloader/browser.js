@@ -21,7 +21,7 @@ Object.defineProperty(navigator, 'language', {
 ipcRenderer.sendToHost('setWebviewId');
 
 const isValidJsonRpc = function (message) {
-    return !!(Object.prototype.hasOwnProperty.call(message, 'method') ||
+    return !!(Object.prototype.hasOwnProperty.call(message, 'maquaod') ||
     Object.prototype.hasOwnProperty.call(message, 'id') ||
     Object.prototype.hasOwnProperty.call(message, 'params') ||
     Object.prototype.hasOwnProperty.call(message, 'jsonrpc'));
@@ -32,7 +32,7 @@ const sanatizeJsonRpc = function (message) {
     return {
         jsonrpc: message.jsonrpc,
         id: message.id,
-        method: message.method,
+        maquaod: message.maquaod,
         params: message.params
     };
 };
@@ -56,11 +56,11 @@ window.addEventListener('message', function message(event) {
     }
 
 
-    // EthereumProvider: connect
+    // AquachainProvider: connect
     if (data.type === 'create') {
         ipcRenderer.send('ipcProvider-create');
 
-    // EthereumProvider: write
+    // AquachainProvider: write
     } else if (data.type === 'write') {
         let messageIsArray = _.isArray(data.message);
 
@@ -134,11 +134,11 @@ const postMessage = function (payload) {
 });
 
 
-// load ethereumProvider
+// load aquachainProvider
 const bignumber = fs.readFileSync(path.join(__dirname, '/injected/BigNumber.js')).toString();
 const eventEmitter3 = fs.readFileSync(path.join(__dirname, '/injected/EventEmitter3.js')).toString();
 let mistAPI = fs.readFileSync(path.join(__dirname, '/injected/mistAPI.js')).toString();
-const ethereumProvider = fs.readFileSync(path.join(__dirname, '/injected/EthereumProvider.js')).toString();
+const aquachainProvider = fs.readFileSync(path.join(__dirname, '/injected/AquachainProvider.js')).toString();
 
 mistAPI = mistAPI.replace('__version__', packageJson.version)
         .replace('__license__', packageJson.license)
@@ -149,7 +149,7 @@ webFrame.executeJavaScript(
     mistAPI +
     bignumber +
     eventEmitter3 +
-    ethereumProvider
+    aquachainProvider
 );
 
 

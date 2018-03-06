@@ -97,7 +97,7 @@ Template['views_webview'].helpers({
     /**
     Gets the correct preloader file
 
-    @method (preloaderFile)
+    @maquaod (preloaderFile)
     */
     'preloaderFile': function () {
         switch (this._id) {
@@ -112,7 +112,7 @@ Template['views_webview'].helpers({
     /**
     Determines if the current tab is visible
 
-    @method (isVisible)
+    @maquaod (isVisible)
     */
     'isVisible': function () {
         return (LocalStore.get('selectedTab') === this._id) ? '' : 'hidden';
@@ -120,7 +120,7 @@ Template['views_webview'].helpers({
     /**
     Gets the current url
 
-    @method (checkedUrl)
+    @maquaod (checkedUrl)
     */
     'checkedUrl': function () {
         var template = Template.instance();

@@ -12,9 +12,9 @@ const Sockets = require('./socketManager');
 const ClientBinaryManager = require('./clientBinaryManager');
 
 import logger from './utils/logger';
-const ethereumNodeLog = logger.create('EthereumNode');
+const aquachainNodeLog = logger.create('AquachainNode');
 
-const DEFAULT_NODE_TYPE = 'geth';
+const DEFAULT_NODE_TYPE = 'aquachain';
 const DEFAULT_NETWORK = 'main';
 const DEFAULT_SYNCMODE = 'fast';
 
@@ -32,9 +32,9 @@ const STATES = {
 
 
 /**
- * Etheruem nodes manager.
+ * Aquauem nodes manager.
  */
-class EthereumNode extends EventEmitter {
+class AquachainNode extends EventEmitter {
     constructor() {
         super();
 
@@ -76,11 +76,11 @@ class EthereumNode extends EventEmitter {
     }
 
     get isEth() {
-        return this._type === 'eth';
+        return this._type === 'aqua';
     }
 
-    get isGeth() {
-        return this._type === 'geth';
+    get isGaqua() {
+        return this._type === 'aquachain';
     }
 
     get isMainNetwork() {
@@ -141,7 +141,7 @@ class EthereumNode extends EventEmitter {
     }
 
     /**
-     * This method should always be called first to initialise the connection.
+     * This maquaod should always be called first to initialise the connection.
      * @return {Promise}
      */
     init() {
@@ -152,16 +152,16 @@ class EthereumNode extends EventEmitter {
                 this.emit('runningNodeFound');
             })
             .catch(() => {
-                ethereumNodeLog.warn('Failed to connect to node. Maybe it\'s not running so let\'s start our own...');
+                aquachainNodeLog.warn('Failed to connect to node. Maybe it\'s not running so let\'s start our own...');
 
-                ethereumNodeLog.info(`Node type: ${this.defaultNodeType}`);
-                ethereumNodeLog.info(`Network: ${this.defaultNetwork}`);
-                ethereumNodeLog.info(`SyncMode: ${this.defaultSyncMode}`);
+                aquachainNodeLog.info(`Node type: ${this.defaultNodeType}`);
+                aquachainNodeLog.info(`Network: ${this.defaultNetwork}`);
+                aquachainNodeLog.info(`SyncMode: ${this.defaultSyncMode}`);
 
                 // if not, start node yourself
                 return this._start(this.defaultNodeType, this.defaultNetwork, this.defaultSyncMode)
                     .catch((err) => {
-                        ethereumNodeLog.error('Failed to start node', err);
+                        aquachainNodeLog.error('Failed to start node', err);
                         throw err;
                     });
             });
@@ -174,7 +174,7 @@ class EthereumNode extends EventEmitter {
                 throw new Error('Cannot restart node since it was started externally');
             }
 
-            ethereumNodeLog.info('Restart node', newType, newNetwork);
+            aquachainNodeLog.info('Restart node', newType, newNetwork);
 
             return this.stop()
                 .then(() => Windows.loading.show())
@@ -185,7 +185,7 @@ class EthereumNode extends EventEmitter {
                     ))
                 .then(() => Windows.loading.hide())
                 .catch((err) => {
-                    ethereumNodeLog.error('Error restarting node', err);
+                    aquachainNodeLog.error('Error restarting node', err);
                     throw err;
                 });
         });
@@ -206,7 +206,7 @@ class EthereumNode extends EventEmitter {
 
                 this.state = STATES.STOPPING;
 
-                ethereumNodeLog.info(`Stopping existing node: ${this._type} ${this._network}`);
+                aquachainNodeLog.info(`Stopping existing node: ${this._type} ${this._network}`);
 
                 this._node.stderr.removeAllListeners('data');
                 this._node.stdout.removeAllListeners('data');
@@ -236,44 +236,44 @@ class EthereumNode extends EventEmitter {
                 this._stopPromise = null;
             });
         }
-        ethereumNodeLog.debug('Disconnection already in progress, returning Promise.');
+        aquachainNodeLog.debug('Disconnection already in progress, returning Promise.');
         return this._stopPromise;
     }
 
     /**
      * Send Web3 command to socket.
-     * @param  {String} method Method name
-     * @param  {Array} [params] Method arguments
+     * @param  {String} maquaod Maquaod name
+     * @param  {Array} [params] Maquaod arguments
      * @return {Promise} resolves to result or error.
      */
-    send(method, params) {
+    send(maquaod, params) {
         return this._socket.send({
-            method,
+            maquaod,
             params,
         });
     }
 
 
     /**
-     * Start an ethereum node.
-     * @param  {String} nodeType geth, eth, etc
+     * Start an aquachain node.
+     * @param  {String} nodeType aquachain, aqua, etc
      * @param  {String} network  network id
      * @return {Promise}
      */
     _start(nodeType, network, syncMode) {
-        ethereumNodeLog.info(`Start node: ${nodeType} ${network} ${syncMode}`);
+        aquachainNodeLog.info(`Start node: ${nodeType} ${network} ${syncMode}`);
 
         const isTestNet = (network === 'test');
 
         if (isTestNet) {
-            ethereumNodeLog.debug('Node will connect to the test network');
+            aquachainNodeLog.debug('Node will connect to the test network');
         }
 
         return this.stop()
             .then(() => {
                 return this.__startNode(nodeType, network, syncMode)
                     .catch((err) => {
-                        ethereumNodeLog.error('Failed to start node', err);
+                        aquachainNodeLog.error('Failed to start node', err);
 
                         this._showNodeErrorDialog(nodeType, network);
 
@@ -281,7 +281,7 @@ class EthereumNode extends EventEmitter {
                     });
             })
             .then((proc) => {
-                ethereumNodeLog.info(`Started node successfully: ${nodeType} ${network} ${syncMode}`);
+                aquachainNodeLog.info(`Started node successfully: ${nodeType} ${network} ${syncMode}`);
 
                 this._node = proc;
                 this.state = STATES.STARTED;
@@ -297,7 +297,7 @@ class EthereumNode extends EventEmitter {
                         this.state = STATES.CONNECTED;
                     })
                     .catch((err) => {
-                        ethereumNodeLog.error('Failed to connect to node', err);
+                        aquachainNodeLog.error('Failed to connect to node', err);
 
                         if (err.toString().indexOf('timeout') >= 0) {
                             this.emit('nodeConnectionTimeout');
@@ -314,9 +314,9 @@ class EthereumNode extends EventEmitter {
                 this.lastError = err.tag;
                 this.state = STATES.ERROR;
 
-                // if unable to start eth node then write geth to defaults
-                if (nodeType === 'eth') {
-                    Settings.saveUserData('node', 'geth');
+                // if unable to start aqua node then write aquachain to defaults
+                if (nodeType === 'aqua') {
+                    Settings.saveUserData('node', 'aquachain');
                 }
 
                 throw err;
@@ -343,7 +343,7 @@ class EthereumNode extends EventEmitter {
             throw new Error(`Node "${nodeType}" binPath is not available.`);
         }
 
-        ethereumNodeLog.info(`Start node using ${binPath}`);
+        aquachainNodeLog.info(`Start node using ${binPath}`);
 
         return new Q((resolve, reject) => {
             this.__startProcess(nodeType, network, binPath, syncMode)
@@ -357,23 +357,23 @@ class EthereumNode extends EventEmitter {
      */
     __startProcess(nodeType, network, binPath, _syncMode) {
         let syncMode = _syncMode;
-        if (nodeType === 'geth' && !syncMode) {
+        if (nodeType === 'aquachain' && !syncMode) {
             syncMode = 'fast';
         }
 
         return new Q((resolve, reject) => {
-            ethereumNodeLog.trace('Rotate log file');
+            aquachainNodeLog.trace('Rotate log file');
 
             logRotate(path.join(Settings.userDataPath, 'logs', 'all.log'), { count: 5 }, (error) => {
                 if (error) {
-                    ethereumNodeLog.error('Log rotation problems', error);
+                    aquachainNodeLog.error('Log rotation problems', error);
                     return reject(error);
                 }
             });
 
-            logRotate(path.join(Settings.userDataPath, 'logs', 'category', 'ethereum_node.log'), { count: 5 }, (error) => {
+            logRotate(path.join(Settings.userDataPath, 'logs', 'category', 'aquachain_node.log'), { count: 5 }, (error) => {
                 if (error) {
-                    ethereumNodeLog.error('Log rotation problems', error);
+                    aquachainNodeLog.error('Log rotation problems', error);
                     return reject(error);
                 }
             });
@@ -413,7 +413,7 @@ class EthereumNode extends EventEmitter {
 
             // Starts Main net
             default:
-                args = (nodeType === 'geth')
+                args = (nodeType === 'aquachain')
                     ? [
                         '--syncmode', syncMode,
                         '--cache', ((process.arch === 'x64') ? '1024' : '512')
@@ -424,12 +424,12 @@ class EthereumNode extends EventEmitter {
             const nodeOptions = Settings.nodeOptions;
 
             if (nodeOptions && nodeOptions.length) {
-                ethereumNodeLog.debug('Custom node options', nodeOptions);
+                aquachainNodeLog.debug('Custom node options', nodeOptions);
 
                 args = args.concat(nodeOptions);
             }
 
-            ethereumNodeLog.trace('Spawn', binPath, args);
+            aquachainNodeLog.trace('Spawn', binPath, args);
 
             const proc = spawn(binPath, args);
 
@@ -437,7 +437,7 @@ class EthereumNode extends EventEmitter {
                 if (this.state === STATES.STARTING) {
                     this.state = STATES.ERROR;
 
-                    ethereumNodeLog.info('Node startup error');
+                    aquachainNodeLog.info('Node startup error');
 
                     // TODO: detect this properly
                     // this.emit('nodeBinaryNotFound');
@@ -447,13 +447,13 @@ class EthereumNode extends EventEmitter {
             });
 
             proc.stdout.on('data', (data) => {
-                ethereumNodeLog.trace('Got stdout data', data.toString());
+                aquachainNodeLog.trace('Got stdout data', data.toString());
                 this.emit('data', data);
             });
 
             proc.stderr.on('data', (data) => {
-                ethereumNodeLog.trace('Got stderr data', data.toString());
-                ethereumNodeLog.info(data.toString());  // TODO: This should be ethereumNodeLog.error(), but not sure why regular stdout data is coming in through stderror
+                aquachainNodeLog.trace('Got stderr data', data.toString());
+                aquachainNodeLog.info(data.toString());  // TODO: This should be aquachainNodeLog.error(), but not sure why regular stdout data is coming in through stderror
                 this.emit('data', data);
             });
 
@@ -462,11 +462,11 @@ class EthereumNode extends EventEmitter {
                 /*
                     We wait a short while before marking startup as successful
                     because we may want to parse the initial node output for
-                    errors, etc (see geth port-binding error above)
+                    errors, etc (see aquachain port-binding error above)
                 */
                 setTimeout(() => {
                     if (STATES.STARTING === this.state) {
-                        ethereumNodeLog.info(`${NODE_START_WAIT_MS}ms elapsed, assuming node started up successfully`);
+                        aquachainNodeLog.info(`${NODE_START_WAIT_MS}ms elapsed, assuming node started up successfully`);
                         resolve(proc);
                     }
                 }, NODE_START_WAIT_MS);
@@ -503,24 +503,24 @@ class EthereumNode extends EventEmitter {
         const cleanData = data.toString().replace(/[\r\n]+/, '');
         const nodeType = (this.type || 'node').toUpperCase();
 
-        ethereumNodeLog.trace(`${nodeType}: ${cleanData}`);
+        aquachainNodeLog.trace(`${nodeType}: ${cleanData}`);
 
         if (!/^-*$/.test(cleanData) && !_.isEmpty(cleanData)) {
             this.emit('nodeLog', cleanData);
         }
 
-        // check for geth startup errors
+        // check for aquachain startup errors
         if (STATES.STARTING === this.state) {
             const dataStr = data.toString().toLowerCase();
-            if (nodeType === 'geth') {
+            if (nodeType === 'aquachain') {
                 if (dataStr.indexOf('fatal: error') >= 0) {
-                    const error = new Error(`Geth error: ${dataStr}`);
+                    const error = new Error(`Gaqua error: ${dataStr}`);
 
                     if (dataStr.indexOf('bind') >= 0) {
                         error.tag = UNABLE_TO_BIND_PORT_ERROR;
                     }
 
-                    ethereumNodeLog.error(error);
+                    aquachainNodeLog.error(error);
                     return reject(error);
                 }
             }
@@ -529,19 +529,19 @@ class EthereumNode extends EventEmitter {
 
 
     _loadDefaults() {
-        ethereumNodeLog.trace('Load defaults');
+        aquachainNodeLog.trace('Load defaults');
 
         this.defaultNodeType = Settings.nodeType || Settings.loadUserData('node') || DEFAULT_NODE_TYPE;
         this.defaultNetwork = Settings.network || Settings.loadUserData('network') || DEFAULT_NETWORK;
         this.defaultSyncMode = Settings.syncmode || Settings.loadUserData('syncmode') || DEFAULT_SYNCMODE;
 
-        ethereumNodeLog.info(Settings.syncmode, Settings.loadUserData('syncmode'), DEFAULT_SYNCMODE);
-        ethereumNodeLog.info(`Defaults loaded: ${this.defaultNodeType} ${this.defaultNetwork} ${this.defaultSyncMode}`);
+        aquachainNodeLog.info(Settings.syncmode, Settings.loadUserData('syncmode'), DEFAULT_SYNCMODE);
+        aquachainNodeLog.info(`Defaults loaded: ${this.defaultNodeType} ${this.defaultNetwork} ${this.defaultSyncMode}`);
     }
 }
 
 
-EthereumNode.STARTING = 0;
+AquachainNode.STARTING = 0;
 
 
-module.exports = new EthereumNode();
+module.exports = new AquachainNode();

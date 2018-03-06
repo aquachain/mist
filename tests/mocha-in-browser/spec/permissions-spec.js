@@ -10,15 +10,15 @@ describe('Permissions', function () {
         });
     });
 
-    describe('web3.eth.accounts', function () {
+    describe('web3.aqua.accounts', function () {
 
         it('should return an array [sync]', function () {
-            var accounts = web3.eth.accounts;
+            var accounts = web3.aqua.accounts;
             expect(accounts).to.be.an('array');
         });
 
         it('should return an array [async]', function (done) {
-            web3.eth.getAccounts(function (e, accounts) {
+            web3.aqua.getAccounts(function (e, accounts) {
                 expect(e).to.be.null;
                 expect(accounts).to.be.an('array');
 
@@ -27,7 +27,7 @@ describe('Permissions', function () {
         });
 
         it('should match the allowed accounts in the tabs permisssions, and don\'t contain coinbase [sync]', function (done) {
-            var accounts = web3.eth.accounts;
+            var accounts = web3.aqua.accounts;
 
             expect(window.permissions.accounts.length).to.equal(accounts.length);
             expect(window.permissions.accounts).to.not.include(window.coinbase);
@@ -39,7 +39,7 @@ describe('Permissions', function () {
         });
 
         it('should match the allowed accounts in the tabs permisssions, and don\'t contain coinbase [async]', function (done) {
-            web3.eth.getAccounts(function (e, accounts) {
+            web3.aqua.getAccounts(function (e, accounts) {
                 expect(window.permissions.accounts.length).to.equal(accounts.length);
                 expect(window.permissions.accounts).to.not.include(window.coinbase);
                 accounts.forEach(function (account) {
@@ -69,22 +69,22 @@ describe('Permissions', function () {
             };
 
             var batch = web3.createBatch();
-            batch.add(web3.eth.getAccounts.request(callback));
-            batch.add(web3.eth.getAccounts.request(callback));
+            batch.add(web3.aqua.getAccounts.request(callback));
+            batch.add(web3.aqua.getAccounts.request(callback));
             batch.execute();
         });
 
     });
 
-    describe('web3.eth.coinbase', function () {
+    describe('web3.aqua.coinbase', function () {
 
         it('should be empty [sync]', function () {
-            var coinbase = web3.eth.coinbase;
+            var coinbase = web3.aqua.coinbase;
             expect(coinbase).to.be.null;
         });
 
         it('should be empty [async]', function (done) {
-            web3.eth.getCoinbase(function (e, coinbase) {
+            web3.aqua.getCoinbase(function (e, coinbase) {
                 expect(e).to.be.null;
                 expect(coinbase).to.be.null;
 
@@ -108,8 +108,8 @@ describe('Permissions', function () {
             };
 
             var batch = web3.createBatch();
-            batch.add(web3.eth.getCoinbase.request(callback));
-            batch.add(web3.eth.getCoinbase.request(callback));
+            batch.add(web3.aqua.getCoinbase.request(callback));
+            batch.add(web3.aqua.getCoinbase.request(callback));
             batch.execute();
         });
 
@@ -119,7 +119,7 @@ describe('Permissions', function () {
 
         it('shouldn\'t allow RegExp (possible XSS)', function () {
             var add = '0x0000000000000000000000000000000000000000';
-            expect(function () { web3.eth.sendTransaction({ from: add, to: add, data: new RegExp('') }); }).to.throw('Payload, or some of its content properties are invalid. Please check if they are valid HEX with \'0x\' prefix.');
+            expect(function () { web3.aqua.sendTransaction({ from: add, to: add, data: new RegExp('') }); }).to.throw('Payload, or some of its content properties are invalid. Please check if they are valid HEX with \'0x\' prefix.');
         });
     });
 
@@ -138,7 +138,7 @@ describe('Permissions', function () {
                 '_requestManager',
                 'bzz',
                 'currentProvider',
-                'eth',
+                'aqua',
                 'db',
                 'shh',
                 'net',

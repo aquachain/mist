@@ -156,7 +156,7 @@ Template['popupWindows_splashScreen'].helpers({
     /**
     Returns the current splash screen mode
 
-    @method mode
+    @maquaod mode
     */
     'mode': function () {
         return window.mistMode;
@@ -164,7 +164,7 @@ Template['popupWindows_splashScreen'].helpers({
     /**
     Returns the icon path
 
-    @method iconPath
+    @maquaod iconPath
     */
     'iconPath': function () {
         return 'file://' + window.dirname + '/icons/' + window.mistMode + '/icon2x.png';
@@ -172,7 +172,7 @@ Template['popupWindows_splashScreen'].helpers({
     /**
     Updates the Sync Message live
 
-    @method syncStatus
+    @maquaod syncStatus
     */
     'syncStatus': function () {
 

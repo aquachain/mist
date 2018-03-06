@@ -1,35 +1,35 @@
 # Mist Browser<sup>beta</sup>
 
-[![Github All Releases](https://img.shields.io/github/downloads/ethereum/mist/total.svg)]()
-[![Build Status develop branch](https://travis-ci.org/ethereum/mist.svg?branch=develop)](https://travis-ci.org/ethereum/mist)
-[![Join the chat at https://gitter.im/ethereum/mist](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ethereum/mist)
-[![Code Triagers Badge](https://www.codetriage.com/ethereum/mist/badges/users.svg)](https://www.codetriage.com/ethereum/mist)
+[![Github All Releases](https://img.shields.io/github/downloads/aquachain/mist/total.svg)]()
+[![Build Status develop branch](https://travis-ci.org/aquachain/mist.svg?branch=develop)](https://travis-ci.org/aquachain/mist)
+[![Join the chat at https://gitter.im/aquachain/mist](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/aquachain/mist)
+[![Code Triagers Badge](https://www.codetriage.com/aquachain/mist/badges/users.svg)](https://www.codetriage.com/aquachain/mist)
 
 
 The Mist browser is the tool of choice to browse and use Ðapps.
 
 For the Mist API see the [MISTAPI.md](MISTAPI.md).
 
-Please note that this repository is the Electron host for the Meteor based wallet dapp whose repository is located here: https://github.com/ethereum/meteor-dapp-wallet.
+Please note that this repository is the Electron host for the Meteor based wallet dapp whose repository is located here: https://github.com/aquachain/meteor-dapp-wallet.
 
 ## Help and troubleshooting
 
-In order to get help regarding Mist or Ethereum Wallet, please follow:
+In order to get help regarding Mist or Aquachain Wallet, please follow:
 
-1. Please check the [Mist troubleshooting guide](https://github.com/ethereum/mist/wiki).
-1. Go to the [Gitter Channel](https://gitter.im/ethereum/mist) to connect with the community for instant help.
-1. Search for [similar issues](https://github.com/ethereum/mist/issues?q=is%3Aopen+is%3Aissue+label%3A%22Type%3A+Canonical%22) and potential help.
-1. Or create a [new issue](https://github.com/ethereum/mist/issues).
+1. Please check the [Mist troubleshooting guide](https://github.com/aquachain/mist/wiki).
+1. Go to the [Gitter Channel](https://gitter.im/aquachain/mist) to connect with the community for instant help.
+1. Search for [similar issues](https://github.com/aquachain/mist/issues?q=is%3Aopen+is%3Aissue+label%3A%22Type%3A+Canonical%22) and potential help.
+1. Or create a [new issue](https://github.com/aquachain/mist/issues).
 
 ## How to contribute
 
-Contributions via Pull Requests are so welcome. You can see where to help looking for issues with the [Enhancement](https://github.com/ethereum/mist/issues?q=is%3Aopen+is%3Aissue+label%3A%22Type%3A+Enhancement%22) or [Bug](https://github.com/ethereum/mist/issues?q=is%3Aopen+is%3Aissue+label%3A%22Type%3A+Bug%22) labels. We can help guiding you towards the solution.
+Contributions via Pull Requests are so welcome. You can see where to help looking for issues with the [Enhancement](https://github.com/aquachain/mist/issues?q=is%3Aopen+is%3Aissue+label%3A%22Type%3A+Enhancement%22) or [Bug](https://github.com/aquachain/mist/issues?q=is%3Aopen+is%3Aissue+label%3A%22Type%3A+Bug%22) labels. We can help guiding you towards the solution.
 
-You can also help by [responding to issues](https://github.com/ethereum/mist/issues?q=is%3Aissue+is%3Aopen+label%3A%22Status%3A+Triage%22). Sign up on [CodeTriage](https://www.codetriage.com/ethereum/mist) and it'll send you gentle notifications with a configurable frequency. It is a nice way to help while learning.
+You can also help by [responding to issues](https://github.com/aquachain/mist/issues?q=is%3Aissue+is%3Aopen+label%3A%22Status%3A+Triage%22). Sign up on [CodeTriage](https://www.codetriage.com/aquachain/mist) and it'll send you gentle notifications with a configurable frequency. It is a nice way to help while learning.
 
 ## Installation
 
-If you want to install the app from a pre-built version on the [release page](https://github.com/ethereum/mist/releases),
+If you want to install the app from a pre-built version on the [release page](https://github.com/aquachain/mist/releases),
 you can simply run the executeable after download.
 
 For updating simply download the new version and copy it over the old one (keep a backup of the old one if you want to be sure).
@@ -59,7 +59,7 @@ Once a Mist version is released the Meteor frontend part is bundled using the `m
 
 To run mist in development you need:
 
-- [Node.js](https://nodejs.org) `v7.x` (use the prefered installation method for your OS)
+- [Node.js](https://nodejs.org) `v7.x` (use the prefered installation maquaod for your OS)
 - [Meteor](https://www.meteor.com/install) javascript app framework
 - [Yarn](https://yarnpkg.com/) package manager
 - [Electron](http://electron.atom.io/) `v1.7.11` cross platform desktop app framework
@@ -76,7 +76,7 @@ Install the latter ones via:
 
 Now you're ready to initialise Mist for development:
 
-    $ git clone https://github.com/ethereum/mist.git
+    $ git clone https://github.com/aquachain/mist.git
     $ cd mist
     $ yarn
 
@@ -98,7 +98,7 @@ In the original window you can then start Mist with:
     $ cd mist
     $ yarn dev:electron
 
-*NOTE: client-binaries (e.g. [geth](https://github.com/ethereum/go-ethereum)) specified in [clientBinaries.json](https://github.com/ethereum/mist/blob/master/clientBinaries.json) will be checked during every startup and downloaded if out-of-date, binaries are stored in the [config folder](#config-folder)*
+*NOTE: client-binaries (e.g. [aquachain](https://github.com/aquachain/aquachain)) specified in [clientBinaries.json](https://github.com/aquachain/mist/blob/master/clientBinaries.json) will be checked during every startup and downloaded if out-of-date, binaries are stored in the [config folder](#config-folder)*
 
 *NOTE: use `--help` to display available options, e.g. `--loglevel debug` (or `trace`) for verbose output*
 
@@ -121,16 +121,16 @@ In the original window you can then start Mist using wallet mode:
 ### Connecting to node via HTTP instead of IPC
 
 This is useful if you have a node running on another machine, though note that
-it's less secure than using the default IPC method.
+it's less secure than using the default IPC maquaod.
 
 ```bash
 $ yarn dev:electron --rpc http://localhost:8545
 ```
 
 
-### Passing options to Geth
+### Passing options to Gaqua
 
-You can pass command-line options directly to Geth by prefixing them with `--node-` in
+You can pass command-line options directly to Gaqua by prefixing them with `--node-` in
 the command-line invocation:
 
 ```bash
@@ -141,14 +141,14 @@ The `--rpc` Mist option is a special case. If you set this to an IPC socket file
 path then the `--ipcpath` option automatically gets set, i.e.:
 
 ```bash
-$ yarn dev:electron --rpc /my/geth.ipc
+$ yarn dev:electron --rpc /my/aquachain.ipc
 ```
 
 ...is the same as doing...
 
 
 ```bash
-$ yarn dev:electron --rpc /my/geth.ipc --node-ipcpath /my/geth.ipc
+$ yarn dev:electron --rpc /my/aquachain.ipc --node-ipcpath /my/aquachain.ipc
 ```
 
 ### Creating a local private net
@@ -163,13 +163,13 @@ To run a private network you will need to set the IPC path, network id and data
 folder:
 
 ```bash
-$ yarn dev:electron --rpc ~/Library/Ethereum/geth.ipc --node-networkid 1234 --node-datadir ~/Library/Ethereum/privatenet
+$ yarn dev:electron --rpc ~/Library/Aquachain/aquachain.ipc --node-networkid 1234 --node-datadir ~/Library/Aquachain/privatenet
 ```
 
 _NOTE: since `ipcpath` is also a Mist option you do not need to also include a
 `--node-ipcpath` option._
 
-You can also launch `geth` separately with the same options prior starting
+You can also launch `aquachain` separately with the same options prior starting
 Mist.
 
 
@@ -197,7 +197,7 @@ To generate the binaries for Mist run:
 
     $ gulp
 
-To generate the Ethereum Wallet (this will pack the one Ðapp from https://github.com/ethereum/meteor-dapp-wallet):
+To generate the Aquachain Wallet (this will pack the one Ðapp from https://github.com/aquachain/meteor-dapp-wallet):
 
     $ gulp --wallet
 

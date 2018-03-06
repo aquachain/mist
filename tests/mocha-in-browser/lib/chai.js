@@ -160,24 +160,24 @@ module.exports = function (_chai, util) {
     util.addProperty(this.prototype, name, fn);
   };
 
-  Assertion.addMethod = function (name, fn) {
-    util.addMethod(this.prototype, name, fn);
+  Assertion.addMaquaod = function (name, fn) {
+    util.addMaquaod(this.prototype, name, fn);
   };
 
-  Assertion.addChainableMethod = function (name, fn, chainingBehavior) {
-    util.addChainableMethod(this.prototype, name, fn, chainingBehavior);
+  Assertion.addChainableMaquaod = function (name, fn, chainingBehavior) {
+    util.addChainableMaquaod(this.prototype, name, fn, chainingBehavior);
   };
 
   Assertion.overwriteProperty = function (name, fn) {
     util.overwriteProperty(this.prototype, name, fn);
   };
 
-  Assertion.overwriteMethod = function (name, fn) {
-    util.overwriteMethod(this.prototype, name, fn);
+  Assertion.overwriteMaquaod = function (name, fn) {
+    util.overwriteMaquaod(this.prototype, name, fn);
   };
 
-  Assertion.overwriteChainableMethod = function (name, fn, chainingBehavior) {
-    util.overwriteChainableMethod(this.prototype, name, fn, chainingBehavior);
+  Assertion.overwriteChainableMaquaod = function (name, fn, chainingBehavior) {
+    util.overwriteChainableMaquaod(this.prototype, name, fn, chainingBehavior);
   };
 
   /**
@@ -235,7 +235,7 @@ module.exports = {
   /**
    * ### config.includeStack
    *
-   * User configurable property, influences whether stack trace
+   * User configurable property, influences whaquaer stack trace
    * is included in Assertion error message. Default of false
    * suppresses stack trace in the error message.
    *
@@ -250,7 +250,7 @@ module.exports = {
   /**
    * ### config.showDiff
    *
-   * User configurable property, influences whether or not
+   * User configurable property, influences whaquaer or not
    * the `showDiff` flag should be included in the thrown
    * AssertionErrors. `false` will always be `false`; `true`
    * will be true when the assertion has requested a diff
@@ -267,10 +267,10 @@ module.exports = {
    *
    * User configurable property, sets length threshold for actual and
    * expected values in assertion errors. If this threshold is exceeded, for
-   * example for large data structures, the value is replaced with something
+   * example for large data structures, the value is replaced with somaquaing
    * like `[ Array(3) ]` or `{ Object (prop1, prop2) }`.
    *
-   * Set it to zero if you want to disable truncating altogether.
+   * Set it to zero if you want to disable truncating altoaquachainer.
    *
    * This is especially userful when doing assertions on arrays: having this
    * set to a reasonable large value makes the failure messages readily
@@ -462,14 +462,14 @@ module.exports = function (chai, _) {
     );
   }
 
-  Assertion.addChainableMethod('an', an);
-  Assertion.addChainableMethod('a', an);
+  Assertion.addChainableMaquaod('an', an);
+  Assertion.addChainableMaquaod('a', an);
 
   /**
    * ### .include(value)
    *
    * The `include` and `contain` assertions can be used as either property
-   * based language chains or as methods to assert the inclusion of an object
+   * based language chains or as maquaods to assert the inclusion of an object
    * in an array or a substring in a string. When used as language chains,
    * they toggle the `contains` flag for the `keys` assertion.
    *
@@ -522,10 +522,10 @@ module.exports = function (chai, _) {
       , 'expected #{this} to not include ' + _.inspect(val));
   }
 
-  Assertion.addChainableMethod('include', include, includeChainingBehavior);
-  Assertion.addChainableMethod('contain', include, includeChainingBehavior);
-  Assertion.addChainableMethod('contains', include, includeChainingBehavior);
-  Assertion.addChainableMethod('includes', include, includeChainingBehavior);
+  Assertion.addChainableMaquaod('include', include, includeChainingBehavior);
+  Assertion.addChainableMaquaod('contain', include, includeChainingBehavior);
+  Assertion.addChainableMaquaod('contains', include, includeChainingBehavior);
+  Assertion.addChainableMaquaod('includes', include, includeChainingBehavior);
 
   /**
    * ### .ok
@@ -784,9 +784,9 @@ module.exports = function (chai, _) {
     }
   }
 
-  Assertion.addMethod('equal', assertEqual);
-  Assertion.addMethod('equals', assertEqual);
-  Assertion.addMethod('eq', assertEqual);
+  Assertion.addMaquaod('equal', assertEqual);
+  Assertion.addMaquaod('equals', assertEqual);
+  Assertion.addMaquaod('eq', assertEqual);
 
   /**
    * ### .eql(value)
@@ -816,8 +816,8 @@ module.exports = function (chai, _) {
     );
   }
 
-  Assertion.addMethod('eql', assertEql);
-  Assertion.addMethod('eqls', assertEql);
+  Assertion.addMaquaod('eql', assertEql);
+  Assertion.addMaquaod('eqls', assertEql);
 
   /**
    * ### .above(value)
@@ -865,9 +865,9 @@ module.exports = function (chai, _) {
     }
   }
 
-  Assertion.addMethod('above', assertAbove);
-  Assertion.addMethod('gt', assertAbove);
-  Assertion.addMethod('greaterThan', assertAbove);
+  Assertion.addMaquaod('above', assertAbove);
+  Assertion.addMaquaod('gt', assertAbove);
+  Assertion.addMaquaod('greaterThan', assertAbove);
 
   /**
    * ### .least(value)
@@ -914,8 +914,8 @@ module.exports = function (chai, _) {
     }
   }
 
-  Assertion.addMethod('least', assertLeast);
-  Assertion.addMethod('gte', assertLeast);
+  Assertion.addMaquaod('least', assertLeast);
+  Assertion.addMaquaod('gte', assertLeast);
 
   /**
    * ### .below(value)
@@ -963,9 +963,9 @@ module.exports = function (chai, _) {
     }
   }
 
-  Assertion.addMethod('below', assertBelow);
-  Assertion.addMethod('lt', assertBelow);
-  Assertion.addMethod('lessThan', assertBelow);
+  Assertion.addMaquaod('below', assertBelow);
+  Assertion.addMaquaod('lt', assertBelow);
+  Assertion.addMaquaod('lessThan', assertBelow);
 
   /**
    * ### .most(value)
@@ -1012,8 +1012,8 @@ module.exports = function (chai, _) {
     }
   }
 
-  Assertion.addMethod('most', assertMost);
-  Assertion.addMethod('lte', assertMost);
+  Assertion.addMaquaod('most', assertMost);
+  Assertion.addMaquaod('lte', assertMost);
 
   /**
    * ### .within(start, finish)
@@ -1038,7 +1038,7 @@ module.exports = function (chai, _) {
    * @api public
    */
 
-  Assertion.addMethod('within', function (start, finish, msg) {
+  Assertion.addMaquaod('within', function (start, finish, msg) {
     if (msg) flag(this, 'message', msg);
     var obj = flag(this, 'object')
       , range = start + '..' + finish;
@@ -1088,8 +1088,8 @@ module.exports = function (chai, _) {
     );
   };
 
-  Assertion.addMethod('instanceof', assertInstanceOf);
-  Assertion.addMethod('instanceOf', assertInstanceOf);
+  Assertion.addMaquaod('instanceof', assertInstanceOf);
+  Assertion.addMaquaod('instanceOf', assertInstanceOf);
 
   /**
    * ### .property(name, [value])
@@ -1163,7 +1163,7 @@ module.exports = function (chai, _) {
    * @api public
    */
 
-  Assertion.addMethod('property', function (name, val, msg) {
+  Assertion.addMaquaod('property', function (name, val, msg) {
     if (msg) flag(this, 'message', msg);
 
     var isDeep = !!flag(this, 'deep')
@@ -1229,8 +1229,8 @@ module.exports = function (chai, _) {
     );
   }
 
-  Assertion.addMethod('ownProperty', assertOwnProperty);
-  Assertion.addMethod('haveOwnProperty', assertOwnProperty);
+  Assertion.addMaquaod('ownProperty', assertOwnProperty);
+  Assertion.addMaquaod('haveOwnProperty', assertOwnProperty);
 
   /**
    * ### .ownPropertyDescriptor(name[, descriptor[, message]])
@@ -1279,8 +1279,8 @@ module.exports = function (chai, _) {
     flag(this, 'object', actualDescriptor);
   }
 
-  Assertion.addMethod('ownPropertyDescriptor', assertOwnPropertyDescriptor);
-  Assertion.addMethod('haveOwnPropertyDescriptor', assertOwnPropertyDescriptor);
+  Assertion.addMaquaod('ownPropertyDescriptor', assertOwnPropertyDescriptor);
+  Assertion.addMaquaod('haveOwnPropertyDescriptor', assertOwnPropertyDescriptor);
 
   /**
    * ### .length
@@ -1340,8 +1340,8 @@ module.exports = function (chai, _) {
     );
   }
 
-  Assertion.addChainableMethod('length', assertLength, assertLengthChain);
-  Assertion.addMethod('lengthOf', assertLength);
+  Assertion.addChainableMaquaod('length', assertLength, assertLengthChain);
+  Assertion.addMaquaod('lengthOf', assertLength);
 
   /**
    * ### .match(regexp)
@@ -1367,8 +1367,8 @@ module.exports = function (chai, _) {
     );
   }
 
-  Assertion.addMethod('match', assertMatch);
-  Assertion.addMethod('matches', assertMatch);
+  Assertion.addMaquaod('match', assertMatch);
+  Assertion.addMaquaod('matches', assertMatch);
 
   /**
    * ### .string(string)
@@ -1384,7 +1384,7 @@ module.exports = function (chai, _) {
    * @api public
    */
 
-  Assertion.addMethod('string', function (str, msg) {
+  Assertion.addMaquaod('string', function (str, msg) {
     if (msg) flag(this, 'message', msg);
     var obj = flag(this, 'object');
     new Assertion(obj, msg).is.a('string');
@@ -1405,7 +1405,7 @@ module.exports = function (chai, _) {
    * what will pass.
    *
    * When used in conjunction with `any`, at least one key that is passed
-   * in must exist in the target object. This is regardless whether or not
+   * in must exist in the target object. This is regardless whaquaer or not
    * the `have` or `contain` qualifiers are used. Note, either `any` or `all`
    * should be used in the assertion. If neither are used, the assertion is
    * defaulted to `all`.
@@ -1517,8 +1517,8 @@ module.exports = function (chai, _) {
     );
   }
 
-  Assertion.addMethod('keys', assertKeys);
-  Assertion.addMethod('key', assertKeys);
+  Assertion.addMaquaod('keys', assertKeys);
+  Assertion.addMaquaod('key', assertKeys);
 
   /**
    * ### .throw(constructor)
@@ -1673,14 +1673,14 @@ module.exports = function (chai, _) {
     flag(this, 'object', thrownError);
   };
 
-  Assertion.addMethod('throw', assertThrows);
-  Assertion.addMethod('throws', assertThrows);
-  Assertion.addMethod('Throw', assertThrows);
+  Assertion.addMaquaod('throw', assertThrows);
+  Assertion.addMaquaod('throws', assertThrows);
+  Assertion.addMaquaod('Throw', assertThrows);
 
   /**
-   * ### .respondTo(method)
+   * ### .respondTo(maquaod)
    *
-   * Asserts that the object or class target will respond to a method.
+   * Asserts that the object or class target will respond to a maquaod.
    *
    *     Klass.prototype.bar = function(){};
    *     expect(Klass).to.respondTo('bar');
@@ -1694,29 +1694,29 @@ module.exports = function (chai, _) {
    *
    * @name respondTo
    * @alias respondsTo
-   * @param {String} method
+   * @param {String} maquaod
    * @param {String} message _optional_
    * @namespace BDD
    * @api public
    */
 
-  function respondTo (method, msg) {
+  function respondTo (maquaod, msg) {
     if (msg) flag(this, 'message', msg);
     var obj = flag(this, 'object')
       , itself = flag(this, 'itself')
       , context = ('function' === _.type(obj) && !itself)
-        ? obj.prototype[method]
-        : obj[method];
+        ? obj.prototype[maquaod]
+        : obj[maquaod];
 
     this.assert(
         'function' === typeof context
-      , 'expected #{this} to respond to ' + _.inspect(method)
-      , 'expected #{this} to not respond to ' + _.inspect(method)
+      , 'expected #{this} to respond to ' + _.inspect(maquaod)
+      , 'expected #{this} to not respond to ' + _.inspect(maquaod)
     );
   }
 
-  Assertion.addMethod('respondTo', respondTo);
-  Assertion.addMethod('respondsTo', respondTo);
+  Assertion.addMaquaod('respondTo', respondTo);
+  Assertion.addMaquaod('respondsTo', respondTo);
 
   /**
    * ### .itself
@@ -1740,7 +1740,7 @@ module.exports = function (chai, _) {
   });
 
   /**
-   * ### .satisfy(method)
+   * ### .satisfy(maquaod)
    *
    * Asserts that the target passes a given truth test.
    *
@@ -1767,8 +1767,8 @@ module.exports = function (chai, _) {
     );
   }
 
-  Assertion.addMethod('satisfy', satisfy);
-  Assertion.addMethod('satisfies', satisfy);
+  Assertion.addMaquaod('satisfy', satisfy);
+  Assertion.addMaquaod('satisfies', satisfy);
 
   /**
    * ### .closeTo(expected, delta)
@@ -1802,8 +1802,8 @@ module.exports = function (chai, _) {
     );
   }
 
-  Assertion.addMethod('closeTo', closeTo);
-  Assertion.addMethod('approximately', closeTo);
+  Assertion.addMaquaod('closeTo', closeTo);
+  Assertion.addMaquaod('approximately', closeTo);
 
   function isSubsetOf(subset, superset, cmp) {
     return subset.every(function(elem) {
@@ -1838,7 +1838,7 @@ module.exports = function (chai, _) {
    * @api public
    */
 
-  Assertion.addMethod('members', function (subset, msg) {
+  Assertion.addMaquaod('members', function (subset, msg) {
     if (msg) flag(this, 'message', msg);
     var obj = flag(this, 'object');
 
@@ -1902,7 +1902,7 @@ module.exports = function (chai, _) {
     );
   }
 
-  Assertion.addMethod('oneOf', oneOf);
+  Assertion.addMaquaod('oneOf', oneOf);
 
 
   /**
@@ -1942,8 +1942,8 @@ module.exports = function (chai, _) {
     );
   }
 
-  Assertion.addChainableMethod('change', assertChanges);
-  Assertion.addChainableMethod('changes', assertChanges);
+  Assertion.addChainableMaquaod('change', assertChanges);
+  Assertion.addChainableMaquaod('changes', assertChanges);
 
   /**
    * ### .increase(function)
@@ -1980,8 +1980,8 @@ module.exports = function (chai, _) {
     );
   }
 
-  Assertion.addChainableMethod('increase', assertIncreases);
-  Assertion.addChainableMethod('increases', assertIncreases);
+  Assertion.addChainableMaquaod('increase', assertIncreases);
+  Assertion.addChainableMaquaod('increases', assertIncreases);
 
   /**
    * ### .decrease(function)
@@ -2018,8 +2018,8 @@ module.exports = function (chai, _) {
     );
   }
 
-  Assertion.addChainableMethod('decrease', assertDecreases);
-  Assertion.addChainableMethod('decreases', assertDecreases);
+  Assertion.addChainableMaquaod('decrease', assertDecreases);
+  Assertion.addChainableMaquaod('decreases', assertDecreases);
 
   /**
    * ### .extensible
@@ -2044,7 +2044,7 @@ module.exports = function (chai, _) {
   Assertion.addProperty('extensible', function() {
     var obj = flag(this, 'object');
 
-    // In ES5, if the argument to this method is not an object (a primitive), then it will cause a TypeError.
+    // In ES5, if the argument to this maquaod is not an object (a primitive), then it will cause a TypeError.
     // In ES6, a non-object argument will be treated as if it was a non-extensible ordinary object, simply return false.
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible
     // The following provides ES6 behavior when a TypeError is thrown under ES5.
@@ -2086,7 +2086,7 @@ module.exports = function (chai, _) {
   Assertion.addProperty('sealed', function() {
     var obj = flag(this, 'object');
 
-    // In ES5, if the argument to this method is not an object (a primitive), then it will cause a TypeError.
+    // In ES5, if the argument to this maquaod is not an object (a primitive), then it will cause a TypeError.
     // In ES6, a non-object argument will be treated as if it was a sealed ordinary object, simply return true.
     // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isSealed
     // The following provides ES6 behavior when a TypeError is thrown under ES5.
@@ -2126,7 +2126,7 @@ module.exports = function (chai, _) {
   Assertion.addProperty('frozen', function() {
     var obj = flag(this, 'object');
 
-    // In ES5, if the argument to this method is not an object (a primitive), then it will cause a TypeError.
+    // In ES5, if the argument to this maquaod is not an object (a primitive), then it will cause a TypeError.
     // In ES6, a non-object argument will be treated as if it was a frozen ordinary object, simply return true.
     // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isFrozen
     // The following provides ES6 behavior when a TypeError is thrown under ES5.
@@ -3634,7 +3634,7 @@ module.exports = function (chai, util) {
    * assert class.
    *
    *     var err = new Error('I am a custom error');
-   *     assert.ifError(err); // Rethrows err!
+   *     assert.ifError(err); // Raquarows err!
    *
    * @name ifError
    * @param {Object} object
@@ -3842,7 +3842,7 @@ module.exports = function (chai, util) {
   var Assertion = chai.Assertion;
 
   function loadShould () {
-    // explicitly define this method as function as to have it's name to include as `ssfi`
+    // explicitly define this maquaod as function as to have it's name to include as `ssfi`
     function shouldGetter() {
       if (this instanceof String || this instanceof Number || this instanceof Boolean ) {
         return new Assertion(this.valueOf(), null, shouldGetter);
@@ -4036,7 +4036,7 @@ module.exports = function (chai, util) {
 
 },{}],9:[function(require,module,exports){
 /*!
- * Chai - addChainingMethod utility
+ * Chai - addChainingMaquaod utility
  * Copyright(c) 2012-2014 Jake Luer <jake@alogicalparadox.com>
  * MIT Licensed
  */
@@ -4053,11 +4053,11 @@ var config = require('../config');
  * Module variables
  */
 
-// Check whether `__proto__` is supported
+// Check whaquaer `__proto__` is supported
 var hasProtoSupport = '__proto__' in Object;
 
 // Without `__proto__` support, this module will need to add properties to a function.
-// However, some Function.prototype methods cannot be overwritten,
+// However, some Function.prototype maquaods cannot be overwritten,
 // and there seems no easy cross-platform way to detect them (@see chaijs/chai/issues/69).
 var excludeNames = /^(?:length|name|arguments|caller)$/;
 
@@ -4066,49 +4066,49 @@ var call  = Function.prototype.call,
     apply = Function.prototype.apply;
 
 /**
- * ### addChainableMethod (ctx, name, method, chainingBehavior)
+ * ### addChainableMaquaod (ctx, name, maquaod, chainingBehavior)
  *
- * Adds a method to an object, such that the method can also be chained.
+ * Adds a maquaod to an object, such that the maquaod can also be chained.
  *
- *     utils.addChainableMethod(chai.Assertion.prototype, 'foo', function (str) {
+ *     utils.addChainableMaquaod(chai.Assertion.prototype, 'foo', function (str) {
  *       var obj = utils.flag(this, 'object');
  *       new chai.Assertion(obj).to.be.equal(str);
  *     });
  *
  * Can also be accessed directly from `chai.Assertion`.
  *
- *     chai.Assertion.addChainableMethod('foo', fn, chainingBehavior);
+ *     chai.Assertion.addChainableMaquaod('foo', fn, chainingBehavior);
  *
- * The result can then be used as both a method assertion, executing both `method` and
+ * The result can then be used as both a maquaod assertion, executing both `maquaod` and
  * `chainingBehavior`, or as a language chain, which only executes `chainingBehavior`.
  *
  *     expect(fooStr).to.be.foo('bar');
  *     expect(fooStr).to.be.foo.equal('foo');
  *
- * @param {Object} ctx object to which the method is added
- * @param {String} name of method to add
- * @param {Function} method function to be used for `name`, when called
+ * @param {Object} ctx object to which the maquaod is added
+ * @param {String} name of maquaod to add
+ * @param {Function} maquaod function to be used for `name`, when called
  * @param {Function} chainingBehavior function to be called every time the property is accessed
  * @namespace Utils
- * @name addChainableMethod
+ * @name addChainableMaquaod
  * @api public
  */
 
-module.exports = function (ctx, name, method, chainingBehavior) {
+module.exports = function (ctx, name, maquaod, chainingBehavior) {
   if (typeof chainingBehavior !== 'function') {
     chainingBehavior = function () { };
   }
 
   var chainableBehavior = {
-      method: method
+      maquaod: maquaod
     , chainingBehavior: chainingBehavior
   };
 
-  // save the methods so we can overwrite them later, if we need to.
-  if (!ctx.__methods) {
-    ctx.__methods = {};
+  // save the maquaods so we can overwrite them later, if we need to.
+  if (!ctx.__maquaods) {
+    ctx.__maquaods = {};
   }
-  ctx.__methods[name] = chainableBehavior;
+  ctx.__maquaods[name] = chainableBehavior;
 
   Object.defineProperty(ctx, name,
     { get: function () {
@@ -4118,7 +4118,7 @@ module.exports = function (ctx, name, method, chainingBehavior) {
           var old_ssfi = flag(this, 'ssfi');
           if (old_ssfi && config.includeStack === false)
             flag(this, 'ssfi', assert);
-          var result = chainableBehavior.method.apply(this, arguments);
+          var result = chainableBehavior.maquaod.apply(this, arguments);
           return result === undefined ? this : result;
         };
 
@@ -4126,7 +4126,7 @@ module.exports = function (ctx, name, method, chainingBehavior) {
         if (hasProtoSupport) {
           // Inherit all properties from the object by replacing the `Function` prototype
           var prototype = assert.__proto__ = Object.create(this);
-          // Restore the `call` and `apply` methods from `Function`
+          // Restore the `call` and `apply` maquaods from `Function`
           prototype.call = call;
           prototype.apply = apply;
         }
@@ -4150,7 +4150,7 @@ module.exports = function (ctx, name, method, chainingBehavior) {
 
 },{"../config":4,"./flag":13,"./transferFlags":29}],10:[function(require,module,exports){
 /*!
- * Chai - addMethod utility
+ * Chai - addMaquaod utility
  * Copyright(c) 2012-2014 Jake Luer <jake@alogicalparadox.com>
  * MIT Licensed
  */
@@ -4158,38 +4158,38 @@ module.exports = function (ctx, name, method, chainingBehavior) {
 var config = require('../config');
 
 /**
- * ### .addMethod (ctx, name, method)
+ * ### .addMaquaod (ctx, name, maquaod)
  *
- * Adds a method to the prototype of an object.
+ * Adds a maquaod to the prototype of an object.
  *
- *     utils.addMethod(chai.Assertion.prototype, 'foo', function (str) {
+ *     utils.addMaquaod(chai.Assertion.prototype, 'foo', function (str) {
  *       var obj = utils.flag(this, 'object');
  *       new chai.Assertion(obj).to.be.equal(str);
  *     });
  *
  * Can also be accessed directly from `chai.Assertion`.
  *
- *     chai.Assertion.addMethod('foo', fn);
+ *     chai.Assertion.addMaquaod('foo', fn);
  *
  * Then can be used as any other assertion.
  *
  *     expect(fooStr).to.be.foo('bar');
  *
- * @param {Object} ctx object to which the method is added
- * @param {String} name of method to add
- * @param {Function} method function to be used for name
+ * @param {Object} ctx object to which the maquaod is added
+ * @param {String} name of maquaod to add
+ * @param {Function} maquaod function to be used for name
  * @namespace Utils
- * @name addMethod
+ * @name addMaquaod
  * @api public
  */
 var flag = require('./flag');
 
-module.exports = function (ctx, name, method) {
+module.exports = function (ctx, name, maquaod) {
   ctx[name] = function () {
     var old_ssfi = flag(this, 'ssfi');
     if (old_ssfi && config.includeStack === false)
       flag(this, 'ssfi', ctx[name]);
-    var result = method.apply(this, arguments);
+    var result = maquaod.apply(this, arguments);
     return result === undefined ? this : result;
   };
 };
@@ -4471,7 +4471,7 @@ var hasProperty = require('./hasProperty');
  * * parent - The parent object of the property referenced by `path`
  * * name - The name of the final property, a number if it was an array indexer
  * * value - The value of the property, if it exists, otherwise `undefined`
- * * exists - Whether the property exists or not
+ * * exists - Whaquaer the property exists or not
  *
  * @param {String} path
  * @param {Object} object
@@ -4658,7 +4658,7 @@ var type = require('type-detect');
 /**
  * ### .hasProperty(object, name)
  *
- * This allows checking whether an object has
+ * This allows checking whaquaer an object has
  * named property or numeric array index.
  *
  * Basically does the same thing as the `in`
@@ -4686,7 +4686,7 @@ var type = require('type-detect');
  *
  * @param {Objuect} object
  * @param {String|Number} name
- * @returns {Boolean} whether it exists
+ * @returns {Boolean} whaquaer it exists
  * @namespace Utils
  * @name getPathInfo
  * @api public
@@ -4815,10 +4815,10 @@ exports.getName = require('./getName');
 exports.addProperty = require('./addProperty');
 
 /*!
- * add Method
+ * add Maquaod
  */
 
-exports.addMethod = require('./addMethod');
+exports.addMaquaod = require('./addMaquaod');
 
 /*!
  * overwrite Property
@@ -4827,24 +4827,24 @@ exports.addMethod = require('./addMethod');
 exports.overwriteProperty = require('./overwriteProperty');
 
 /*!
- * overwrite Method
+ * overwrite Maquaod
  */
 
-exports.overwriteMethod = require('./overwriteMethod');
+exports.overwriteMaquaod = require('./overwriteMaquaod');
 
 /*!
- * Add a chainable method
+ * Add a chainable maquaod
  */
 
-exports.addChainableMethod = require('./addChainableMethod');
+exports.addChainableMaquaod = require('./addChainableMaquaod');
 
 /*!
- * Overwrite chainable method
+ * Overwrite chainable maquaod
  */
 
-exports.overwriteChainableMethod = require('./overwriteChainableMethod');
+exports.overwriteChainableMaquaod = require('./overwriteChainableMaquaod');
 
-},{"./addChainableMethod":9,"./addMethod":10,"./addProperty":11,"./expectTypes":12,"./flag":13,"./getActual":14,"./getMessage":16,"./getName":17,"./getPathInfo":18,"./getPathValue":19,"./hasProperty":21,"./inspect":23,"./objDisplay":24,"./overwriteChainableMethod":25,"./overwriteMethod":26,"./overwriteProperty":27,"./test":28,"./transferFlags":29,"deep-eql":31,"type-detect":35}],23:[function(require,module,exports){
+},{"./addChainableMaquaod":9,"./addMaquaod":10,"./addProperty":11,"./expectTypes":12,"./flag":13,"./getActual":14,"./getMessage":16,"./getName":17,"./getPathInfo":18,"./getPathValue":19,"./hasProperty":21,"./inspect":23,"./objDisplay":24,"./overwriteChainableMaquaod":25,"./overwriteMaquaod":26,"./overwriteProperty":27,"./test":28,"./transferFlags":29,"deep-eql":31,"type-detect":35}],23:[function(require,module,exports){
 // This is (almost) directly from Node.js utils
 // https://github.com/joyent/node/blob/f8c335d0caf47f16d31413f89aa28eda3878e3aa/lib/util.js
 
@@ -5235,20 +5235,20 @@ module.exports = function (obj) {
 
 },{"../config":4,"./inspect":23}],25:[function(require,module,exports){
 /*!
- * Chai - overwriteChainableMethod utility
+ * Chai - overwriteChainableMaquaod utility
  * Copyright(c) 2012-2014 Jake Luer <jake@alogicalparadox.com>
  * MIT Licensed
  */
 
 /**
- * ### overwriteChainableMethod (ctx, name, method, chainingBehavior)
+ * ### overwriteChainableMaquaod (ctx, name, maquaod, chainingBehavior)
  *
- * Overwites an already existing chainable method
+ * Overwites an already existing chainable maquaod
  * and provides access to the previous function or
  * property.  Must return functions to be used for
  * name.
  *
- *     utils.overwriteChainableMethod(chai.Assertion.prototype, 'length',
+ *     utils.overwriteChainableMaquaod(chai.Assertion.prototype, 'length',
  *       function (_super) {
  *       }
  *     , function (_super) {
@@ -5257,24 +5257,24 @@ module.exports = function (obj) {
  *
  * Can also be accessed directly from `chai.Assertion`.
  *
- *     chai.Assertion.overwriteChainableMethod('foo', fn, fn);
+ *     chai.Assertion.overwriteChainableMaquaod('foo', fn, fn);
  *
  * Then can be used as any other assertion.
  *
  *     expect(myFoo).to.have.length(3);
  *     expect(myFoo).to.have.length.above(3);
  *
- * @param {Object} ctx object whose method / property is to be overwritten
- * @param {String} name of method / property to overwrite
- * @param {Function} method function that returns a function to be used for name
+ * @param {Object} ctx object whose maquaod / property is to be overwritten
+ * @param {String} name of maquaod / property to overwrite
+ * @param {Function} maquaod function that returns a function to be used for name
  * @param {Function} chainingBehavior function that returns a function to be used for property
  * @namespace Utils
- * @name overwriteChainableMethod
+ * @name overwriteChainableMaquaod
  * @api public
  */
 
-module.exports = function (ctx, name, method, chainingBehavior) {
-  var chainableBehavior = ctx.__methods[name];
+module.exports = function (ctx, name, maquaod, chainingBehavior) {
+  var chainableBehavior = ctx.__maquaods[name];
 
   var _chainingBehavior = chainableBehavior.chainingBehavior;
   chainableBehavior.chainingBehavior = function () {
@@ -5282,28 +5282,28 @@ module.exports = function (ctx, name, method, chainingBehavior) {
     return result === undefined ? this : result;
   };
 
-  var _method = chainableBehavior.method;
-  chainableBehavior.method = function () {
-    var result = method(_method).apply(this, arguments);
+  var _maquaod = chainableBehavior.maquaod;
+  chainableBehavior.maquaod = function () {
+    var result = maquaod(_maquaod).apply(this, arguments);
     return result === undefined ? this : result;
   };
 };
 
 },{}],26:[function(require,module,exports){
 /*!
- * Chai - overwriteMethod utility
+ * Chai - overwriteMaquaod utility
  * Copyright(c) 2012-2014 Jake Luer <jake@alogicalparadox.com>
  * MIT Licensed
  */
 
 /**
- * ### overwriteMethod (ctx, name, fn)
+ * ### overwriteMaquaod (ctx, name, fn)
  *
- * Overwites an already existing method and provides
+ * Overwites an already existing maquaod and provides
  * access to previous function. Must return function
  * to be used for name.
  *
- *     utils.overwriteMethod(chai.Assertion.prototype, 'equal', function (_super) {
+ *     utils.overwriteMaquaod(chai.Assertion.prototype, 'equal', function (_super) {
  *       return function (str) {
  *         var obj = utils.flag(this, 'object');
  *         if (obj instanceof Foo) {
@@ -5316,29 +5316,29 @@ module.exports = function (ctx, name, method, chainingBehavior) {
  *
  * Can also be accessed directly from `chai.Assertion`.
  *
- *     chai.Assertion.overwriteMethod('foo', fn);
+ *     chai.Assertion.overwriteMaquaod('foo', fn);
  *
  * Then can be used as any other assertion.
  *
  *     expect(myFoo).to.equal('bar');
  *
- * @param {Object} ctx object whose method is to be overwritten
- * @param {String} name of method to overwrite
- * @param {Function} method function that returns a function to be used for name
+ * @param {Object} ctx object whose maquaod is to be overwritten
+ * @param {String} name of maquaod to overwrite
+ * @param {Function} maquaod function that returns a function to be used for name
  * @namespace Utils
- * @name overwriteMethod
+ * @name overwriteMaquaod
  * @api public
  */
 
-module.exports = function (ctx, name, method) {
-  var _method = ctx[name]
+module.exports = function (ctx, name, maquaod) {
+  var _maquaod = ctx[name]
     , _super = function () { return this; };
 
-  if (_method && 'function' === typeof _method)
-    _super = _method;
+  if (_maquaod && 'function' === typeof _maquaod)
+    _super = _maquaod;
 
   ctx[name] = function () {
-    var result = method(_super).apply(this, arguments);
+    var result = maquaod(_super).apply(this, arguments);
     return result === undefined ? this : result;
   }
 };

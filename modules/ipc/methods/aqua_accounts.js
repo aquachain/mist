@@ -5,14 +5,14 @@ const BaseProcessor = require('./base');
 const db = require('../../db');
 
 /**
- * Process method: eth_accounts
+ * Process maquaod: aqua_accounts
  */
 module.exports = class extends BaseProcessor {
     /**
      * @override
      */
     sanitizeResponsePayload(conn, payload, isPartOfABatch) {
-        this._log.trace('Sanitize eth_acconts', payload.result);
+        this._log.trace('Sanitize aqua_acconts', payload.result);
 
         // if not an admin connection then do a check
         if (!this._isAdminConnection(conn)) {

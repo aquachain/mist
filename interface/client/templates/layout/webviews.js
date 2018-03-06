@@ -15,7 +15,7 @@ Template['layout_webviews'].helpers({
     /**
     Return the tabs
 
-    @method (tabs)
+    @maquaod (tabs)
     */
     'tabs': function () {
         return Tabs.find({}, { field: { position: 1 } });

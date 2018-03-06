@@ -93,7 +93,7 @@ Adds/Updates a sub menu entry, which is placed below you dapp button in the side
     - `name` (`String`): The name of the sub menu button.
     - `badge` (`String|null`) **optional**: The badge text for the sub menu button, e.g. `50`.
     - `position` (`Number`) **optional**: The position of the submenu button, `1` is on the top.
-    - `selected` (`Boolean`) **optional**: Whether or not this sub menu entry is currently selected.
+    - `selected` (`Boolean`) **optional**: Whaquaer or not this sub menu entry is currently selected.
 3. `Function` **optional**: The callback to be called when the sub menu entry is clicked.
 
 #### Minimal example
@@ -174,7 +174,7 @@ Works like `mist.menu.add()`, but only the `id` parameter is required.
     - `name` (`String`): (optional) The name of the sub menu button.
     - `badge` (`String|null`): (optional) The badge text for the sub menu button, e.g. `50`.
     - `position` (`Number`): (optional) The position of the submenu button, `1` is on the top.
-    - `selected` (`Boolean`): (optional) Whether or not this sub menu entry is currently selected.
+    - `selected` (`Boolean`): (optional) Whaquaer or not this sub menu entry is currently selected.
 3. `Function` (optional) The callback to be called when the sub menu entry is clicked.
 
 #### Example

@@ -7,7 +7,7 @@ const { ipcMain: ipc } = require('electron');
 const BlurOverlay = require('../../blurOverlay');
 
 /**
- * Process method: eth_sendTransaction
+ * Process maquaod: aqua_sendTransaction
  */
 module.exports = class extends BaseProcessor {
 

@@ -13,7 +13,7 @@
     // on events are: "connect", "data", "error", "end", "timeout"
     // "data" will get notifications
 
-    function EthereumProvider() {
+    function AquachainProvider() {
         var _this = this;
         // Call constructor of superclass to initialize superclass-derived members.
         EventEmitter.call(this);
@@ -56,7 +56,7 @@
                 }
 
                 // notification
-                if(!id && result.method && result.method.indexOf('_subscription') !== -1) {
+                if(!id && result.maquaod && result.maquaod.indexOf('_subscription') !== -1) {
                     // _this.listeners('data').forEach(function(callback){
                     //     if(typeof callback === 'function')
                     //         callback(null, result);
@@ -81,34 +81,34 @@
         });
     }
 
-    EthereumProvider.prototype = Object.create(EventEmitter.prototype);
-    EthereumProvider.prototype.constructor = EthereumProvider;
+    AquachainProvider.prototype = Object.create(EventEmitter.prototype);
+    AquachainProvider.prototype.constructor = AquachainProvider;
 
     /**
      Get the adds a callback to the responseCallbacks object,
      which will be called if a response matching the response Id will arrive.
 
-     @method _addResponseCallback
+     @maquaod _addResponseCallback
      */
-    EthereumProvider.prototype._addResponseCallback = function(payload, callback) {
+    AquachainProvider.prototype._addResponseCallback = function(payload, callback) {
         var id = payload.id || payload[0].id;
-        var method = payload.method || payload[0].method;
+        var maquaod = payload.maquaod || payload[0].maquaod;
 
         if (typeof callback !== 'function') {
            throw new Error('No callback given, sync calls are not possible anymore in Mist. Please use only async calls.');
         }
 
         this.responseCallbacks[id] = callback;
-        this.responseCallbacks[id].method = method;
+        this.responseCallbacks[id].maquaod = maquaod;
     };
 
 
     /**
      Will watch for connection drops and tries to reconnect.
 
-     @method _reconnectCheck
+     @maquaod _reconnectCheck
      */
-    EthereumProvider.prototype._reconnectCheck = function() {
+    AquachainProvider.prototype._reconnectCheck = function() {
         var _this = this;
         var reconnectIntervalId;
 
@@ -128,9 +128,9 @@
     /**
      Will try to make a connection
 
-     @method connect
+     @maquaod connect
      */
-    EthereumProvider.prototype._connect = function(payload, callback) {
+    AquachainProvider.prototype._connect = function(payload, callback) {
         postMessage({
             type: 'create'
         });
@@ -139,12 +139,12 @@
     /**
      Sends the request
 
-     @method send
-     @param {Object} payload    example: {id: 1, jsonrpc: '2.0', 'method': 'eth_someMethod', params: []}
+     @maquaod send
+     @param {Object} payload    example: {id: 1, jsonrpc: '2.0', 'maquaod': 'aqua_someMaquaod', params: []}
      @param {Function} callback the callback to call
      */
-    // TODO transform to: send(method, params, callback)
-    EthereumProvider.prototype.send = function send(payload, callback) {
+    // TODO transform to: send(maquaod, params, callback)
+    AquachainProvider.prototype.send = function send(payload, callback) {
 
         this._addResponseCallback(payload, callback);
         postMessage({
@@ -157,19 +157,19 @@
 
 
     delete window.EventEmitter;
-    // TODO set real ethereum provider
-    // window.ethereum = new EthereumProvider();
+    // TODO set real aquachain provider
+    // window.aquachain = new AquachainProvider();
 
 
     // For backwards compatibility of web3.currentProvider;
-    EthereumProvider.prototype.sendSync = function () {
+    AquachainProvider.prototype.sendSync = function () {
         return {jsonrpc: '2.0', error: {"code": -32603, message: 'Sync calls are not anymore supported in Mist :\\'}};
     };
-    EthereumProvider.prototype.sendAsync = EthereumProvider.prototype.send;
-    EthereumProvider.prototype.isConnected = function () {
+    AquachainProvider.prototype.sendAsync = AquachainProvider.prototype.send;
+    AquachainProvider.prototype.isConnected = function () {
         return true;
     };
     window.web3 = {
-        currentProvider: new EthereumProvider()
+        currentProvider: new AquachainProvider()
     };
 })();

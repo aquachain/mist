@@ -18,11 +18,11 @@ if (typeof window.dbSync !== 'undefined') {
 }
 
 
-// ETHEREUM RELATED
+// AQUAEREUM RELATED
 
-// Accounts collection is add by the ethereum:accounts package
+// Accounts collection is add by the aquachain:accounts package
 
-// LastBlock collection is add by the ethereum:accounts package
+// LastBlock collection is add by the aquachain:accounts package
 
 // contains blockchain meta data
 // LastBlock = new Mongo.Collection('lastblock', {connection: null});

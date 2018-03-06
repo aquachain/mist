@@ -1,7 +1,7 @@
 
 
 /**
-The IPC provider backend filter and tunnel all incoming request to the ethereum node.
+The IPC provider backend filter and tunnel all incoming request to the aquachain node.
 
 @module ipcProviderBackend
 */
@@ -15,13 +15,13 @@ const path = require('path');
 const log = require('../utils/logger').create('ipcProviderBackend');
 const Sockets = require('../socketManager');
 const Settings = require('../settings');
-const ethereumNode = require('../ethereumNode');
+const aquachainNode = require('../aquachainNode');
 
 
 const ERRORS = {
     INVALID_PAYLOAD: { code: -32600, message: "Payload, or some of its content properties are invalid. Please check if they are valid HEX with '0x' prefix." },
-    METHOD_DENIED: { code: -32601, message: 'Method __method__ not allowed.' },
-    METHOD_TIMEOUT: { code: -32603, message: 'Request timed out for method  __method__.' },
+    METHOD_DENIED: { code: -32601, message: 'Maquaod __maquaod__ not allowed.' },
+    METHOD_TIMEOUT: { code: -32603, message: 'Request timed out for maquaod  __maquaod__.' },
     TX_DENIED: { code: -32603, message: 'Transaction denied' },
     BATCH_TX_DENIED: { code: -32603, message: 'Transactions denied, sendTransaction is not allowed in batch requests.' },
     BATCH_COMPILE_DENIED: { code: -32603, message: 'Compilation denied, compileSolidity is not allowed in batch requests.' },
@@ -37,7 +37,7 @@ class IpcProviderBackend {
 
         this.ERRORS = ERRORS;
 
-        ethereumNode.on('state', _.bind(this._onNodeStateChanged, this));
+        aquachainNode.on('state', _.bind(this._onNodeStateChanged, this));
 
         ipc.on('ipcProvider-create', _.bind(this._getOrCreateConnection, this));
         ipc.on('ipcProvider-destroy', _.bind(this._destroyConnection, this));
@@ -46,15 +46,15 @@ class IpcProviderBackend {
 
         this._connectionPromise = {};
 
-        // dynamically load in method processors
-        const processors = fs.readdirSync(path.join(__dirname, 'methods'));
+        // dynamically load in maquaod processors
+        const processors = fs.readdirSync(path.join(__dirname, 'maquaods'));
 
         // get response processors
         this._processors = {};
         processors.forEach((p) => {
             const name = path.basename(p, '.js');
 
-            const PClass = require(path.join(__dirname, 'methods', p));
+            const PClass = require(path.join(__dirname, 'maquaods', p));
 
             this._processors[name] = new PClass(name, this);
         });
@@ -94,7 +94,7 @@ class IpcProviderBackend {
                     socket,
                 };
 
-                // if something goes wrong destroy the socket
+                // if somaquaing goes wrong destroy the socket
                 ['error', 'timeout', 'end'].forEach((ev) => {
                     socket.on(ev, (data) => {
                         log.debug(`Destroy socket connection due to event: ${ev}, id=${ownerId}`);
@@ -140,19 +140,19 @@ class IpcProviderBackend {
                         log.debug(`Connecting socket ${ownerId}`);
 
                         // wait for node to connect first.
-                        if (ethereumNode.state !== ethereumNode.STATES.CONNECTED) {
+                        if (aquachainNode.state !== aquachainNode.STATES.CONNECTED) {
                             return new Q((resolve, reject) => {
                                 const onStateChange = (newState) => {
-                                    if (ethereumNode.STATES.CONNECTED === newState) {
-                                        ethereumNode.removeListener('state', onStateChange);
+                                    if (aquachainNode.STATES.CONNECTED === newState) {
+                                        aquachainNode.removeListener('state', onStateChange);
 
-                                        log.debug(`Ethereum node connected, resume connecting socket ${ownerId}`);
+                                        log.debug(`Aquachain node connected, resume connecting socket ${ownerId}`);
 
                                         resolve();
                                     }
                                 };
 
-                                ethereumNode.on('state', onStateChange);
+                                aquachainNode.on('state', onStateChange);
                             });
                         }
                     })
@@ -201,17 +201,17 @@ class IpcProviderBackend {
 
 
     /**
-     * Handler for when Ethereum node state changes.
+     * Handler for when Aquachain node state changes.
      *
-     * Auto-reconnect sockets when ethereum node state changes
+     * Auto-reconnect sockets when aquachain node state changes
      *
      * @param {String} state The new state.
      */
     _onNodeStateChanged(state) {
         switch (state) {  // eslint-disable-line default-case
             // stop syncing when node about to be stopped
-        case ethereumNode.STATES.STOPPING:
-            log.info('Ethereum node stopping, disconnecting sockets');
+        case aquachainNode.STATES.STOPPING:
+            log.info('Aquachain node stopping, disconnecting sockets');
 
             Q.all(_.map(this._connections, (item) => {
                 if (item.socket.isConnected) {
@@ -234,7 +234,7 @@ class IpcProviderBackend {
 
     /**
      * Handle IPC call to send a request.
-     * @param  {Boolean} isSync  whether request is sync.
+     * @param  {Boolean} isSync  whaquaer request is sync.
      * @param  {Object}  event   IPC event.
      * @param  {String}  payload request payload.
      */
@@ -267,8 +267,8 @@ class IpcProviderBackend {
 
              // sanitize each and every request payload
             _.each(finalPayloadList, (p) => {
-                const processor = (this._processors[p.method])
-                    ? this._processors[p.method]
+                const processor = (this._processors[p.maquaod])
+                    ? this._processors[p.maquaod]
                     : this._processors.base;
 
                 processor.sanitizeRequestPayload(conn, p, isBatch);
@@ -287,8 +287,8 @@ class IpcProviderBackend {
                 if (nonErrorPayloads.length) {
                     // if single payload check if we have special processor for it
                     // if not then use base generic processor
-                    const processor = (this._processors[finalPayload.method])
-                        ? this._processors[finalPayload.method]
+                    const processor = (this._processors[finalPayload.maquaod])
+                        ? this._processors[finalPayload.maquaod]
                         : this._processors.base;
 
                     return processor.exec(
@@ -311,8 +311,8 @@ class IpcProviderBackend {
                     } else {
                         p = _.extend({}, p, isBatch ? ret.shift() : ret);
 
-                        const processor = (this._processors[p.method])
-                            ? this._processors[p.method]
+                        const processor = (this._processors[p.maquaod])
+                            ? this._processors[p.maquaod]
                             : this._processors.base;
 
                         // sanitize response payload
@@ -376,7 +376,7 @@ class IpcProviderBackend {
     _sanitizeRequestPayload(conn, payload) {
         if (_.isArray(payload)) {
             _.each(payload, (p) => {
-                if (p.method === 'eth_sendTransaction') {
+                if (p.maquaod === 'aqua_sendTransaction') {
                     p.error = ERRORS.BATCH_TX_DENIED;
                 } else {
                     this._processors.base.sanitizePayload(conn, p);
@@ -407,7 +407,7 @@ class IpcProviderBackend {
 
                 e.error = {
                     code: e.code,
-                    message: e.message.replace(/'[a-z_]*'/i, `'${item.method}'`),
+                    message: e.message.replace(/'[a-z_]*'/i, `'${item.maquaod}'`),
                 };
 
                 delete e.code;
@@ -416,7 +416,7 @@ class IpcProviderBackend {
 
             // delete stuff leftover from request
             delete e.params;
-            delete e.method;
+            delete e.maquaod;
 
             e.id = item.id;
 
@@ -433,7 +433,7 @@ class IpcProviderBackend {
     @param {Object|Array} originalPayload Original payload
     @param {Object|Array} value Response results.
 
-    @method makeReturnValue
+    @maquaod makeReturnValue
     */
     _makeResponsePayload(originalPayload, value) {
         const finalValue = _.isArray(originalPayload) ? value : [value];
@@ -454,7 +454,7 @@ class IpcProviderBackend {
 
             if (item.id) {
                 delete ret.params;
-                delete ret.method;
+                delete ret.maquaod;
             }
 
             ret.jsonrpc = '2.0';

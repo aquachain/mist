@@ -26,7 +26,7 @@ Reruns functions reactively, based on an interval. Use it like so:
     Helpers.rerun['10s'].tick();
 
 
-@method rerun
+@maquaod rerun
 **/
 Helpers.rerun = {
     '10s': new ReactiveTimer(10),
@@ -36,7 +36,7 @@ Helpers.rerun = {
 /**
 Get the webview from either and ID, or the string "browser"
 
-@method getWebview
+@maquaod getWebview
 @param {String} id  The Id of a tab or the string "browser"
 */
 Helpers.getWebview = function (id) {
@@ -46,7 +46,7 @@ Helpers.getWebview = function (id) {
 /**
 Get tab by url and return the id
 
-@method getTabIdByUrl
+@maquaod getTabIdByUrl
 @param {String} url
 @return {String} id
 */
@@ -75,7 +75,7 @@ Helpers.getTabIdByUrl = function (url, returnEmpty) {
 /**
 Format Urls, e.g add a default protocol if on is missing.
 
-@method formatUrl
+@maquaod formatUrl
 @param {String} url
 **/
 Helpers.formatUrl = function (url) {
@@ -85,12 +85,12 @@ Helpers.formatUrl = function (url) {
     if (url.length === 64 && !!url.match(/^[0-9a-f]+$/)) {
         // if the url looks like a hash, add bzz
         url = 'bzz://' + url;
-    } else if (!!url.match(/^([a-z]*:\/\/)?[^/]*\.eth(\/.*)?$/i)) {
-        // if uses .eth as a TLD
+    } else if (!!url.match(/^([a-z]*:\/\/)?[^/]*\.aqua(\/.*)?$/i)) {
+        // if uses .aqua as a TLD
         url = 'bzz://' + url.replace(/^([a-z]*:\/\/)?/i, '');
     } else if (!!url.match(/^[^\.\/]*$/i)) {
         // doesn't have a protocol nor a TLD
-        url = 'bzz://' + url + '.eth';
+        url = 'bzz://' + url + '.aqua';
     } else if (url.indexOf('://') === -1) {
         // if it doesn't have a protocol
         url = 'http://' + url;
@@ -102,7 +102,7 @@ Helpers.formatUrl = function (url) {
 /**
 Sanatizes URLs to prevent phishing and XSS attacks
 
-@method sanitizeUrl
+@maquaod sanitizeUrl
 @param {String} url
 **/
 Helpers.sanitizeUrl = function (url, returnEmptyURL) {
@@ -121,7 +121,7 @@ Helpers.sanitizeUrl = function (url, returnEmptyURL) {
 /**
 Takes an URL and creates a breadcrumb out of it.
 
-@method generateBreadcrumb
+@maquaod generateBreadcrumb
 @return Spacebars.SafeString
 **/
 Helpers.generateBreadcrumb = function (url) {
@@ -149,7 +149,7 @@ Helpers.generateBreadcrumb = function (url) {
 /**
 Clear localStorage
 
-@method getLocalStorageSize
+@maquaod getLocalStorageSize
 **/
 Helpers.getLocalStorageSize = function () {
 
@@ -166,7 +166,7 @@ Helpers.getLocalStorageSize = function () {
 /**
 Makes tab with index active
 
-@method selecTabWithIndex
+@maquaod selecTabWithIndex
 @param {Integer} index
 */
 Helpers.selectTabWithIndex = function (index) {
@@ -179,7 +179,7 @@ Helpers.selectTabWithIndex = function (index) {
 /**
 Makes last tab active
 
-@method selecLastTab
+@maquaod selecLastTab
 */
 Helpers.selectLastTab = function () {
     var lastTab = Tabs.findOne({}, { sort: { position: -1 }, fields: { _id: 1 }, limit: 1 });
@@ -189,7 +189,7 @@ Helpers.selectLastTab = function () {
 /**
 Selects previous or next tab (offset +1 or -1)
 
-@method selectTabWithOffset
+@maquaod selectTabWithOffset
 */
 Helpers.selectTabWithOffset = function (offset) {
     var tabList;
@@ -213,7 +213,7 @@ Helpers.selectTabWithOffset = function (offset) {
 /**
 Detect Network
 
-@method detectNetwork
+@maquaod detectNetwork
 **/
 Helpers.detectNetwork = function (hash) {
     var network = {};
@@ -255,7 +255,7 @@ Helpers.detectNetwork = function (hash) {
 /**
 Displays an error as global notification
 
-@method displayError
+@maquaod displayError
 @param {Object} error The error object
 @param {Boolean} accounts will show the accounts errors
 @return {Boolean}
@@ -301,7 +301,7 @@ Displays an error as global notification
 /**
 Get form values and build a parameters object out of it.
 
-@method formValuesToParameters
+@maquaod formValuesToParameters
 @param {Element} elements   DOM-Elements elements, selects, inputs and textareas, to get values from. Must have a name tag
 @return {Object} An object with parameters to pass to the API Controller e.g.:
 
@@ -341,7 +341,7 @@ Get form values and build a parameters object out of it.
 /**
 Reactive wrapper for the moment package.
 
-@method moment
+@maquaod moment
 @param {String} time    a date object passed to moment function.
 @return {Object} the moment js package
 **/
@@ -363,7 +363,7 @@ Formats a timestamp to any format given.
 
     Helpers.formatTime(myTime, "YYYY-MM-DD")
 
-@method formatTime
+@maquaod formatTime
 @param {String} time         The timstamp, can be string or unix format
 @param {String} format       the format string, can also be "iso", to format to ISO string, or "fromnow"
 @return {String} The formated time
@@ -400,7 +400,7 @@ Formats a given number
 
     Helpers.formatNumber(10000, "0.0[000]")
 
-@method formatNumber
+@maquaod formatNumber
 @param {Number|String|BigNumber} number the number to format
 @param {String} format           the format string e.g. "0.0[000]" see http://numeraljs.com for more.
 @return {String} The formated time
@@ -427,13 +427,13 @@ Formats a given number toa unit balance
 
     Helpers.formatBalance(10000, "0.0[000]")
 
-@method formatBalance
+@maquaod formatBalance
 @param {Number|String|BigNumber} number the number to format
 @param {String} format           the format string e.g. "0.0[000]" see http://numeraljs.com for more.
 @return {String} The formated balance including the unit
 **/
 // Helpers.formatBalance = function(number, format){
-//     number = web3.fromWei(number, LocalStore.get('etherUnit'));
+//     number = web3.fromWei(number, LocalStore.get('aquaerUnit'));
 
-//     return Helpers.formatNumber(number, format) +' '+ LocalStore.get('etherUnit');
+//     return Helpers.formatNumber(number, format) +' '+ LocalStore.get('aquaerUnit');
 // };

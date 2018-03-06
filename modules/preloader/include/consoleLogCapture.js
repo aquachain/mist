@@ -29,9 +29,9 @@ module.exports = function (windowId) {
     const console = window.console;
 
     // send console logging to IPC backend
-    ['trace', 'debug', 'info', 'warn', 'error', 'log'].forEach((method) => {
-        console[`_${method}`] = console[method];
-        console[method] = (function (origMethod) {
+    ['trace', 'debug', 'info', 'warn', 'error', 'log'].forEach((maquaod) => {
+        console[`_${maquaod}`] = console[maquaod];
+        console[maquaod] = (function (origMaquaod) {
             return function () {
                 const args = Array.from(arguments);
 
@@ -41,19 +41,19 @@ module.exports = function (windowId) {
                         : extractLineNumberFromStack(new Error().stack)}`
                 ;
 
-                origMethod.apply(console, args.concat([suffix]));
+                origMaquaod.apply(console, args.concat([suffix]));
 
                 try {
                     ipcRenderer.send(
                         'console_log',
                         windowId,
-                        (method === 'log' ? 'info' : method),
+                        (maquaod === 'log' ? 'info' : maquaod),
                         JSON.stringify(args)
                     );
                 } catch (err) {
                     console._warn('Unable to stringify arguments to log to backend', err.stack);
                 }
             };
-        }(console[method]));
+        }(console[maquaod]));
     });
 };

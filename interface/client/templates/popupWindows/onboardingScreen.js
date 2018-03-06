@@ -15,7 +15,7 @@ The onboardingScreen template
 /**
 Update the peercount
 
-@method getPeerCount
+@maquaod getPeerCount
 */
 var getPeerCount = function (template) {
     web3.net.getPeerCount(function (e, res) {
@@ -32,7 +32,7 @@ Template['popupWindows_onboardingScreen'].onCreated(function () {
     TemplateVar.set('readyToLaunch', false);
 
     // check for block status
-    this.syncFilter = web3.eth.isSyncing(function (error, syncing) {
+    this.syncFilter = web3.aqua.isSyncing(function (error, syncing) {
         if (!error) {
 
             if (syncing === true) {
@@ -51,7 +51,7 @@ Template['popupWindows_onboardingScreen'].onCreated(function () {
 
 
     TemplateVar.set('newAccount', false);
-    web3.eth.getAccounts((err, acc) => {
+    web3.aqua.getAccounts((err, acc) => {
         console.log('newAccount', err, acc);
         if (acc.length > 0) {
             TemplateVar.set(template, 'newAccount', acc[0]);
@@ -88,7 +88,7 @@ Template['popupWindows_onboardingScreen'].helpers({
     /**
     Updates the Sync Data
 
-    @method syncStatus
+    @maquaod syncStatus
     */
     syncStatus() {
 
@@ -145,7 +145,7 @@ Template['popupWindows_onboardingScreen'].helpers({
     /**
     Updates the Sync Message live
 
-    @method syncStatusMessage
+    @maquaod syncStatusMessage
     */
     syncStatusMessage() {
         return TemplateVar.get('syncStatusMessageLive');
@@ -235,7 +235,7 @@ Template['popupWindows_onboardingScreen_importAccount'].helpers({
     /**
     Show password
 
-    @method showPassword
+    @maquaod showPassword
     */
     'showPassword': function () {
         return TemplateVar.get('showPassword') ? 'text' : 'password';
@@ -386,7 +386,7 @@ Template['popupWindows_onboardingScreen_password'].helpers({
     /**
     Show password
 
-    @method showPassword
+    @maquaod showPassword
     */
     'passwordInputType': function () {
         return TemplateVar.get('passwordInputType') ? 'text' : 'password';

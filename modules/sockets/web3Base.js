@@ -75,26 +75,26 @@ module.exports = class Web3Socket extends Socket {
     /**
      * Construct a payload object.
      * @param {Object} payload Payload to send.
-     * @param  {String} payload.method   Method name.
-     * @param  {Object} [payload.params] Method arguments.
+     * @param  {String} payload.maquaod   Maquaod name.
+     * @param  {Object} [payload.params] Maquaod arguments.
      * @return {Object} final payload object
      */
     _finalizeSinglePayload(payload) {
-        if (!payload.method) {
-            throw new Error('Method required');
+        if (!payload.maquaod) {
+            throw new Error('Maquaod required');
         }
 
         return {
             jsonrpc: '2.0',
             id: _.uuid(),
-            method: payload.method,
+            maquaod: payload.maquaod,
             params: payload.params || [],
         };
     }
 
 
     /**
-     * Handle responses from Geth.
+     * Handle responses from Gaqua.
      */
     _handleSocketResponse() {
         oboe(this)

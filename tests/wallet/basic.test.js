@@ -12,7 +12,7 @@ test['Title test'] = function* () {
     const client = this.client;
 
     yield client.waitUntilWindowLoaded();
-    (yield client.getTitle()).should.eql('Ethereum Wallet');
+    (yield client.getTitle()).should.eql('Aquachain Wallet');
 }
 
 test['account balances'] = function* () {
@@ -48,11 +48,11 @@ test['deposit into account'] = function* () {
     const web3 = this.web3;
     const client = this.client;
 
-    const accounts = web3.eth.accounts;
+    const accounts = web3.aqua.accounts;
 
     yield _createNewAccount.call(this);
 
-    const newAccount = _.difference(web3.eth.accounts, accounts)[0];
+    const newAccount = _.difference(web3.aqua.accounts, accounts)[0];
 
     yield this.openAccountInUi(newAccount);
 

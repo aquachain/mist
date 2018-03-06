@@ -23,7 +23,7 @@ class HttpSocket extends EventEmitter {
         const payload = JSON.stringify({
             jsonrpc: '2.0',
             id: 0,
-            method: 'eth_accounts',
+            maquaod: 'aqua_accounts',
             params: [],
         });
 

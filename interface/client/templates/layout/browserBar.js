@@ -21,7 +21,7 @@ Template['layout_browserBar'].helpers({
     /**
     Break the URL in protocol, domain and folders
 
-    @method (breadcrumb)
+    @maquaod (breadcrumb)
     */
     breadcrumb: function () {
         if (!this || !this.url) {
@@ -37,7 +37,7 @@ Template['layout_browserBar'].helpers({
     /**
     Returns the current dapp
 
-    @method (dapp)
+    @maquaod (dapp)
     */
     'dapp': function () {
         return Tabs.findOne(LocalStore.get('selectedTab'));
@@ -45,7 +45,7 @@ Template['layout_browserBar'].helpers({
     /**
     Returns dapps current accounts
 
-    @method (dappAccounts)
+    @maquaod (dappAccounts)
     */
     'dappAccounts': function () {
         if (this.permissions) {
@@ -55,7 +55,7 @@ Template['layout_browserBar'].helpers({
     /**
     Show the add button, when on a dapp and in doogle
 
-    @method (isBrowser)
+    @maquaod (isBrowser)
     */
     'isBrowser': function () {
         return (LocalStore.get('selectedTab') === 'browser');
@@ -63,7 +63,7 @@ Template['layout_browserBar'].helpers({
     /**
     Current selected view
 
-    @method (currentWebView)
+    @maquaod (currentWebView)
     */
     'currentWebView': function () {
         return '.webview webview[data-id="' + LocalStore.get('selectedTab') + '"]';

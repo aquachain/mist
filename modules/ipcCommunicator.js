@@ -11,8 +11,8 @@ const Windows = require('./windows');
 const logger = require('./utils/logger');
 const appMenu = require('./menuItems');
 const Settings = require('./settings');
-const ethereumNode = require('./ethereumNode.js');
-const keyfileRecognizer = require('ethereum-keyfile-recognizer');
+const aquachainNode = require('./aquachainNode.js');
+const keyfileRecognizer = require('aquachain-keyfile-recognizer');
 
 import { getLanguage } from './core/settings/actions';
 
@@ -115,7 +115,7 @@ ipc.on('backendAction_checkWalletFile', (e, path) => {
             const keyfile = JSON.parse(data);
             const result = keyfileRecognizer(keyfile);
             /** result
-            *  [ 'ethersale', undefined ]   Ethersale keyfile
+            *  [ 'aquaersale', undefined ]   Aquasale keyfile
             *               [ 'web3', 3 ]   web3 (v3) keyfile
             *                        null   no valid  keyfile
             */
@@ -124,28 +124,28 @@ ipc.on('backendAction_checkWalletFile', (e, path) => {
 
             log.debug(`Importing ${type} account...`);
 
-            if (type === 'ethersale') {
+            if (type === 'aquaersale') {
                 e.sender.send('uiAction_checkedWalletFile', null, 'presale');
             } else if (type === 'web3') {
                 e.sender.send('uiAction_checkedWalletFile', null, 'web3');
 
                 let keystorePath = Settings.userHomePath;
-                // eth
-                if (ethereumNode.isEth) {
+                // aqua
+                if (aquachainNode.isEth) {
                     if (process.platform === 'win32') {
                         keystorePath = `${Settings.appDataPath}\\Web3\\keys`;
                     } else {
                         keystorePath += '/.web3/keys';
                     }
-                // geth
+                // aquachain
                 } else {
-                    if (process.platform === 'darwin') keystorePath += '/Library/Ethereum/keystore';
+                    if (process.platform === 'darwin') keystorePath += '/Library/Aquachain/keystore';
 
                     if (process.platform === 'freebsd' ||
                         process.platform === 'linux' ||
-                        process.platform === 'sunos') keystorePath += '/.ethereum/keystore';
+                        process.platform === 'sunos') keystorePath += '/.aquachain/keystore';
 
-                    if (process.platform === 'win32') keystorePath = `${Settings.appDataPath}\\Ethereum\\keystore`;
+                    if (process.platform === 'win32') keystorePath = `${Settings.appDataPath}\\Aquachain\\keystore`;
                 }
 
                 if (!/^[0-9a-fA-F]{40}$/.test(keyfile.address)) {
@@ -176,12 +176,12 @@ ipc.on('backendAction_importWalletFile', (e, path, pw) => {
     const ClientBinaryManager = require('./clientBinaryManager');  // eslint-disable-line global-require
     let error = false;
 
-    const binPath = ClientBinaryManager.getClient('geth').binPath;
+    const binPath = ClientBinaryManager.getClient('aquachain').binPath;
     const nodeProcess = spawn(binPath, ['wallet', 'import', path]);
 
     nodeProcess.once('error', () => {
         error = true;
-        e.sender.send('uiAction_importedWalletFile', 'Couldn\'t start the "geth wallet import <file.json>" process.');
+        e.sender.send('uiAction_importedWalletFile', 'Couldn\'t start the "aquachain wallet import <file.json>" process.');
     });
     nodeProcess.stdout.on('data', (_data) => {
         const data = _data.toString();

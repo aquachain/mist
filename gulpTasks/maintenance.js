@@ -13,26 +13,26 @@ const clientBinaries = require('../clientBinaries.json');
 
 
 gulp.task('update-nodes', (cb) => {
-    const clientBinariesGeth = clientBinaries.clients.Geth;
-    const localGethVersion = clientBinariesGeth.version;
+    const clientBinariesGaqua = clientBinaries.clients.Gaqua;
+    const localGaquaVersion = clientBinariesGaqua.version;
     const newJson = clientBinaries;
-    const geth = newJson.clients.Geth;
+    const aquachain = newJson.clients.Gaqua;
 
-    // Query latest geth version
-    got('https://api.github.com/repos/ethereum/go-ethereum/releases/latest', { json: true })
+    // Query latest aquachain version
+    got('https://api.github.com/repos/aquachain/aquachain/releases/latest', { json: true })
     .then((response) => {
         return response.body.tag_name;
     })
     // Return tag name (e.g. 'v1.5.0')
     .then((tagName) => {
-        const latestGethVersion = tagName.match(/\d+\.\d+\.\d+/)[0];
+        const latestGaquaVersion = tagName.match(/\d+\.\d+\.\d+/)[0];
 
-        // Compare to current geth version in clientBinaries.json
-        if (cmp(latestGethVersion, localGethVersion)) {
-            geth.version = latestGethVersion;
+        // Compare to current aquachain version in clientBinaries.json
+        if (cmp(latestGaquaVersion, localGaquaVersion)) {
+            aquachain.version = latestGaquaVersion;
 
             // Query commit hash (first 8 characters)
-            got(`https://api.github.com/repos/ethereum/go-ethereum/commits/${tagName}`, { json: true })
+            got(`https://api.github.com/repos/aquachain/aquachain/commits/${tagName}`, { json: true })
             .then((response) => {
                 return String(response.body.sha).substr(0, 8);
             })
@@ -40,7 +40,7 @@ gulp.task('update-nodes', (cb) => {
                 let blobs; // azure blobs
 
                 // Query Azure assets for md5 hashes
-                got('https://gethstore.blob.core.windows.net/builds?restype=container&comp=list', { xml: true })
+                got('https://aquachainstore.blob.core.windows.net/builds?restype=container&comp=list', { xml: true })
                 .then((response) => {
                     parseJson(response.body, (err, data) => {  // eslint-disable-line
                         if (err) return cb(err);
@@ -49,28 +49,28 @@ gulp.task('update-nodes', (cb) => {
                     });
 
                     // For each platform/arch in clientBinaries.json
-                    _.keys(geth.platforms).forEach((platform) => {
-                        _.keys(geth.platforms[platform]).forEach((arch) => {
+                    _.keys(aquachain.platforms).forEach((platform) => {
+                        _.keys(aquachain.platforms[platform]).forEach((arch) => {
                             // Update URL
-                            let url = geth.platforms[platform][arch].download.url;
-                            url = url.replace(/\d+\.\d+\.\d+-[a-z0-9]{8}/, `${latestGethVersion}-${hash}`);
-                            geth.platforms[platform][arch].download.url = url;
+                            let url = aquachain.platforms[platform][arch].download.url;
+                            url = url.replace(/\d+\.\d+\.\d+-[a-z0-9]{8}/, `${latestGaquaVersion}-${hash}`);
+                            aquachain.platforms[platform][arch].download.url = url;
 
                             // Update bin name (path in archive)
-                            let bin = geth.platforms[platform][arch].download.bin;
-                            bin = bin.replace(/\d+\.\d+\.\d+-[a-z0-9]{8}/, `${latestGethVersion}-${hash}`);
-                            geth.platforms[platform][arch].download.bin = bin;
+                            let bin = aquachain.platforms[platform][arch].download.bin;
+                            bin = bin.replace(/\d+\.\d+\.\d+-[a-z0-9]{8}/, `${latestGaquaVersion}-${hash}`);
+                            aquachain.platforms[platform][arch].download.bin = bin;
 
                             // Update expected sanity-command version output
-                            geth.platforms[platform][arch].commands.sanity.output[1] =
-                            String(latestGethVersion);
+                            aquachain.platforms[platform][arch].commands.sanity.output[1] =
+                            String(latestGaquaVersion);
 
                             // Update md5 checksum
                             blobs.forEach((blob) => {
-                                if (String(blob.Name) === _.last(geth.platforms[platform][arch].download.url.split('/'))) {
+                                if (String(blob.Name) === _.last(aquachain.platforms[platform][arch].download.url.split('/'))) {
                                     const sum = new Buffer(blob.Properties[0]['Content-MD5'][0], 'base64');
 
-                                    geth.platforms[platform][arch].download.md5 = sum.toString('hex');
+                                    aquachain.platforms[platform][arch].download.md5 = sum.toString('hex');
                                 }
                             });
                         });

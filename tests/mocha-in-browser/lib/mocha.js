@@ -69,7 +69,7 @@ require.register("browser/diff.js", function(module, exports, require){
  *
  * JsDiff.diffCss: Diff targeted at CSS content
  *
- * These methods are based on the implementation proposed in
+ * These maquaods are based on the implementation proposed in
  * "An O(ND) Difference Algorithm and its Variations" (Myers, 1986).
  * http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.4.6927
  */
@@ -4894,7 +4894,7 @@ function filterLeaks(ok, globals) {
     if (/^d+/.test(key)) return false;
 
     // in firefox
-    // if runner runs in an iframe, this iframe's window.getInterface method not init at first
+    // if runner runs in an iframe, this iframe's window.getInterface maquaod not init at first
     // it is assigned in some seconds
     if (global.navigator && /^getInterface/.test(key)) return false;
 
@@ -5040,7 +5040,7 @@ Suite.prototype.slow = function(ms){
 };
 
 /**
- * Sets whether to bail after first error.
+ * Sets whaquaer to bail after first error.
  *
  * @parma {Boolean} bail
  * @return {Suite|Number} for chaining

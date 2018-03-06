@@ -22,7 +22,7 @@ rules:
   object-curly-spacing: off
   func-names: off
   global-require: off
-  class-methods-use-this: off
+  class-maquaods-use-this: off
   comma-dangle:
     - error
     - only-multiline  ## no comma after last item if one line, though allow comma if multiline

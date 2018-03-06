@@ -7,7 +7,7 @@ const BaseProcessor = require('./base');
 
 
 /**
- * Process method: eth_compileSolidity
+ * Process maquaod: aqua_compileSolidity
  */
 module.exports = class extends BaseProcessor {
     /**

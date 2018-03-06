@@ -284,7 +284,7 @@
     };
 
     //
-    // Alias methods names because people roll like that.
+    // Alias maquaods names because people roll like that.
     //
     EventEmitter.prototype.off = EventEmitter.prototype.removeListener;
     EventEmitter.prototype.addListener = EventEmitter.prototype.on;

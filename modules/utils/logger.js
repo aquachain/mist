@@ -23,9 +23,9 @@ exports.setup = function (options) {
                 filename: `${logFolder}/category/main.log`,
 
             },
-            EthereumNode: {
+            AquachainNode: {
                 type: 'file',
-                filename: `${logFolder}/category/ethereum_node.log`
+                filename: `${logFolder}/category/aquachain_node.log`
             },
             swarm: {
                 type: 'file',
@@ -34,7 +34,7 @@ exports.setup = function (options) {
         },
         categories: {
             default: { appenders: [ 'out', 'all', 'main' ], level },
-            EthereumNode: { appenders: [ 'out', 'all', 'EthereumNode' ], level },
+            AquachainNode: { appenders: [ 'out', 'all', 'AquachainNode' ], level },
             swarm: { appenders: [ 'out', 'all', 'swarm' ], level }
         }
     };

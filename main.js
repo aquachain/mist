@@ -32,7 +32,7 @@ const db = global.db = require('./modules/db');
 require('./modules/ipcCommunicator.js');
 const appMenu = require('./modules/menuItems');
 const ipcProviderBackend = require('./modules/ipc/ipcProviderBackend.js');
-const ethereumNode = require('./modules/ethereumNode.js');
+const aquachainNode = require('./modules/aquachainNode.js');
 const nodeSync = require('./modules/nodeSync.js');
 
 // Define global vars; The preloader makes some globals available to the client.
@@ -101,8 +101,8 @@ app.on('before-quit', async (event) => {
 
         // delay quit, so the sockets can close
         setTimeout(async () => {
-            await ethereumNode.stop();
-            store.dispatch({ type: '[MAIN]:ETH_NODE:STOP' });
+            await aquachainNode.stop();
+            store.dispatch({ type: '[MAIN]:AQUA_NODE:STOP' });
 
             killedSocketsAndNodes = true;
             await db.close();
@@ -119,13 +119,13 @@ app.on('before-quit', async (event) => {
 let mainWindow;
 let splashWindow;
 
-// This method will be called when Electron has done everything
+// This maquaod will be called when Electron has done everything
 // initialization and ready for creating browser windows.
 app.on('ready', async () => {
     // if using HTTP RPC then inform user
     if (Settings.rpcMode === 'http') {
         dialog.showErrorBox('Insecure RPC connection', `
-WARNING: You are connecting to an Ethereum node via: ${Settings.rpcHttpPath}
+WARNING: You are connecting to an Aquachain node via: ${Settings.rpcHttpPath}
 
 This is less secure than using local IPC - your passwords will be sent over the wire in plaintext.
 
@@ -186,10 +186,10 @@ function enableSwarmProtocol() {
 
         if (store.getState().settings.swarmState === SwarmState.Enabling) {
             swarmNode.on('started', () => {
-                callback({ method: request.method, referrer: request.referrer, url: redirectPath });
+                callback({ maquaod: request.maquaod, referrer: request.referrer, url: redirectPath });
             });
         } else { // Swarm enabled
-            callback({ method: request.method, referrer: request.referrer, url: redirectPath });
+            callback({ maquaod: request.maquaod, referrer: request.referrer, url: redirectPath });
         }
 
         store.dispatch({ type: '[MAIN]:PROTOCOL:REQUEST', payload: { protocol: 'bzz' } });
@@ -238,11 +238,11 @@ async function kickStart() {
     initializeKickStartListeners();
     checkForLegacyChain();
     await ClientBinaryManager.init();
-    await ethereumNode.init();
+    await aquachainNode.init();
 
     if (Settings.enableSwarmOnStart) { store.dispatch(toggleSwarm()); }
 
-    if (!ethereumNode.isIpcConnected) { throw new Error('Either the node didn\'t start or IPC socket failed to connect.'); }
+    if (!aquachainNode.isIpcConnected) { throw new Error('Either the node didn\'t start or IPC socket failed to connect.'); }
     log.info('Connected via IPC to node.');
 
     // Update menu, to show node switching possibilities
@@ -264,7 +264,7 @@ function checkForLegacyChain() {
             message: global.i18n.t('mist.errors.legacyChain.title'),
             detail: global.i18n.t('mist.errors.legacyChain.description')
         }, () => {
-            shell.openExternal('https://github.com/ethereum/mist/releases');
+            shell.openExternal('https://github.com/aquachain/mist/releases');
             store.dispatch(quitApp());
         });
 
@@ -277,26 +277,26 @@ function initializeKickStartListeners() {
         Windows.broadcast('uiAction_clientBinaryStatus', status, data);
     });
 
-    ethereumNode.on('nodeConnectionTimeout', () => {
+    aquachainNode.on('nodeConnectionTimeout', () => {
         Windows.broadcast('uiAction_nodeStatus', 'connectionTimeout');
     });
 
-    ethereumNode.on('nodeLog', (data) => {
+    aquachainNode.on('nodeLog', (data) => {
         Windows.broadcast('uiAction_nodeLogText', data.replace(/^.*[0-9]]/, ''));
     });
 
-    ethereumNode.on('state', (state, stateAsText) => {
+    aquachainNode.on('state', (state, stateAsText) => {
         Windows.broadcast('uiAction_nodeStatus', stateAsText,
-            ethereumNode.STATES.ERROR === state ? ethereumNode.lastError : null
+            aquachainNode.STATES.ERROR === state ? aquachainNode.lastError : null
         );
     });
 }
 
 async function handleOnboarding() {
     // Fetch accounts; if none, show the onboarding process
-    const resultData = await ethereumNode.send('eth_accounts', []);
+    const resultData = await aquachainNode.send('aqua_accounts', []);
 
-    if (ethereumNode.isGeth && (resultData.result === null || (_.isArray(resultData.result) && resultData.result.length === 0))) {
+    if (aquachainNode.isGaqua && (resultData.result === null || (_.isArray(resultData.result) && resultData.result.length === 0))) {
         log.info('No accounts setup yet, lets do onboarding first.');
 
         await new Q((resolve, reject) => {
@@ -306,12 +306,12 @@ async function handleOnboarding() {
 
             // Handle changing network types (mainnet, testnet)
             ipcMain.on('onBoarding_changeNet', (e, testnet) => {
-                const newType = ethereumNode.type;
+                const newType = aquachainNode.type;
                 const newNetwork = testnet ? 'rinkeby' : 'main';
 
                 log.debug('Onboarding change network', newType, newNetwork);
 
-                ethereumNode.restart(newType, newNetwork)
+                aquachainNode.restart(newType, newNetwork)
                     .then(function nodeRestarted() {
                         appMenu();
                     })

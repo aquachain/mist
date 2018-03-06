@@ -25,7 +25,7 @@ The sendTransaction confirmation popup window template
 Takes a 4-byte function signature and does a best-effort conversion to a
 human readable text signature.
 
-@method (lookupFunctionSignature)
+@maquaod (lookupFunctionSignature)
 */
 var lookupFunctionSignature = function (data, remoteLookup) {
     return new Q(function (resolve, reject) {
@@ -125,7 +125,7 @@ Template['popupWindows_sendTransactionConfirmation'].onCreated(function () {
 
             // add gasPrice if not set
             if (!data.gasPrice) {
-                web3.eth.getGasPrice(function (e, res) {
+                web3.aqua.getGasPrice(function (e, res) {
                     if (!e) {
                         data.gasPrice = '0x' + res.toString(16);
                         Session.set('data', data);
@@ -135,7 +135,7 @@ Template['popupWindows_sendTransactionConfirmation'].onCreated(function () {
 
             // check if to is a contract
             if (data.to) {
-                web3.eth.getCode(data.to, function (e, res) {
+                web3.aqua.getCode(data.to, function (e, res) {
                     if (!e && res && res.length > 2) {
                         TemplateVar.set(template, 'toIsContract', true);
                         setWindowSize(template);
@@ -160,7 +160,7 @@ Template['popupWindows_sendTransactionConfirmation'].onCreated(function () {
                 }
             }
             if (data.from) {
-                web3.eth.getCode(data.from, function (e, res) {
+                web3.aqua.getCode(data.from, function (e, res) {
                     if (!e && res && res.length > 2) {
                         TemplateVar.set(template, 'fromIsContract', true);
                     }
@@ -170,7 +170,7 @@ Template['popupWindows_sendTransactionConfirmation'].onCreated(function () {
             // estimate gas usage
             var estimateData = _.clone(data);
             estimateData.gas = defaultEstimateGas;
-            web3.eth.estimateGas(estimateData, function (e, res) {
+            web3.aqua.estimateGas(estimateData, function (e, res) {
                 console.log('Estimated gas: ', res, e);
                 if (!e && res) {
 
@@ -208,40 +208,40 @@ Template['popupWindows_sendTransactionConfirmation'].helpers({
     /**
     Returns the total amount
 
-    @method (totalAmount)
+    @maquaod (totalAmount)
     */
     'totalAmount': function () {
-        var amount = EthTools.formatBalance(this.value, '0,0.00[0000000000000000]', 'ether');
+        var amount = EthTools.formatBalance(this.value, '0,0.00[0000000000000000]', 'aquaer');
         var dotPos = (~amount.indexOf('.')) ? amount.indexOf('.') + 3 : amount.indexOf(',') + 3;
 
         return amount ? amount.substr(0, dotPos) + '<small style="font-size: 0.5em;">' + amount.substr(dotPos) + '</small>' : '0';
     },
     /**
-    Calculates the fee used for this transaction in ether
+    Calculates the fee used for this transaction in aquaer
 
-    @method (estimatedFee)
+    @maquaod (estimatedFee)
     */
     'estimatedFee': function () {
         var gas = TemplateVar.get('estimatedGas');
         if (gas && this.gasPrice) {
-            return EthTools.formatBalance(new BigNumber(gas, 10).times(new BigNumber(this.gasPrice, 10)), '0,0.0[0000000] unit', 'ether');
+            return EthTools.formatBalance(new BigNumber(gas, 10).times(new BigNumber(this.gasPrice, 10)), '0,0.0[0000000] unit', 'aquaer');
         }
     },
     /**
-    Calculates the provided gas amount in ether
+    Calculates the provided gas amount in aquaer
 
-    @method (providedGas)
+    @maquaod (providedGas)
     */
     'providedGas': function () {
         var gas = TemplateVar.get('providedGas');
         if (gas && this.gasPrice) {
-            return EthTools.formatBalance(new BigNumber(gas, 10).times(new BigNumber(this.gasPrice, 10)), '0,0.0[0000000]', 'ether');
+            return EthTools.formatBalance(new BigNumber(gas, 10).times(new BigNumber(this.gasPrice, 10)), '0,0.0[0000000]', 'aquaer');
         }
     },
     /**
     Shortens the address to 0xffff...ffff
 
-    @method (shortenAddress)
+    @maquaod (shortenAddress)
     */
     'shortenAddress': function (address) {
         if (_.isString(address)) {
@@ -251,7 +251,7 @@ Template['popupWindows_sendTransactionConfirmation'].helpers({
     /**
     Formats the data so that all zeros are wrapped in span.zero
 
-    @method (formattedData)
+    @maquaod (formattedData)
     */
     'formattedData': function () {
         return (TemplateVar.get('toIsContract'))
@@ -265,7 +265,7 @@ Template['popupWindows_sendTransactionConfirmation'].helpers({
     /**
     Formats parameters
 
-    @method (showFormattedParams)
+    @maquaod (showFormattedParams)
     */
     'showFormattedParams': function () {
         return TemplateVar.get('params') && TemplateVar.get('displayDecodedParams');
@@ -273,7 +273,7 @@ Template['popupWindows_sendTransactionConfirmation'].helpers({
     /**
     Checks if transaction will be invalid
 
-    @method (transactionInvalid)
+    @maquaod (transactionInvalid)
     */
     'transactionInvalid': function () {
         return TemplateVar.get('estimatedGas') === 'invalid'
@@ -284,7 +284,7 @@ Template['popupWindows_sendTransactionConfirmation'].helpers({
 
 Template['popupWindows_sendTransactionConfirmation'].events({
     /**
-    Gets the new provided gas in ether amount and calculates the resulting providedGas
+    Gets the new provided gas in aquaer amount and calculates the resulting providedGas
 
     @event change .provided-gas, input .provided-gas
     */

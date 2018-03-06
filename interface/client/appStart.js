@@ -3,17 +3,17 @@ const { getLanguage } = require('./actions.js');
 /**
 The init function of Mist
 
-@method mistInit
+@maquaod mistInit
 */
 mistInit = function () {
     console.info('Initialise Mist Interface');
 
     EthBlocks.init();
-    const ethBlocksInterval = setInterval(() => {
+    const aquaBlocksInterval = setInterval(() => {
         if (_.isEmpty(EthBlocks.latest)) {
             EthBlocks.init();
         } else {
-            clearInterval(ethBlocksInterval);
+            clearInterval(aquaBlocksInterval);
         }
     }, 500);
 
@@ -29,8 +29,8 @@ mistInit = function () {
 
             Tabs.insert({
                 _id: 'browser',
-                url: 'https://ethereum.org',
-                redirect: 'https://ethereum.org',
+                url: 'https://aquachain.org',
+                redirect: 'https://aquachain.org',
                 position: 0
             });
         } else {
@@ -47,8 +47,8 @@ mistInit = function () {
             { _id: 'wallet' },
             {
                 $set: {
-                    url: 'https://wallet.ethereum.org',
-                    redirect: 'https://wallet.ethereum.org',
+                    url: 'https://wallet.aquachain.org',
+                    redirect: 'https://wallet.aquachain.org',
                     position: 1,
                     permissions: {
                         admin: true

@@ -14,7 +14,7 @@ describe("IPC connection", function() {
             var data = ipcProvider.writeSync(JSON.stringify({
                 "jsonrpc": "2.0",
                 "id": id,
-                "method": "admin_nodeInfo",
+                "maquaod": "admin_nodeInfo",
                 "params": []
             }));
 
@@ -34,12 +34,12 @@ describe("IPC connection", function() {
             var data = ipcProvider.writeSync(JSON.stringify([{
                 "jsonrpc": "2.0",
                 "id": id,
-                "method": "admin_nodeInfo",
+                "maquaod": "admin_nodeInfo",
                 "params": []
             },{
                 "jsonrpc": "2.0",
                 "id": id + 1,
-                "method": "eth_accounts",
+                "maquaod": "aqua_accounts",
                 "params": []
             }]));
 
@@ -62,7 +62,7 @@ describe("IPC connection", function() {
             ipcProvider.write(JSON.stringify({
                 "jsonrpc": "2.0",
                 "id": id,
-                "method": "admin_nodeInfo",
+                "maquaod": "admin_nodeInfo",
                 "params": []
             }));
 
@@ -87,12 +87,12 @@ describe("IPC connection", function() {
             ipcProvider.write(JSON.stringify([{
                 "jsonrpc": "2.0",
                 "id": id,
-                "method": "admin_nodeInfo",
+                "maquaod": "admin_nodeInfo",
                 "params": []
             },{
                 "jsonrpc": "2.0",
                 "id": id + 1,
-                "method": "eth_accounts",
+                "maquaod": "aqua_accounts",
                 "params": []
             }]));
 

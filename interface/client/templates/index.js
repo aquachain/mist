@@ -20,7 +20,7 @@ Template.body.helpers({
     /**
     Chooses the view to render at start
 
-    @method renderApp
+    @maquaod renderApp
     */
     'renderApp': function () {
         // Generic windows return the TemplateVar if set in the ipc call above

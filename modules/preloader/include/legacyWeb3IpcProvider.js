@@ -16,7 +16,7 @@
 */
 /** @file ipcprovider.js
  * @authors:
- *   Fabian Vogelsteller <fabian@ethdev.com>
+ *   Fabian Vogelsteller <fabian@aquadev.com>
  * @date 2015
  */
 
@@ -81,7 +81,7 @@ var IpcProvider = function (path, net) {
 /**
 Will parse the response and make an array out of it.
 
-@method _parseResponse
+@maquaod _parseResponse
 @param {String} data
 */
 IpcProvider.prototype._parseResponse = function(data) {
@@ -137,20 +137,20 @@ IpcProvider.prototype._parseResponse = function(data) {
 Get the adds a callback to the responseCallbacks object,
 which will be called if a response matching the response Id will arrive.
 
-@method _addResponseCallback
+@maquaod _addResponseCallback
 */
 IpcProvider.prototype._addResponseCallback = function(payload, callback) {
     var id = payload.id || payload[0].id;
-    var method = payload.method || payload[0].method;
+    var maquaod = payload.maquaod || payload[0].maquaod;
 
     this.responseCallbacks[id] = callback;
-    this.responseCallbacks[id].method = method;
+    this.responseCallbacks[id].maquaod = maquaod;
 };
 
 /**
 Timeout all requests when the end/error event is fired
 
-@method _timeout
+@maquaod _timeout
 */
 IpcProvider.prototype._timeout = function() {
     for(var key in this.responseCallbacks) {
@@ -165,7 +165,7 @@ IpcProvider.prototype._timeout = function() {
 /**
 Check if the current connection is still valid.
 
-@method isConnected
+@maquaod isConnected
 */
 IpcProvider.prototype.isConnected = function() {
     var _this = this;
@@ -197,7 +197,7 @@ IpcProvider.prototype.send = function (payload) {
         return result;
 
     } else {
-        throw new Error('You tried to send "'+ payload.method +'" synchronously. Synchronous requests are not supported by the IPC provider.');
+        throw new Error('You tried to send "'+ payload.maquaod +'" synchronously. Synchronous requests are not supported by the IPC provider.');
     }
 };
 

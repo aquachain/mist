@@ -62,7 +62,7 @@ Template['popupWindows_connectAccount'].helpers({
     /**
     Returns the current dapp
 
-    @method (dapp)
+    @maquaod (dapp)
     */
     dapp: function () {
         return TemplateVar.get('tab');
@@ -70,7 +70,7 @@ Template['popupWindows_connectAccount'].helpers({
     /**
     Returns a cleaner version of URL
 
-    @method (dappFriendlyURL)
+    @maquaod (dappFriendlyURL)
     */
     dappFriendlyURL: function () {
         var currentTab = TemplateVar.get('tab');
@@ -81,7 +81,7 @@ Template['popupWindows_connectAccount'].helpers({
     /**
     Return the number of accounts this tab has permission for.
 
-    @method accountNumber
+    @maquaod accountNumber
     @return {Number}
     */
     'accountNumber': function () {
@@ -92,7 +92,7 @@ Template['popupWindows_connectAccount'].helpers({
     /**
     Return an array with the selected accounts.
 
-    @method selectedAccounts
+    @maquaod selectedAccounts
     @return {Array}
     */
     'selectedAccounts': function () {
@@ -102,7 +102,7 @@ Template['popupWindows_connectAccount'].helpers({
     /**
     Return "selected" if the current account is allowed in that dapp.
 
-    @method selected
+    @maquaod selected
     @return {String} "selected"
     */
     'selected': function () {

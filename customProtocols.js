@@ -8,7 +8,7 @@ protocol.registerHttpProtocol('mist', (request, callback) => {
 
     const call = {
         url: (request.url.indexOf('mist://interface') !== -1) ? global.interfaceAppUrl + request.url.replace('mist://interface', '') : '', // 'http://localhost:3050/' + request.url.replace('mist://',''),
-        method: request.method,
+        maquaod: request.maquaod,
         referrer: request.referrer,
     };
 
@@ -23,7 +23,7 @@ protocol.registerHttpProtocol('mist', (request, callback) => {
 });
 
 
-// protocol.registerProtocol('eth', function(request) {
+// protocol.registerProtocol('aqua', function(request) {
 //     var url = request.url.substr(7)
 //     return new protocol.RequestStringJob({data: 'Hello'});
 // });
@@ -34,4 +34,4 @@ protocol.registerHttpProtocol('mist', (request, callback) => {
 // });
 
 
-// protocol.registerStandardSchemes(['mist','eth', 'bzz']); //'eth', 'bzz'
+// protocol.registerStandardSchemes(['mist','aqua', 'bzz']); //'aqua', 'bzz'

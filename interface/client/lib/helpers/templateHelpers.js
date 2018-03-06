@@ -14,7 +14,7 @@ Global template helpers
 /**
 A simple template helper to log objects in the console.
 
-@method (debug)
+@maquaod (debug)
 **/
 Template.registerHelper('debug', function (object) {
     console.log(object);
@@ -23,7 +23,7 @@ Template.registerHelper('debug', function (object) {
 /**
 Returns the current block
 
-@method (CurrentBlock)
+@maquaod (CurrentBlock)
 **/
 Template.registerHelper('CurrentBlock', function () {
     return EthBlocks.latest;
@@ -33,7 +33,7 @@ Template.registerHelper('CurrentBlock', function () {
 /**
 Return the dirname.
 
-@method (dirname)
+@maquaod (dirname)
 **/
 Template.registerHelper('dirname', function () {
     return window.dirname;
@@ -42,7 +42,7 @@ Template.registerHelper('dirname', function () {
 /**
 Return the Mist API.
 
-@method (mist)
+@maquaod (mist)
 **/
 Template.registerHelper('mist', function () {
     return window.mist;
@@ -52,7 +52,7 @@ Template.registerHelper('mist', function () {
 /**
 Return the app mode.
 
-@method (mode)
+@maquaod (mode)
 **/
 Template.registerHelper('mode', function () {
     return window.mistMode;
@@ -61,16 +61,16 @@ Template.registerHelper('mode', function () {
 /**
 Return the friendly app name.
 
-@method (appName)
+@maquaod (appName)
 **/
 Template.registerHelper('appName', function () {
-    return window.mistMode === 'mist' ? 'Mist' : 'Ethereum Wallet';
+    return window.mistMode === 'mist' ? 'Mist' : 'Aquachain Wallet';
 });
 
 /**
 Return the app icon path.
 
-@method (iconPath)
+@maquaod (iconPath)
 **/
 Template.registerHelper('appIconPath', function () {
     return 'file://' + window.dirname + '/icons/' + window.mistMode + '/icon2x.png';
@@ -79,7 +79,7 @@ Template.registerHelper('appIconPath', function () {
 /**
 Get all accounts
 
-@method (accounts)
+@maquaod (accounts)
 **/
 Template.registerHelper('accounts', function (identity) {
     return EthAccounts.find({}, { sort: { name: 1 } });
@@ -88,7 +88,7 @@ Template.registerHelper('accounts', function (identity) {
 /**
 Check if the given wallet is a watch only wallet, by checking if we are one of owners in the wallet.
 
-@method (isWatchOnly)
+@maquaod (isWatchOnly)
 @param {String} id the id of the wallet to check
 **/
 Template.registerHelper('isWatchOnly', Helpers.isWatchOnly);
@@ -96,7 +96,7 @@ Template.registerHelper('isWatchOnly', Helpers.isWatchOnly);
 /**
 Return the right wallet icon
 
-@method (walletIcon)
+@maquaod (walletIcon)
 **/
 Template.registerHelper('walletIcon', function () {
     var icon = '';
@@ -118,7 +118,7 @@ Template.registerHelper('walletIcon', function () {
 /**
 Get the account name or display the address
 
-@method (accountNameOrAddress)
+@maquaod (accountNameOrAddress)
 @param {String} address
 */
 Template.registerHelper('accountNameOrAddress', function (address) {
@@ -135,10 +135,10 @@ Formats a timestamp to any format given.
 
     {{formatTime myTime "YYYY-MM-DD"}}
 
-@method (formatTime)
+@maquaod (formatTime)
 @param {String} time         The timstamp, can be string or unix format
 @param {String} format       the format string, can also be "iso", to format to ISO string, or "fromnow"
-//@param {Boolean} realTime    Whether or not this helper should re-run every 10s
+//@param {Boolean} realTime    Whaquaer or not this helper should re-run every 10s
 @return {String} The formated time
 **/
 Template.registerHelper('formatTime', Helpers.formatTime);
@@ -149,7 +149,7 @@ Formats a number.
 
     {{formatNumber myNumber "0,0.0[0000]"}}
 
-@method (formatNumber)
+@maquaod (formatNumber)
 @param {String} number
 @param {String} format       the format string
 @return {String} The formatted number
@@ -162,7 +162,7 @@ Formats a number.
 
     {{formatBalance myNumber "0,0.0[0000]"}}
 
-@method (formatBalance)
+@maquaod (formatBalance)
 @param {String} number
 @param {String} format       the format string
 @return {String} The formatted number

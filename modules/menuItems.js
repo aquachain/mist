@@ -6,7 +6,7 @@ const Settings = require('./settings');
 const log = require('./utils/logger').create('menuItems');
 const swarmLog = require('./utils/logger').create('swarm');
 const updateChecker = require('./updateChecker');
-const ethereumNode = require('./ethereumNode.js');
+const aquachainNode = require('./aquachainNode.js');
 const ClientBinaryManager = require('./clientBinaryManager');
 
 import { setLanguage, toggleSwarm, toggleSwarmOnStart } from './core/settings/actions';
@@ -35,11 +35,11 @@ const createMenu = function (webviews) {
 
 
 const restartNode = function (newType, newNetwork, syncMode, webviews) {
-    newNetwork = newNetwork || ethereumNode.network;
+    newNetwork = newNetwork || aquachainNode.network;
 
     log.info('Switch node', newType, newNetwork);
 
-    return ethereumNode.restart(newType, newNetwork, syncMode)
+    return aquachainNode.restart(newType, newNetwork, syncMode)
         .then(() => {
             Windows.getByType('main').load(global.interfaceAppUrl);
 
@@ -53,7 +53,7 @@ const restartNode = function (newType, newNetwork, syncMode, webviews) {
 
 
 const startMining = (webviews) => {
-    ethereumNode.send('miner_start', [1])
+    aquachainNode.send('miner_start', [1])
         .then((ret) => {
             log.info('miner_start', ret.result);
 
@@ -68,7 +68,7 @@ const startMining = (webviews) => {
 };
 
 const stopMining = (webviews) => {
-    ethereumNode.send('miner_stop', [1])
+    aquachainNode.send('miner_stop', [1])
         .then((ret) => {
             log.info('miner_stop', ret.result);
 
@@ -213,7 +213,7 @@ let menuTempl = function (webviews) {
             {
                 label: i18n.t('mist.applicationMenu.file.importPresale'),
                 accelerator: 'CommandOrControl+I',
-                enabled: ethereumNode.isMainNetwork,
+                enabled: aquachainNode.isMainNetwork,
                 click() {
                     Windows.createPopup('importAccount');
                 },
@@ -229,28 +229,28 @@ let menuTempl = function (webviews) {
                         click() {
                             let userPath = Settings.userHomePath;
 
-                            // eth
-                            if (ethereumNode.isEth) {
+                            // aqua
+                            if (aquachainNode.isEth) {
                                 if (process.platform === 'win32') {
                                     userPath = `${Settings.appDataPath}\\Web3\\keys`;
                                 } else {
                                     userPath += '/.web3/keys';
                                 }
 
-                            // geth
+                            // aquachain
                             } else {
                                 if (process.platform === 'darwin') {
-                                    userPath += '/Library/Ethereum/keystore';
+                                    userPath += '/Library/Aquachain/keystore';
                                 }
 
                                 if (process.platform === 'freebsd' ||
                                 process.platform === 'linux' ||
                                 process.platform === 'sunos') {
-                                    userPath += '/.ethereum/keystore';
+                                    userPath += '/.aquachain/keystore';
                                 }
 
                                 if (process.platform === 'win32') {
-                                    userPath = `${Settings.appDataPath}\\Ethereum\\keystore`;
+                                    userPath = `${Settings.appDataPath}\\Aquachain\\keystore`;
                                 }
                             }
 
@@ -445,38 +445,38 @@ let menuTempl = function (webviews) {
     if (process.platform === 'darwin' || process.platform === 'win32') {
         const nodeSubmenu = [];
 
-        const ethClient = ClientBinaryManager.getClient('eth');
-        const gethClient = ClientBinaryManager.getClient('geth');
+        const aquaClient = ClientBinaryManager.getClient('aqua');
+        const aquachainClient = ClientBinaryManager.getClient('aquachain');
 
-        if (gethClient) {
+        if (aquachainClient) {
             nodeSubmenu.push({
-                label: `Geth ${gethClient.version}`,
-                checked: ethereumNode.isOwnNode && ethereumNode.isGeth,
-                enabled: ethereumNode.isOwnNode,
+                label: `Gaqua ${aquachainClient.version}`,
+                checked: aquachainNode.isOwnNode && aquachainNode.isGaqua,
+                enabled: aquachainNode.isOwnNode,
                 type: 'checkbox',
                 click() {
-                    restartNode('geth', null, 'fast', webviews);
+                    restartNode('aquachain', null, 'fast', webviews);
                 },
             });
         }
 
-        if (ethClient) {
+        if (aquaClient) {
             nodeSubmenu.push(
                 {
-                    label: `Eth ${ethClient.version} (C++)`,
-                    checked: ethereumNode.isOwnNode && ethereumNode.isEth,
-                    enabled: ethereumNode.isOwnNode,
+                    label: `Eth ${aquaClient.version} (C++)`,
+                    checked: aquachainNode.isOwnNode && aquachainNode.isEth,
+                    enabled: aquachainNode.isOwnNode,
                     // enabled: false,
                     type: 'checkbox',
                     click() {
-                        restartNode('eth');
+                        restartNode('aqua');
                     },
                 }
             );
         }
 
         devToolsMenu.push({
-            label: i18n.t('mist.applicationMenu.develop.ethereumNode'),
+            label: i18n.t('mist.applicationMenu.develop.aquachainNode'),
             submenu: nodeSubmenu,
         });
     }
@@ -488,60 +488,60 @@ let menuTempl = function (webviews) {
             {
                 label: i18n.t('mist.applicationMenu.develop.mainNetwork'),
                 accelerator: 'CommandOrControl+Alt+1',
-                checked: ethereumNode.isOwnNode && ethereumNode.isMainNetwork,
-                enabled: ethereumNode.isOwnNode,
+                checked: aquachainNode.isOwnNode && aquachainNode.isMainNetwork,
+                enabled: aquachainNode.isOwnNode,
                 type: 'checkbox',
                 click() {
-                    restartNode(ethereumNode.type, 'main');
+                    restartNode(aquachainNode.type, 'main');
                 },
             },
             {
                 label: 'Ropsten - Test network',
                 accelerator: 'CommandOrControl+Alt+2',
-                checked: ethereumNode.isOwnNode && ethereumNode.network === 'test',
-                enabled: ethereumNode.isOwnNode,
+                checked: aquachainNode.isOwnNode && aquachainNode.network === 'test',
+                enabled: aquachainNode.isOwnNode,
                 type: 'checkbox',
                 click() {
-                    restartNode(ethereumNode.type, 'test');
+                    restartNode(aquachainNode.type, 'test');
                 },
             },
             {
                 label: 'Rinkeby - Test network',
                 accelerator: 'CommandOrControl+Alt+3',
-                checked: ethereumNode.isOwnNode && ethereumNode.network === 'rinkeby',
-                enabled: ethereumNode.isOwnNode,
+                checked: aquachainNode.isOwnNode && aquachainNode.network === 'rinkeby',
+                enabled: aquachainNode.isOwnNode,
                 type: 'checkbox',
                 click() {
-                    restartNode(ethereumNode.type, 'rinkeby');
+                    restartNode(aquachainNode.type, 'rinkeby');
                 },
             },
             {
                 label: 'Solo network',
                 accelerator: 'CommandOrControl+Alt+4',
-                checked: ethereumNode.isOwnNode && ethereumNode.isDevNetwork,
-                enabled: ethereumNode.isOwnNode,
+                checked: aquachainNode.isOwnNode && aquachainNode.isDevNetwork,
+                enabled: aquachainNode.isOwnNode,
                 type: 'checkbox',
                 click() {
-                    restartNode(ethereumNode.type, 'dev');
+                    restartNode(aquachainNode.type, 'dev');
                 },
             }
         ] });
 
     // Light mode switch should appear when not in Solo Mode (dev network)
-    if (ethereumNode.isOwnNode && ethereumNode.isGeth && !ethereumNode.isDevNetwork) {
+    if (aquachainNode.isOwnNode && aquachainNode.isGaqua && !aquachainNode.isDevNetwork) {
         devToolsMenu.push({
             label: 'Sync with Light client (beta)',
             enabled: true,
-            checked: ethereumNode.isLightMode,
+            checked: aquachainNode.isLightMode,
             type: 'checkbox',
             click() {
-                restartNode('geth', null, (ethereumNode.isLightMode) ? 'fast' : 'light');
+                restartNode('aquachain', null, (aquachainNode.isLightMode) ? 'fast' : 'light');
             },
         });
     }
 
     // Enables mining menu: only in Solo mode and Ropsten network (testnet)
-    if (ethereumNode.isOwnNode && (ethereumNode.isTestNetwork || ethereumNode.isDevNetwork)) {
+    if (aquachainNode.isOwnNode && (aquachainNode.isTestNetwork || aquachainNode.isDevNetwork)) {
         devToolsMenu.push({
             label: (global.mining) ? i18n.t('mist.applicationMenu.develop.stopMining') : i18n.t('mist.applicationMenu.develop.startMining'),
             accelerator: 'CommandOrControl+Shift+M',
@@ -624,17 +624,17 @@ let menuTempl = function (webviews) {
     helpMenu.push({
         label: i18n.t('mist.applicationMenu.help.mistWiki'),
         click() {
-            shell.openExternal('https://github.com/ethereum/mist/wiki');
+            shell.openExternal('https://github.com/aquachain/mist/wiki');
         },
     }, {
         label: i18n.t('mist.applicationMenu.help.gitter'),
         click() {
-            shell.openExternal('https://gitter.im/ethereum/mist');
+            shell.openExternal('https://gitter.im/aquachain/mist');
         },
     }, {
         label: i18n.t('mist.applicationMenu.help.reportBug'),
         click() {
-            shell.openExternal('https://github.com/ethereum/mist/issues');
+            shell.openExternal('https://github.com/aquachain/mist/issues');
         },
     });
 

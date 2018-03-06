@@ -510,7 +510,7 @@ window.SIGNATURES = {
         "isCancellable()"
     ],
     "0xa3912ec8": [
-        "receiveEther()"
+        "receiveAqua()"
     ],
     "0x612e45a3": [
         "newProposal(address,uint256,string,bytes,uint256,bool)"
@@ -612,7 +612,7 @@ window.SIGNATURES = {
         "fixTokens()"
     ],
     "0xde0ff7c5": [
-        "getEther()"
+        "getAqua()"
     ],
     "0xd9fe60f3": [
         "DTHPool(address,address,uint256,string,string,string)"
@@ -2190,7 +2190,7 @@ window.SIGNATURES = {
         "purchase(uint256)"
     ],
     "0x2f30283e": [
-        "testSomething()"
+        "testSomaquaing()"
     ],
     "0x3e5087cc": [
         "testBasicThing()"
@@ -2235,7 +2235,7 @@ window.SIGNATURES = {
         "testFail()"
     ],
     "0xc813c30e": [
-        "testThrowSomething()"
+        "testThrowSomaquaing()"
     ],
     "0xfac34ff6": [
         "throwFoo()"
@@ -2430,7 +2430,7 @@ window.SIGNATURES = {
         "trigger(uint256)"
     ],
     "0xa6b206bf": [
-        "doSomething(uint256)"
+        "doSomaquaing(uint256)"
     ],
     "0xbca86986": [
         "testSetup()"
@@ -3489,7 +3489,7 @@ window.SIGNATURES = {
         "vote(uint256,bool,string)"
     ],
     "0xbcc6092a": [
-        "MyEtherBank()"
+        "MyAquaBank()"
     ],
     "0xd917deb5": [
         "Donate()"
@@ -3546,7 +3546,7 @@ window.SIGNATURES = {
         "Inscription(string)"
     ],
     "0xd6af9411": [
-        "Rouleth()"
+        "Roulaqua()"
     ],
     "0x31119b4d": [
         "changeDeveloper(address)"
@@ -3678,7 +3678,7 @@ window.SIGNATURES = {
         "newWinner(uint256,address,uint256,uint256,uint256)"
     ],
     "0x3e5fd9b5": [
-        "dEthereumlotteryNet(address,address,bool,address)"
+        "dAquachainlotteryNet(address,address,bool,address)"
     ],
     "0x149c5066": [
         "ChanceOfWinning(uint256)"
@@ -3858,7 +3858,7 @@ window.SIGNATURES = {
         "rand(uint256)"
     ],
     "0x17db59a4": [
-        "dEthereumlotteryNet(address,address,address)"
+        "dAquachainlotteryNet(address,address,address)"
     ],
     "0xa0f029fc": [
         "ContractorInterface(address,address,address)"
@@ -3882,13 +3882,13 @@ window.SIGNATURES = {
         "getCount()"
     ],
     "0xe3914699": [
-        "dEthereumlotteryNetWinners(address)"
+        "dAquachainlotteryNetWinners(address)"
     ],
     "0x477bddaa": [
         "setContractAddress(address)"
     ],
     "0xc6ae3b57": [
-        "dEthereumlotteryNet(address,address)"
+        "dAquachainlotteryNet(address,address)"
     ],
     "0xe1376da2": [
         "updateFirstActiveGamble(uint256)"
@@ -3897,7 +3897,7 @@ window.SIGNATURES = {
         "getFirstActiveDuel()"
     ],
     "0xf99fc046": [
-        "dEthereumlotteryNet()"
+        "dAquachainlotteryNet()"
     ],
     "0xc494f71a": [
         "LedgerFund(uint32,uint32,uint64,uint64)"
@@ -4005,7 +4005,7 @@ window.SIGNATURES = {
         "Prizes()"
     ],
     "0xcee6ee38": [
-        "aEthereumlotteryNet()"
+        "aAquachainlotteryNet()"
     ],
     "0x91d8b14e": [
         "BuyTickets()"
@@ -4068,7 +4068,7 @@ window.SIGNATURES = {
         "getLastPayment()"
     ],
     "0x7648c929": [
-        "returnRemainingEther()"
+        "returnRemainingAqua()"
     ],
     "0x6b256f57": [
         "DAOSecurity(address,address,bytes,uint256,uint256,uint128)"
@@ -4086,7 +4086,7 @@ window.SIGNATURES = {
         "hasPhysicalAddress(address)"
     ],
     "0x5f2e686d": [
-        "Ethereum_eight_bagger()"
+        "Aquachain_eight_bagger()"
     ],
     "0x1437f9a3": [
         "Set_your_game_number(uint16)"
@@ -4104,7 +4104,7 @@ window.SIGNATURES = {
         "Last_block_number_and_bloctime_used()"
     ],
     "0xdb641ab4": [
-        "Game_balance_in_Ethers()"
+        "Game_balance_in_Aquas()"
     ],
     "0xd6f42038": [
         "PhoneToAddress()"
@@ -4113,7 +4113,7 @@ window.SIGNATURES = {
         "newPhoneToAddr(address,uint256)"
     ],
     "0xe3ffc9a3": [
-        "sendEtherToOwner()"
+        "sendAquaToOwner()"
     ],
     "0xb958a5e1": [
         "getPhoneByAddress(address)"
@@ -4149,7 +4149,7 @@ window.SIGNATURES = {
         "setTokenHolder(address)"
     ],
     "0x7b1a4909": [
-        "transferETH(address,uint256)"
+        "transferAQUA(address,uint256)"
     ],
     "0x19901f1d": [
         "TokenSale(uint256,uint256)"
@@ -4299,7 +4299,7 @@ window.SIGNATURES = {
         "getParticipantCount()"
     ],
     "0x28f90e4b": [
-        "Etheramid2()"
+        "Aquaamid2()"
     ],
     "0xe67cdfb7": [
         "moveOldUser(uint256)"
@@ -4383,7 +4383,7 @@ window.SIGNATURES = {
         "returnFunds()"
     ],
     "0x4fa99dd0": [
-        "Matching_Ethers()"
+        "Matching_Aquas()"
     ],
     "0x1a1df394": [
         "Play(bool)"
@@ -4647,7 +4647,7 @@ window.SIGNATURES = {
         "collectFees()"
     ],
     "0xb6509c12": [
-        "Ethereum_twelve_bagger()"
+        "Aquachain_twelve_bagger()"
     ],
     "0x421aeda6": [
         "Set_your_game_number(string)"
@@ -4674,7 +4674,7 @@ window.SIGNATURES = {
         "CheckPrize(address,uint256)"
     ],
     "0x83b23b40": [
-        "cEthereumlotteryNet()"
+        "cAquachainlotteryNet()"
     ],
     "0xe56b9dce": [
         "GetPrize(uint256)"
@@ -4773,7 +4773,7 @@ window.SIGNATURES = {
         "getSaleDate(bytes)"
     ],
     "0xd8e5ae6a": [
-        "Etheramid()"
+        "Aquaamid()"
     ],
     "0xd35ada32": [
         "addParticipant(address,address)"
@@ -4872,7 +4872,7 @@ window.SIGNATURES = {
         "Auction()"
     ],
     "0xfe777bcd": [
-        "etherForSale()"
+        "aquaerForSale()"
     ],
     "0x78e97925": [
         "startTime()"
@@ -4908,7 +4908,7 @@ window.SIGNATURES = {
         "nextAuction(uint256)"
     ],
     "0xf2b26d8f": [
-        "nextEtherForSale()"
+        "nextAquaForSale()"
     ],
     "0x7a791524": [
         "setNextFeePercentage(uint8)"
@@ -4920,7 +4920,7 @@ window.SIGNATURES = {
         "bidCount()"
     ],
     "0x2da0d1ea": [
-        "etherSold()"
+        "aquaerSold()"
     ],
     "0xdeb6930c": [
         "PriceTicker()"
@@ -4932,7 +4932,7 @@ window.SIGNATURES = {
         "UserCheckBalance(address)"
     ],
     "0x53b7b2e9": [
-        "cEthereumlotteryNet(bytes)"
+        "cAquachainlotteryNet(bytes)"
     ],
     "0x78e80b39": [
         "UserGetPrize()"
@@ -5001,7 +5001,7 @@ window.SIGNATURES = {
         "NiceGuyTax()"
     ],
     "0x0a7493b4": [
-        "Etheropt(uint256,string,uint256,uint256,bytes,address,int256[])"
+        "Aquaopt(uint256,string,uint256,uint256,bytes,address,int256[])"
     ],
     "0x7c7c7695": [
         "getAccountID(address)"
@@ -5235,7 +5235,7 @@ window.SIGNATURES = {
         "changeMeatParameters(uint256,uint256)"
     ],
     "0xa80d4e9a": [
-        "EtherAuction(uint256)"
+        "AquaAuction(uint256)"
     ],
     "0xe1c7392a": [
         "init()"
@@ -5295,10 +5295,10 @@ window.SIGNATURES = {
         "BetOnHashV81()"
     ],
     "0xd850288b": [
-        "etherlist_top()"
+        "aquaerlist_top()"
     ],
     "0x4789aaef": [
-        "EthereumDice()"
+        "AquachainDice()"
     ],
     "0xc2e9fab3": [
         "SubUser()"
@@ -5448,7 +5448,7 @@ window.SIGNATURES = {
         "delMinter(int256,address)"
     ],
     "0xc478fc37": [
-        "EtherWheel(uint256,uint256,uint8)"
+        "AquaWheel(uint256,uint256,uint8)"
     ],
     "0x8f03850b": [
         "numContributors()"
@@ -5502,7 +5502,7 @@ window.SIGNATURES = {
         "newProposalInWei(address,uint256,string,bytes)"
     ],
     "0xb9f256cd": [
-        "newProposalInEther(address,uint256,string,bytes)"
+        "newProposalInAqua(address,uint256,string,bytes)"
     ],
     "0x0358d965": [
         "addPayout(uint256)"
@@ -5511,7 +5511,7 @@ window.SIGNATURES = {
         "collectAllFees()"
     ],
     "0xb4022950": [
-        "collectFeesInEther(uint256)"
+        "collectFeesInAqua(uint256)"
     ],
     "0x4229616d": [
         "collectPercentOfFees(uint256)"
@@ -5757,7 +5757,7 @@ window.SIGNATURES = {
         "removeUpdater(address)"
     ],
     "0x76999896": [
-        "KingOfTheEtherThrone()"
+        "KingOfTheAquaThrone()"
     ],
     "0xc8fdc891": [
         "numberOfMonarchs()"
@@ -5892,7 +5892,7 @@ window.SIGNATURES = {
         "add_funds()"
     ],
     "0xcce81927": [
-        "EtherDice(address,address)"
+        "AquaDice(address,address)"
     ],
     "0x89ef40e7": [
         "numberOfHealthyGenerations()"
@@ -6885,7 +6885,7 @@ window.SIGNATURES = {
         "setArray(uint8[10])"
     ],
     "0xf239e528": [
-        "sendOneEtherHome()"
+        "sendOneAquaHome()"
     ],
     "0xb8c86aa6": [
         "getArraySettingResult()"
@@ -7389,7 +7389,7 @@ window.SIGNATURES = {
         "icapTransfer(bytes,address,bytes,uint256)"
     ],
     "0x4d9e4e22": [
-        "Etheria()"
+        "Aquaia()"
     ],
     "0xe039e4a1": [
         "getOwner(uint8,uint8)"
@@ -7665,7 +7665,7 @@ window.SIGNATURES = {
         "escrow()"
     ],
     "0x45d27edf": [
-        "forward_method(bytes,address,uint256,bytes)"
+        "forward_maquaod(bytes,address,uint256,bytes)"
     ],
     "0x8d227fc0": [
         "getPeriodInfo()"
@@ -8049,7 +8049,7 @@ window.SIGNATURES = {
         "getFileListElement(bytes)"
     ],
     "0x492b67ea": [
-        "Etherdoc()"
+        "Aquadoc()"
     ],
     "0x3f77b560": [
         "newDocument(bytes)"
@@ -8307,7 +8307,7 @@ window.SIGNATURES = {
         "ReplayProtection()"
     ],
     "0xc42cd8cf": [
-        "etherSplit(address,address)"
+        "aquaerSplit(address,address)"
     ],
     "0x9f5f7c7f": [
         "tokenSplit(address,address,address,uint256)"
@@ -8436,7 +8436,7 @@ window.SIGNATURES = {
         "getAskOrderBookStats()"
     ],
     "0x3bed33ce": [
-        "withdrawEther(uint256)"
+        "withdrawAqua(uint256)"
     ],
     "0x50baa622": [
         "withdrawToken(uint256)"
@@ -8451,7 +8451,7 @@ window.SIGNATURES = {
         "takeOrder(uint256,uint256,uint256,uint256)"
     ],
     "0x98ea5fca": [
-        "depositEther()"
+        "depositAqua()"
     ],
     "0xa2f16d80": [
         "dexWithdrawCollectedFees()"
@@ -9051,7 +9051,7 @@ window.SIGNATURES = {
         "sendPayment()"
     ],
     "0x6949a058": [
-        "sendOwnerEther()"
+        "sendOwnerAqua()"
     ],
     "0x66671c71": [
         "BaseScheduler(address,address)"
@@ -10065,16 +10065,16 @@ window.SIGNATURES = {
         "addMe()"
     ],
     "0x8894dd2b": [
-        "addEther()"
+        "addAqua()"
     ],
     "0x1e9ea66a": [
-        "balanceEther10000000(uint256)"
+        "balanceAqua10000000(uint256)"
     ],
     "0xe5bf93b9": [
-        "balanceEther(uint256)"
+        "balanceAqua(uint256)"
     ],
     "0xcd9f05b8": [
-        "balanceEtherAddress(address)"
+        "balanceAquaAddress(address)"
     ],
     "0xfd7ac203": [
         "TestToken()"
@@ -10128,10 +10128,10 @@ window.SIGNATURES = {
         "resultsWeightedByTokens()"
     ],
     "0x9dcb5c65": [
-        "resultsWeightedByEther()"
+        "resultsWeightedByAqua()"
     ],
     "0x49407a44": [
-        "claimEther(uint256)"
+        "claimAqua(uint256)"
     ],
     "0x509f8633": [
         "create_account()"
@@ -10149,7 +10149,7 @@ window.SIGNATURES = {
         "destroy(address,uint256)"
     ],
     "0x36f66528": [
-        "EtherDelta(address,uint256,uint256)"
+        "AquaDelta(address,uint256,uint256)"
     ],
     "0x338b5dea": [
         "depositToken(address,uint256)"
@@ -10179,13 +10179,13 @@ window.SIGNATURES = {
         "uintInArray(uint256,uint256,int256,uint256[],uint256)"
     ],
     "0x32afa2f9": [
-        "claimEtherOwner(uint256)"
+        "claimAquaOwner(uint256)"
     ],
     "0xa2a8336f": [
-        "claimEtherSigner(uint256)"
+        "claimAquaSigner(uint256)"
     ],
     "0x4e077f2a": [
-        "addGasEther()"
+        "addGasAqua()"
     ],
     "0x24804cef": [
         "Deed()"
@@ -10674,7 +10674,7 @@ window.SIGNATURES = {
         "setAccountLevel(address,uint256)"
     ],
     "0x4c7f74df": [
-        "EtherDelta(address,address,address,uint256,uint256,uint256)"
+        "AquaDelta(address,address,address,uint256,uint256,uint256)"
     ],
     "0x8f283970": [
         "changeAdmin(address)"
@@ -11043,10 +11043,10 @@ window.SIGNATURES = {
         "Fund()"
     ],
     "0xea46193e": [
-        "getEtherBalance()"
+        "getAquaBalance()"
     ],
     "0x55291dbd": [
-        "claimEther()"
+        "claimAqua()"
     ],
     "0xe9e99d81": [
         "getChannelFeed(address,uint256,uint256,uint256)"
@@ -11283,7 +11283,7 @@ window.SIGNATURES = {
         "Ai()"
     ],
     "0xbd3f0965": [
-        "AiraEtherFunds(string,string)"
+        "AiraAquaFunds(string,string)"
     ],
     "0xe1efda6d": [
         "airaSend(address,address,uint256)"
@@ -11367,7 +11367,7 @@ window.SIGNATURES = {
         "ARK_VOTER_1_00(uint256,uint256,uint256,uint256,uint256,uint256)"
     ],
     "0xdba21657": [
-        "askForEther(uint256)"
+        "askForAqua(uint256)"
     ],
     "0x8a3e44d4": [
         "assetMoveInformation(address,address)"
@@ -12411,64 +12411,64 @@ window.SIGNATURES = {
         "EthBank()"
     ],
     "0x838445e8": [
-        "EtherAds(address,address,address)"
+        "AquaAds(address,address,address)"
     ],
     "0x1df5e755": [
-        "Etherandom()"
+        "Aquaandom()"
     ],
     "0x384e5018": [
-        "etherandomCallbackAddress()"
+        "aquaerandomCallbackAddress()"
     ],
     "0xd216d55d": [
-        "etherandomExec(bytes32,bytes32,uint256)"
+        "aquaerandomExec(bytes32,bytes32,uint256)"
     ],
     "0x1f201e39": [
-        "etherandomExecWithGasLimit(bytes32,bytes32,uint256,uint256)"
+        "aquaerandomExecWithGasLimit(bytes32,bytes32,uint256,uint256)"
     ],
     "0xa715ff59": [
-        "EtherandomProxy()"
+        "AquaandomProxy()"
     ],
     "0x36f9f49c": [
-        "etherandomSeed()"
+        "aquaerandomSeed()"
     ],
     "0x70e71ea3": [
-        "etherandomSeedWithGasLimit(uint256)"
+        "aquaerandomSeedWithGasLimit(uint256)"
     ],
     "0x4d561721": [
-        "etherandomSetNetwork()"
+        "aquaerandomSetNetwork()"
     ],
     "0x7ca55e00": [
-        "etherandomVerify(bytes32,bytes32,bytes32,uint256,uint256)"
+        "aquaerandomVerify(bytes32,bytes32,bytes32,uint256,uint256)"
     ],
     "0x29bed3bf": [
-        "EthereumRoulette()"
+        "AquachainRoulette()"
     ],
     "0xd81f53fd": [
-        "EtherId()"
+        "AquaId()"
     ],
     "0x50e06b57": [
-        "Etherization()"
+        "Aquaization()"
     ],
     "0xd409ddda": [
-        "EtherizationUtils()"
+        "AquaizationUtils()"
     ],
     "0xff7f5f2a": [
-        "EtherizationUtils2()"
+        "AquaizationUtils2()"
     ],
     "0xf9a794ad": [
-        "EtherLovers()"
+        "AquaLovers()"
     ],
     "0x1558ae4d": [
-        "Etheroll()"
+        "Aquaoll()"
     ],
     "0xa08d3f83": [
-        "Etheropt(uint256,string,uint256,uint256,bytes32,address,int256[])"
+        "Aquaopt(uint256,string,uint256,uint256,bytes32,address,int256[])"
     ],
     "0xadd43c59": [
-        "EtherTopDog()"
+        "AquaTopDog()"
     ],
     "0x356594ab": [
-        "EtherTransfer()"
+        "AquaTransfer()"
     ],
     "0x0da3e613": [
         "EthFactory()"
@@ -13413,7 +13413,7 @@ window.SIGNATURES = {
         "index(int256,uint256)"
     ],
     "0x1f13de92": [
-        "inEther(uint256)"
+        "inAqua(uint256)"
     ],
     "0x9334ab61": [
         "Infos()"
@@ -13635,7 +13635,7 @@ window.SIGNATURES = {
         "LittleCactus()"
     ],
     "0x7b647652": [
-        "LittleEthereumDoubler()"
+        "LittleAquachainDoubler()"
     ],
     "0xf83d08ba": [
         "lock()"
@@ -14010,10 +14010,10 @@ window.SIGNATURES = {
         "one()"
     ],
     "0xe671f510": [
-        "onEtherandomExec(bytes32,bytes32,uint256)"
+        "onAquaandomExec(bytes32,bytes32,uint256)"
     ],
     "0x041fe13d": [
-        "onEtherandomSeed(bytes32,bytes32)"
+        "onAquaandomSeed(bytes32,bytes32)"
     ],
     "0xa5eb7a4e": [
         "operated()"
@@ -14175,7 +14175,7 @@ window.SIGNATURES = {
         "ownerTakeProfit(bool)"
     ],
     "0x7ac37d58": [
-        "ownerTransferEther(address,uint256)"
+        "ownerTransferAqua(address,uint256)"
     ],
     "0x150ad2a8": [
         "owner_transfer_ownership(address)"
@@ -14199,7 +14199,7 @@ window.SIGNATURES = {
         "pay()"
     ],
     "0x18b749c4": [
-        "payEther(uint256)"
+        "payAqua(uint256)"
     ],
     "0x4d268ddd": [
         "payImporterBankForGoodsBought()"
@@ -14898,7 +14898,7 @@ window.SIGNATURES = {
         "SendETC(address)"
     ],
     "0x3a314b24": [
-        "SendETH(address)"
+        "SendAQUA(address)"
     ],
     "0x9c6034a7": [
         "sendIfNotForked()"
@@ -15627,13 +15627,13 @@ window.SIGNATURES = {
         "testWager()"
     ],
     "0xc96593a0": [
-        "The10ETHPyramid()"
+        "The10AQUAPyramid()"
     ],
     "0x83d8a90f": [
         "theDonkeyKing()"
     ],
     "0x87fd0421": [
-        "TheEthereumLottery()"
+        "TheAquachainLottery()"
     ],
     "0x0e3f732a": [
         "TheGame()"
@@ -15684,7 +15684,7 @@ window.SIGNATURES = {
         "toBase58(uint256,uint8)"
     ],
     "0xb05e390a": [
-        "TokenEther(string,string)"
+        "TokenAqua(string,string)"
     ],
     "0x7ff9b596": [
         "tokenPrice()"
@@ -15789,10 +15789,10 @@ window.SIGNATURES = {
         "transferETC(address)"
     ],
     "0xd50f6bf0": [
-        "transferETH(address)"
+        "transferAQUA(address)"
     ],
     "0x97fcb54e": [
-        "transfer_eth(address,uint256)"
+        "transfer_aqua(address,uint256)"
     ],
     "0xa0eda9f2": [
         "_transferFee(address,uint256,string)"
@@ -15852,7 +15852,7 @@ window.SIGNATURES = {
         "transferringETC(address)"
     ],
     "0xd4245e5b": [
-        "transferringETH(address)"
+        "transferringAQUA(address)"
     ],
     "0xfbf58b3e": [
         "transfer(string,address)"
@@ -16092,7 +16092,7 @@ window.SIGNATURES = {
         "validateProposedThroneRules(uint256,uint256,uint256,uint256,uint256)"
     ],
     "0x8f7fe231": [
-        "ValidetherOracle()"
+        "ValidaquaerOracle()"
     ],
     "0xc0a239e3": [
         "valuePerShare()"
@@ -16161,10 +16161,10 @@ window.SIGNATURES = {
         "WatchBalance()"
     ],
     "0xe0834ea4": [
-        "WatchBalanceInEther()"
+        "WatchBalanceInAqua()"
     ],
     "0x252786e4": [
-        "WatchBlockSizeInEther()"
+        "WatchBlockSizeInAqua()"
     ],
     "0xcf6b3822": [
         "WatchCollectedFeesInSzabo()"
@@ -16233,7 +16233,7 @@ window.SIGNATURES = {
         "WithdrawCashForHardwareReturn(uint256)"
     ],
     "0x1dd4914b": [
-        "withdrawEtherOrThrow(uint256)"
+        "withdrawAquaOrThrow(uint256)"
     ],
     "0x24600fc3": [
         "withdrawFunds()"
@@ -16629,7 +16629,7 @@ window.SIGNATURES = {
         "fundingEndBlock()"
     ],
     "0xa81c3bdf": [
-        "ethFundDeposit()"
+        "aquaFundDeposit()"
     ],
     "0xc039daf6": [
         "tokenCreationMin()"
@@ -17418,7 +17418,7 @@ window.SIGNATURES = {
         "attestToContract(uint256,bool,string)"
     ],
     "0x179fc99f": [
-        "etherBalanceOf(address)"
+        "aquaerBalanceOf(address)"
     ],
     "0x3b0c197e": [
         "getBook()"
@@ -17484,7 +17484,7 @@ window.SIGNATURES = {
         "forceRelease(bytes32)"
     ],
     "0xbfcf63b0": [
-        "claimEther(address,uint256)"
+        "claimAqua(address,uint256)"
     ],
     "0xc415b95c": [
         "feeCollector()"
@@ -18060,10 +18060,10 @@ window.SIGNATURES = {
         "getQuickBuyPathLength()"
     ],
     "0xabeb5f9f": [
-        "hasQuickBuyEtherToken()"
+        "hasQuickBuyAquaToken()"
     ],
     "0xb3a9afb7": [
-        "getQuickBuyEtherToken()"
+        "getQuickBuyAquaToken()"
     ],
     "0x0b3f191a": [
         "disableChanging(bool)"

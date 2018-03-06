@@ -5,7 +5,7 @@ Decodes Data into values, for a given signature.
 */
 const _ = global._;
 const { ipcMain: ipc } = require('electron');
-const abi = require('ethereumjs-abi');
+const abi = require('aquachainjs-abi');
 
 function isHexType(type) {
     return _.includes(['address', 'bytes'], type) || type.match(/bytes\d+/g);

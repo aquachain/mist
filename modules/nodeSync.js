@@ -1,6 +1,6 @@
 /**
 The nodeSync module,
-checks the current node whether its synching or not and how much it kept up already.
+checks the current node whaquaer its synching or not and how much it kept up already.
 
 @module nodeSync
 */
@@ -9,7 +9,7 @@ const _ = global._;
 const Q = require('bluebird');
 const EventEmitter = require('events').EventEmitter;
 const { ipcMain: ipc } = require('electron');
-const ethereumNode = require('./ethereumNode');
+const aquachainNode = require('./aquachainNode');
 const log = require('./utils/logger').create('NodeSync');
 
 
@@ -20,7 +20,7 @@ class NodeSync extends EventEmitter {
     constructor() {
         super();
 
-        ethereumNode.on('state', _.bind(this._onNodeStateChanged, this));
+        aquachainNode.on('state', _.bind(this._onNodeStateChanged, this));
     }
 
     /**
@@ -34,8 +34,8 @@ class NodeSync extends EventEmitter {
         }
 
         this._syncPromise = Q.try(() => {
-            if (!ethereumNode.isIpcConnected) {
-                throw new Error('Cannot sync - Ethereum node not yet connected');
+            if (!aquachainNode.isIpcConnected) {
+                throw new Error('Cannot sync - Aquachain node not yet connected');
             }
 
             return new Q((resolve, reject) => {
@@ -117,7 +117,7 @@ class NodeSync extends EventEmitter {
 
             log.trace('Check sync status');
 
-            ethereumNode.send('eth_syncing', [])
+            aquachainNode.send('aqua_syncing', [])
                 .then((ret) => {
                     const result = ret.result;
 
@@ -128,7 +128,7 @@ class NodeSync extends EventEmitter {
                         // got an error?
                         if (result.error) {
                             if (result.error.code === -32601) {
-                                log.warn('Sync method not implemented, skipping sync.');
+                                log.warn('Sync maquaod not implemented, skipping sync.');
 
                                 return this._onSyncDone();
                             }
@@ -142,7 +142,7 @@ class NodeSync extends EventEmitter {
                     } else {  // got no result, let's check the block number
                         log.debug('Check latest block number');
 
-                        return ethereumNode.send('eth_getBlockByNumber', ['latest', false])
+                        return aquachainNode.send('aqua_getBlockByNumber', ['latest', false])
                             .then((ret2) => {
                                 const blockResult = ret2.result;
                                 const now = Math.floor(new Date().getTime() / 1000);
@@ -182,14 +182,14 @@ class NodeSync extends EventEmitter {
     _onNodeStateChanged(state) {
         switch (state) {  // eslint-disable-line default-case
             // stop syncing when node about to be stopped
-        case ethereumNode.STATES.STOPPING:
-            log.info('Ethereum node stopping, so stop sync');
+        case aquachainNode.STATES.STOPPING:
+            log.info('Aquachain node stopping, so stop sync');
 
             this.stop();
             break;
             // auto-sync whenever node gets connected
-        case ethereumNode.STATES.CONNECTED:
-            log.info('Ethereum node connected, re-start sync');
+        case aquachainNode.STATES.CONNECTED:
+            log.info('Aquachain node connected, re-start sync');
 
                 // stop syncing, then start again
             this.stop().then(() => {

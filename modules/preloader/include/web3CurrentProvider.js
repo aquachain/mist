@@ -1,7 +1,7 @@
 /**
-Sets the ethereum provider, as well as "web3" for backwards compatibility.
+Sets the aquachain provider, as well as "web3" for backwards compatibility.
 
-@module ethereumProvider
+@module aquachainProvider
 */
 const Web3 = require('web3');
 const BigNumber = require('bignumber.js');
@@ -9,8 +9,8 @@ const ipcProviderWrapper = require('../../ipc/ipcProviderWrapper.js');
 const LegacyWeb3IpcProvider = require('./legacyWeb3IpcProvider.js');
 
 
-// SET ETHEREUM PROVIDER
-// window.ethereumProvider = new Web3.providers.IpcProvider('', ipcProviderWrapper);
+// SET AQUAEREUM PROVIDER
+// window.aquachainProvider = new Web3.providers.IpcProvider('', ipcProviderWrapper);
 
 
 // LEGACY

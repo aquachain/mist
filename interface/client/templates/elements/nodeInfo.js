@@ -7,7 +7,7 @@ Template Controllers
 /**
 Update the peercount
 
-@method getPeerCount
+@maquaod getPeerCount
 */
 var getPeerCount = function(template) {
     web3.net.getPeerCount(function(e, res) {
@@ -19,12 +19,12 @@ var getPeerCount = function(template) {
 /**
 Update the mining hashrate
 
-@method getMining
+@maquaod getMining
 */
 var getMining = function(template) {
-    web3.eth.getMining(function(e, res) {
+    web3.aqua.getMining(function(e, res) {
         if(!e && res) {
-            web3.eth.getHashrate(function(e, res) {
+            web3.aqua.getHashrate(function(e, res) {
                 if(!e) {
                     TemplateVar.set(template, 'mining', numeral(res/1000).format('0,0.0'));
                 }
@@ -46,7 +46,7 @@ Template['elements_nodeInfo'].onCreated(function(){
     var template = this;
 
     // CHECK FOR NETWORK
-    web3.eth.getBlock(0, function(e, res){
+    web3.aqua.getBlock(0, function(e, res){
         if(!e){
             const network = Helpers.detectNetwork(res.hash);
             TemplateVar.set(template, 'network', network.type);
@@ -55,7 +55,7 @@ Template['elements_nodeInfo'].onCreated(function(){
     });
 
     // CHECK SYNCING
-    this.syncFilter = web3.eth.isSyncing(function(error, syncing) {
+    this.syncFilter = web3.aqua.isSyncing(function(error, syncing) {
         if(!error) {
 
             if(syncing === true) {
@@ -115,7 +115,7 @@ Template['elements_nodeInfo'].helpers({
     /**
     Formats the last block number
 
-    @method (formattedBlockNumber)
+    @maquaod (formattedBlockNumber)
     @return {String}
     */
     formattedBlockNumber: function () {
@@ -124,7 +124,7 @@ Template['elements_nodeInfo'].helpers({
     /**
     Formats the time since the last block
 
-    @method (timeSinceBlock)
+    @maquaod (timeSinceBlock)
     */
     timeSinceBlock: function () {
         var timeSince = moment(EthBlocks.latest.timestamp, 'X');

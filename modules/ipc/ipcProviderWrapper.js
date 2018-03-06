@@ -15,7 +15,7 @@ const { ipcRenderer } = require('electron');
 /**
 Gets the writable property.
 
-@method on('ipcProvider-setWritable')
+@maquaod on('ipcProvider-setWritable')
 */
 ipcRenderer.on('ipcProvider-setWritable', (e, writable) => {
     // console.debug('ipcProvider-setWritable', writable);
@@ -28,12 +28,12 @@ const ipcProviderWrapper = {
     writable: false,
 
     /**
-    Connects the IPC on the backend to the geth node
+    Connects the IPC on the backend to the aquachain node
 
     Note: web3.isConnected will always return true, as otherwise race conditions can occour,
     letting it look like youre not connected via IPC.
 
-    @method connect
+    @maquaod connect
     */
     connect(path) {
         // console.debug('ipcProviderWrapper: connect');
@@ -45,7 +45,7 @@ const ipcProviderWrapper = {
     /**
     Returns data from the IPC through the backend
 
-    @method on
+    @maquaod on
     @param {String} name `connect`, `error`, `end`, `timeout` or `data`
     @param  {Funciton} callback
     */
@@ -59,7 +59,7 @@ const ipcProviderWrapper = {
     /**
     Returns data from the IPC through the backend
 
-    @method once
+    @maquaod once
     @param {String} name `connect`, `error`, `end`, `timeout` or `data`
     @param  {Funciton} callback
     */
@@ -73,7 +73,7 @@ const ipcProviderWrapper = {
     /**
     Removes listener
 
-    @method removeListener
+    @maquaod removeListener
     */
     removeListener(name, callback) {
         // console.debug('ipcProviderWrapper: remove listener', name);
@@ -84,7 +84,7 @@ const ipcProviderWrapper = {
     /**
     Removes all listeners
 
-    @method removeAllListeners
+    @maquaod removeAllListeners
     */
     removeAllListeners(name) {
         // console.debug('ipcProviderWrapper: remove all listeners', name);
@@ -101,7 +101,7 @@ const ipcProviderWrapper = {
     /**
     Write to the IPC connection through the backend
 
-    @method write
+    @maquaod write
     */
     write(payload) {
         // console.debug('ipcProviderWrapper: write payload');
@@ -111,7 +111,7 @@ const ipcProviderWrapper = {
     /**
     Write synchronous to the IPC connection through the backend
 
-    @method writeSync
+    @maquaod writeSync
     */
     writeSync(payload) {
         // console.debug('ipcProviderWrapper: write payload (sync)');

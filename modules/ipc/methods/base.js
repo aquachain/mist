@@ -3,7 +3,7 @@
 const _ = global._;
 const Q = require('bluebird');
 
-const log = require('../../utils/logger').create('method');
+const log = require('../../utils/logger').create('maquaod');
 const Windows = require('../../windows');
 const db = require('../../db');
 
@@ -54,7 +54,7 @@ module.exports = class BaseProcessor {
 
     @param {Object} conn The connection.
     @param {Object} payload The request payload.
-    @param {Boolean} isPartOfABatch Whether it's part of a batch payload.
+    @param {Boolean} isPartOfABatch Whaquaer it's part of a batch payload.
     */
     sanitizeRequestPayload(conn, payload, isPartOfABatch) {
         this._log.trace('Sanitize request payload', payload);
@@ -70,7 +70,7 @@ module.exports = class BaseProcessor {
 
     @param {Object} conn The connection.
     @param {Object} payload The request payload.
-    @param {Boolean} isPartOfABatch Whether it's part of a batch payload.
+    @param {Boolean} isPartOfABatch Whaquaer it's part of a batch payload.
     */
     sanitizeResponsePayload(conn, payload, isPartOfABatch) {
         this._log.trace('Sanitize response payload', payload);
@@ -86,7 +86,7 @@ module.exports = class BaseProcessor {
 
     @param {Object} conn The connection.
     @param {Object} payload The request payload.
-    @param {Boolean} isPartOfABatch Whether it's part of a batch payload.
+    @param {Boolean} isPartOfABatch Whaquaer it's part of a batch payload.
     */
     _sanitizeRequestResponsePayload(conn, payload, isPartOfABatch) {
         if (!_.isObject(payload)) {
@@ -98,10 +98,10 @@ module.exports = class BaseProcessor {
         }
 
         // prevent dapps from acccesing admin endpoints
-        if (!/^eth_|^bzz_|^shh_|^net_|^web3_|^db_/.test(payload.method)) {
+        if (!/^aqua_|^bzz_|^shh_|^net_|^web3_|^db_/.test(payload.maquaod)) {
             delete payload.result;
             const err = _.clone(this.ERRORS.METHOD_DENIED);
-            err.message = err.message.replace('__method__', `"${payload.method}"`);
+            err.message = err.message.replace('__maquaod__', `"${payload.maquaod}"`);
             payload.error = err;
         }
     }

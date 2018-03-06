@@ -21,7 +21,7 @@ test['Browser bar should render urls with separators'] = function* () {
     yield this.waitForText('.url-breadcrumb', 'http://localhost:8080 ▸ page1 ▸ page2 ▸ param=value ▸ hash');
 };
 
-test['Browser bar should not render script tags on breadcrumb view'] = function* () { // ETH-01-001
+test['Browser bar should not render script tags on breadcrumb view'] = function* () { // AQUA-01-001
     yield this.navigateTo('<script>alert()</script>');
     yield Q.delay(1500);
 
@@ -32,7 +32,7 @@ test['Browser bar should not render script tags on breadcrumb view'] = function*
     should.not.exist(yield this.getUiElement('form.url script'));
 };
 
-test['Browser bar should not render script tags in disguise on breadcrumb view'] = function* () { // ETH-01-001
+test['Browser bar should not render script tags in disguise on breadcrumb view'] = function* () { // AQUA-01-001
     const client = this.client;
 
     yield client.setValue('#url-input', '&lt;script&gt;alert()&lt;/script&gt;');
@@ -49,7 +49,7 @@ test['Browser bar should not render script tags in disguise on breadcrumb view']
     should.not.exist(yield this.getUiElement('form.url script'));
 };
 
-test['Browser bar should not render script tags in disguise (2) on breadcrumb view'] = function* () { // ETH-01-001
+test['Browser bar should not render script tags in disguise (2) on breadcrumb view'] = function* () { // AQUA-01-001
     yield this.navigateTo('<svg><script>alert()</script></svg>');
     yield Q.delay(1500);
 
@@ -62,7 +62,7 @@ test['Browser bar should not render script tags in disguise (2) on breadcrumb vi
 };
 
 
-test['Browser bar should not render arbitrary code as HTML'] = function* () { // ETH-01-001
+test['Browser bar should not render arbitrary code as HTML'] = function* () { // AQUA-01-001
     const client = this.client;
 
     yield client.waitUntil(() => {
@@ -72,7 +72,7 @@ test['Browser bar should not render arbitrary code as HTML'] = function* () { //
     }, 5000, 'expected breadcrumb to render as HTML encoded');
 };
 
-test['Browser bar should not execute JS'] = function* () { // ETH-01-001
+test['Browser bar should not execute JS'] = function* () { // AQUA-01-001
     const client = this.client;
 
     yield this.navigateTo('<script>window.pwned = true</script>');
@@ -91,7 +91,7 @@ test['Load fixture page'] = function* () {
     yield this.loadFixture();
 };
 
-test['"http" protocol should be allowed on browser bar'] = function* () { // ETH-01-002
+test['"http" protocol should be allowed on browser bar'] = function* () { // AQUA-01-002
     const client = this.client;
     yield this.loadFixture();
 
@@ -112,7 +112,7 @@ test['"http" protocol should be allowed on browser bar'] = function* () { // ETH
     browserBarText.should.eql('http://localhost:8080 ▸ index.html'); // checks that did change displayed URL
 };
 
-test['"javascript" protocol should be disallowed on browser bar'] = function* () { // ETH-01-002
+test['"javascript" protocol should be disallowed on browser bar'] = function* () { // AQUA-01-002
     const client = this.client;
     yield this.loadFixture();
     yield client.setValue('#url-input', 'javascript:window.close()'); // eslint-disable-line no-script-url
@@ -133,7 +133,7 @@ test['"javascript" protocol should be disallowed on browser bar'] = function* ()
     browserBarText.should.eql('http://localhost:8080'); // checks that hasn't changed displayed URL
 };
 
-test['"data" protocol should be disallowed on browser bar'] = function* () { // ETH-01-002
+test['"data" protocol should be disallowed on browser bar'] = function* () { // AQUA-01-002
     const client = this.client;
     yield this.loadFixture();
     yield client.setValue('#url-input', 'data:text/plain;charset=utf-8;base64,dGhpcyB0ZXN0IGlzIG9uIGZpcmU=');
@@ -153,7 +153,7 @@ test['"data" protocol should be disallowed on browser bar'] = function* () { // 
     browserBarText.should.eql('http://localhost:8080'); // checks that hasn't changed displayed URL
 };
 
-test['"file" protocol should be disallowed on browser bar'] = function* () { // ETH-01-012
+test['"file" protocol should be disallowed on browser bar'] = function* () { // AQUA-01-012
     const filePath = `file://${path.join(__dirname, '..', 'fixtures', 'index.html')}`;
 
     yield this.navigateTo(filePath);
@@ -177,11 +177,11 @@ test['Pin tab test'] = function* () {
     sidebarItemsAfterAdd.length.should.eql(3);
 };
 
-test['Browse tab should be changed to pinned tab if URLs are the same'] = function* () { // ETH-01-007
+test['Browse tab should be changed to pinned tab if URLs are the same'] = function* () { // AQUA-01-007
     const client = this.client;
     yield this.selectTab('browser');
 
-    yield this.navigateTo('https://wallet.ethereum.org');
+    yield this.navigateTo('https://wallet.aquachain.org');
     yield Q.delay(1000);
     const selectedTab = (yield client.execute(() => { // code executed in browser context
         return LocalStore.get('selectedTab');
@@ -190,11 +190,11 @@ test['Browse tab should be changed to pinned tab if URLs are the same'] = functi
     selectedTab.should.eql('wallet');
 };
 
-test['Wallet tab shouldn\'t have the page replaced if URLs does not match'] = function* () { // ETH-01-007
+test['Wallet tab shouldn\'t have the page replaced if URLs does not match'] = function* () { // AQUA-01-007
     const client = this.client;
     yield this.selectTab('wallet');
 
-    yield this.navigateTo(`${this.fixtureBaseUrl}index.html?https://wallet.ethereum.org`);
+    yield this.navigateTo(`${this.fixtureBaseUrl}index.html?https://wallet.aquachain.org`);
     yield client.waitUntil(() => {
         return client.execute(() => {
             return LocalStore.get('selectedTab') === 'browser';
@@ -202,12 +202,12 @@ test['Wallet tab shouldn\'t have the page replaced if URLs does not match'] = fu
     }, 2000);
 };
 
-test['Wallet tab shouldn\'t have the page replaced if URLs does not match - 2'] = function* () { // ETH-01-007
+test['Wallet tab shouldn\'t have the page replaced if URLs does not match - 2'] = function* () { // AQUA-01-007
     const client = this.client;
     yield this.selectTab('wallet');
 
     // Now changing address via JS
-    yield client.setValue('#url-input', `${this.fixtureBaseUrl}index.html?https://wallet.ethereum.org`);
+    yield client.setValue('#url-input', `${this.fixtureBaseUrl}index.html?https://wallet.aquachain.org`);
     yield client.execute(() => { // Code executed in context of browser
         $('form.url').submit();
     });
@@ -245,7 +245,7 @@ test['Wallet tab shouldn\'t have the page replaced if URLs does not match - 2'] 
 //     });
 // };
 
-// ETH-01-005
+// AQUA-01-005
 // test['Mist main webview should not redirect to arbitrary addresses'] = function* () {
 //     const client = this.client;
 //     const initialURL = yield client.getUrl();
@@ -259,7 +259,7 @@ test['Wallet tab shouldn\'t have the page replaced if URLs does not match - 2'] 
 // };
 //
 
-// ETH-01-008
+// AQUA-01-008
 test['Mist main webview should not redirect to local files'] = function* () {
     const client = this.client;
     const url = `${this.fixtureBaseUrl}redirect?to=file:///Users/ev/Desktop/keystore.txt`;

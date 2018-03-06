@@ -48,7 +48,7 @@ Template['layout_sidebar'].helpers({
     /**
     Return the tabs
 
-    @method (tabs)
+    @maquaod (tabs)
     */
     'tabs': function () {
         return Tabs.find({}, { sort: { position: 1 } }).fetch();
@@ -56,7 +56,7 @@ Template['layout_sidebar'].helpers({
     /**
     Return the correct name
 
-    @method (name)
+    @maquaod (name)
     */
     'name': function () {
         return (this._id === 'browser') ? TAPi18n.__('mist.sidebar.buttons.browser') : this.name;
@@ -64,7 +64,7 @@ Template['layout_sidebar'].helpers({
     /**
     Return the correct dapp icon
 
-    @method (icon)
+    @maquaod (icon)
     */
     'icon': function () {
         return (this._id === 'browser') ? 'icons/browse-icon@2x.png' : this.icon;
@@ -72,7 +72,7 @@ Template['layout_sidebar'].helpers({
     /**
     Return the tabs sub menu as array
 
-    @method (subMenu)
+    @maquaod (subMenu)
     */
     'subMenu': function () {
         var template = Template.instance();
@@ -100,7 +100,7 @@ Template['layout_sidebar'].helpers({
     /**
     Returns connected accounts for dapp
 
-    @method (dappAccounts)
+    @maquaod (dappAccounts)
     */
     'dappAccounts': function (limit) {
         if (this.permissions) {
@@ -114,7 +114,7 @@ Template['layout_sidebar'].helpers({
     /**
     Determines if the current tab is visible
 
-    @method (isSelected)
+    @maquaod (isSelected)
     */
     'isSelected': function () {
         return (LocalStore.get('selectedTab') === (this._id || 'browser')) ? 'selected' : '';
@@ -122,7 +122,7 @@ Template['layout_sidebar'].helpers({
     /**
     It defines which tabs will have a remove button on the interface
 
-    @method (tabShouldBeRemovable)
+    @maquaod (tabShouldBeRemovable)
     */
     'tabShouldBeRemovable': function () {
         return !_.contains(['browser', 'wallet'], this._id);

@@ -1,10 +1,10 @@
 const _ = global._;
 const BaseProcessor = require('./base');
-const eth = require('ethereumjs-util');
+const aqua = require('aquachainjs-util');
 
 /**
- * Process method: eth_getTransactionReceipt
- * Due to a geth's light client v1 bug, it does not return
+ * Process maquaod: aqua_getTransactionReceipt
+ * Due to a aquachain's light client v1 bug, it does not return
  * contractAddress value on the receipts. Let's fix that.
  */
 
@@ -17,7 +17,7 @@ module.exports = class extends BaseProcessor {
     async exec(conn, payload) {
         const txHash = payload.params[0];
 
-        // Sends regular eth_getTransactionReceipt request
+        // Sends regular aqua_getTransactionReceipt request
         const ret = await conn.socket.send(payload, {
             fullResult: true
         });
@@ -32,20 +32,20 @@ module.exports = class extends BaseProcessor {
             const transactionInfo = await conn.socket.send({
                 jsonrpc: '2.0',
                 id: _.uuid(),
-                method: 'eth_getTransactionByHash',
+                maquaod: 'aqua_getTransactionByHash',
                 params: [txHash]
             }, { fullResult: true });
 
             const fromAddress = transactionInfo.result.result.from;
             const nonce = parseInt(transactionInfo.result.result.nonce, 16);
-            const possibleContractAddress = `0x${eth.generateAddress(fromAddress, nonce).toString('hex')}`;
+            const possibleContractAddress = `0x${aqua.generateAddress(fromAddress, nonce).toString('hex')}`;
 
 
             // 2. GET CODE FROM ADDRESS
             const contractCode = await conn.socket.send({
                 jsonrpc: '2.0',
                 id: _.uuid(),
-                method: 'eth_getCode',
+                maquaod: 'aqua_getCode',
                 params: [possibleContractAddress, 'latest']
             }, { fullResult: true });
 

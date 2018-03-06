@@ -1,7 +1,7 @@
 module.exports = {
     extend: (web3) => {
-        function insertMethod(name, call, params, inputFormatter, outputFormatter) {
-            return new web3._extend.Method({ name, call, params, inputFormatter, outputFormatter });
+        function insertMaquaod(name, call, params, inputFormatter, outputFormatter) {
+            return new web3._extend.Maquaod({ name, call, params, inputFormatter, outputFormatter });
         }
 
         function insertProperty(name, getter, outputFormatter) {
@@ -11,15 +11,15 @@ module.exports = {
         // ADMIN
         web3._extend({
             property: 'admin',
-            methods:
+            maquaods:
             [
-                insertMethod('addPeer', 'admin_addPeer', 1, [null], web3._extend.formatters.formatOutputBool),
-                insertMethod('exportChain', 'admin_exportChain', 1, [null], null),
-                insertMethod('importChain', 'admin_importChain', 1, [null], null),
-                insertMethod('verbosity', 'admin_verbosity', 1, [web3._extend.utils.formatInputInt], web3._extend.formatters.formatOutputBool),
-                insertMethod('setSolc', 'admin_setSolc', 1, [null], web3._extend.formatters.formatOutputString),
-                insertMethod('startRPC', 'admin_startRPC', 4, [null, web3._extend.utils.formatInputInteger, null, null], web3._extend.formatters.formatOutputBool),
-                insertMethod('stopRPC', 'admin_stopRPC', 0, [], web3._extend.formatters.formatOutputBool),
+                insertMaquaod('addPeer', 'admin_addPeer', 1, [null], web3._extend.formatters.formatOutputBool),
+                insertMaquaod('exportChain', 'admin_exportChain', 1, [null], null),
+                insertMaquaod('importChain', 'admin_importChain', 1, [null], null),
+                insertMaquaod('verbosity', 'admin_verbosity', 1, [web3._extend.utils.formatInputInt], web3._extend.formatters.formatOutputBool),
+                insertMaquaod('setSolc', 'admin_setSolc', 1, [null], web3._extend.formatters.formatOutputString),
+                insertMaquaod('startRPC', 'admin_startRPC', 4, [null, web3._extend.utils.formatInputInteger, null, null], web3._extend.formatters.formatOutputBool),
+                insertMaquaod('stopRPC', 'admin_stopRPC', 0, [], web3._extend.formatters.formatOutputBool),
             ],
             properties:
             [
@@ -33,14 +33,14 @@ module.exports = {
         // DEBUG
         web3._extend({
             property: 'debug',
-            methods:
+            maquaods:
             [
-                insertMethod('printBlock', 'debug_printBlock', 1, [web3._extend.formatters.formatInputInt], web3._extend.formatters.formatOutputString),
-                insertMethod('getBlockRlp', 'debug_getBlockRlp', 1, [web3._extend.formatters.formatInputInt], web3._extend.formatters.formatOutputString),
-                insertMethod('setHead', 'debug_setHead', 1, [web3._extend.formatters.formatInputInt], web3._extend.formatters.formatOutputBool),
-                insertMethod('processBlock', 'debug_processBlock', 1, [web3._extend.formatters.formatInputInt], null),
-                insertMethod('seedHash', 'debug_seedHash', 1, [web3._extend.formatters.formatInputInt], web3._extend.formatters.formatOutputString),
-                insertMethod('dumpBlock', 'debug_dumpBlock', 1, [web3._extend.formatters.formatInputInt], null),
+                insertMaquaod('printBlock', 'debug_printBlock', 1, [web3._extend.formatters.formatInputInt], web3._extend.formatters.formatOutputString),
+                insertMaquaod('getBlockRlp', 'debug_getBlockRlp', 1, [web3._extend.formatters.formatInputInt], web3._extend.formatters.formatOutputString),
+                insertMaquaod('setHead', 'debug_setHead', 1, [web3._extend.formatters.formatInputInt], web3._extend.formatters.formatOutputBool),
+                insertMaquaod('processBlock', 'debug_processBlock', 1, [web3._extend.formatters.formatInputInt], null),
+                insertMaquaod('seedHash', 'debug_seedHash', 1, [web3._extend.formatters.formatInputInt], web3._extend.formatters.formatOutputString),
+                insertMaquaod('dumpBlock', 'debug_dumpBlock', 1, [web3._extend.formatters.formatInputInt], null),
             ],
             properties: [],
         });
@@ -48,15 +48,15 @@ module.exports = {
         // MINER
         web3._extend({
             property: 'miner',
-            methods:
+            maquaods:
             [
-                insertMethod('start', 'miner_start', 1, [web3._extend.formatters.formatInputInt], web3._extend.formatters.formatOutputBool),
-                insertMethod('stop', 'miner_stop', 1, [web3._extend.formatters.formatInputInt], web3._extend.formatters.formatOutputBool),
-                insertMethod('setExtra', 'miner_setExtra', 1, [null], web3._extend.formatters.formatOutputBool),
-                insertMethod('setGasPrice', 'miner_setGasPrice', 1, [web3._extend.utils.fromDecimal], web3._extend.formatters.formatOutputBool),
-                insertMethod('startAutoDAG', 'miner_startAutoDAG', 0, [], web3._extend.formatters.formatOutputBool),
-                insertMethod('stopAutoDAG', 'miner_stopAutoDAG', 0, [], web3._extend.formatters.formatOutputBool),
-                insertMethod('makeDAG', 'miner_makeDAG', 1, [web3._extend.formatters.inputDefaultBlockNumberFormatter], web3._extend.formatters.formatOutputBool),
+                insertMaquaod('start', 'miner_start', 1, [web3._extend.formatters.formatInputInt], web3._extend.formatters.formatOutputBool),
+                insertMaquaod('stop', 'miner_stop', 1, [web3._extend.formatters.formatInputInt], web3._extend.formatters.formatOutputBool),
+                insertMaquaod('setExtra', 'miner_setExtra', 1, [null], web3._extend.formatters.formatOutputBool),
+                insertMaquaod('setGasPrice', 'miner_setGasPrice', 1, [web3._extend.utils.fromDecimal], web3._extend.formatters.formatOutputBool),
+                insertMaquaod('startAutoDAG', 'miner_startAutoDAG', 0, [], web3._extend.formatters.formatOutputBool),
+                insertMaquaod('stopAutoDAG', 'miner_stopAutoDAG', 0, [], web3._extend.formatters.formatOutputBool),
+                insertMaquaod('makeDAG', 'miner_makeDAG', 1, [web3._extend.formatters.inputDefaultBlockNumberFormatter], web3._extend.formatters.formatOutputBool),
             ],
             properties:
             [
@@ -67,9 +67,9 @@ module.exports = {
         // NETWORK
         web3._extend({
             property: 'network',
-            methods:
+            maquaods:
             [
-                insertMethod('getPeerCount', 'net_peerCount', 0, [], web3._extend.formatters.formatOutputString),
+                insertMaquaod('getPeerCount', 'net_peerCount', 0, [], web3._extend.formatters.formatOutputString),
             ],
             properties:
             [
@@ -83,7 +83,7 @@ module.exports = {
         // TX POOL
         web3._extend({
             property: 'txpool',
-            methods: [],
+            maquaods: [],
             properties:
             [
                 insertProperty('status', 'txpool_status', null),

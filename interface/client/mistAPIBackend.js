@@ -9,7 +9,7 @@ var allowedBrowserBarStyles = ['transparent'];
 /**
 Filters a id the id to only contain a-z A-Z 0-9 _ -.
 
-@method filterId
+@maquaod filterId
 */
 var filterId = function (str) {
     var newStr = '';
@@ -28,7 +28,7 @@ var sound = document.createElement('audio');
 /**
 The backend side of the mist API.
 
-@method mistAPIBackend
+@maquaod mistAPIBackend
 */
 mistAPIBackend = function (event) {
     var template = this.template;
@@ -46,7 +46,7 @@ mistAPIBackend = function (event) {
         var tests = Tabs.findOne('tests');
 
         if (tests) {
-            web3.eth.getCoinbase(function (e, coinbase) {
+            web3.aqua.getCoinbase(function (e, coinbase) {
                 webview.send('uiAction_sendTestData', tests.permissions, coinbase);
             });
         }
