@@ -20,13 +20,13 @@ web3
 
 // 2. optionally use web3 from Mist or load if outside of Mist
 if(typeof web3 === 'undefined')
-  web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+  web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8543"));
 
 // 3. always use web3 provided by the dapp ("Web3" won't be supplied by Mist), but the provider from Mist
 if(typeof web3 !== 'undefined')
   web3 = new Web3(web3.currentProvider);
 else
-  web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+  web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8543"));
 ```
 
 ## API
